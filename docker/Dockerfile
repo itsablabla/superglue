@@ -28,10 +28,6 @@ COPY . .
 # After copying files but before building
 RUN npm run build
 
-# Inject build ID into service worker for cache versioning
-RUN BUILD_ID=$(cat packages/web/.next/BUILD_ID 2>/dev/null || date +%s) && \
-    sed -i "s/{{BUILD_ID}}/$BUILD_ID/g" packages/web/public/sw.js
-    
 
 # Production stage
 FROM node:22-slim
