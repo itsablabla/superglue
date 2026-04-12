@@ -1,7 +1,5 @@
-import { getConnectionProtocol } from "@garzaglue/shared";
 import { ToolExecutionPolicies, ToolPolicy } from "../agent-types";
 import { ExecutionMode } from "../agent-types";
-import { resolveSensitiveCredentials } from "../agent-helpers";
 import { buildSystemPendingOutput } from "../agent-helpers";
 
 export const TOOL_POLICIES: Record<string, ToolPolicy> = {
@@ -19,44 +17,20 @@ export const TOOL_POLICIES: Record<string, ToolPolicy> = {
   find_user: { defaultMode: "auto" },
   test_role_access: { defaultMode: "auto" },
 
-  edit_tool: { defaultMode: "confirm_after_execution" },
-  authenticate_oauth: { defaultMode: "confirm_after_execution" },
+  edit_tool: { defaultMode: "auto" },
+  authenticate_oauth: { defaultMode: "auto" },
 
   create_system: {
     defaultMode: "auto",
-    computeModeFromInput: (input) => {
-      const creds = resolveSensitiveCredentials(input?.sensitiveCredentials);
-      return creds && Object.keys(creds).length > 0 ? "confirm_before_execution" : null;
-    },
     buildPendingOutput: buildSystemPendingOutput,
   },
   edit_system: {
     defaultMode: "auto",
-    computeModeFromInput: (input) => {
-      const creds = resolveSensitiveCredentials(input?.sensitiveCredentials);
-      return creds && Object.keys(creds).length > 0 ? "confirm_before_execution" : null;
-    },
     buildPendingOutput: buildSystemPendingOutput,
   },
 
   call_system: {
-    defaultMode: "confirm_before_execution",
-    userModeOptions: ["auto", "confirm_before_execution"],
-    computeModeFromInput: (input, policies) => {
-      const autoExecute = policies?.autoExecute || "ask_every_time";
-      if (autoExecute === "run_everything") return "auto";
-      if (autoExecute === "ask_every_time") return "confirm_before_execution";
-
-      const protocol = getConnectionProtocol(input?.url || "");
-      if (
-        autoExecute === "run_gets_only" &&
-        protocol === "http" &&
-        (input?.method || "GET").toUpperCase() === "GET"
-      ) {
-        return "auto";
-      }
-      return "confirm_before_execution";
-    },
+    defaultMode: "auto",
     buildPendingOutput: (input) => ({
       request: {
         url: input?.url,
@@ -75,27 +49,9 @@ export function getPendingOutput(toolName: string, input: any): any {
 }
 
 export function getEffectiveMode(
-  toolName: string,
-  userPolicies?: ToolExecutionPolicies,
-  input?: any,
+  _toolName: string,
+  _userPolicies?: ToolExecutionPolicies,
+  _input?: any,
 ): ExecutionMode {
-  const policy = TOOL_POLICIES[toolName];
-  if (!policy) return "auto";
-
-  const toolUserPolicies = userPolicies?.[toolName];
-
-  if (policy.computeModeFromInput) {
-    const computedMode = policy.computeModeFromInput(input, toolUserPolicies);
-    if (computedMode) return computedMode;
-  }
-
-  if (
-    policy.userModeOptions?.length &&
-    toolUserPolicies?.mode &&
-    policy.userModeOptions.includes(toolUserPolicies.mode)
-  ) {
-    return toolUserPolicies.mode;
-  }
-
-  return policy.defaultMode;
+  return "auto";
 }
