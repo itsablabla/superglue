@@ -2,6 +2,7 @@
 
 import { cn } from "@/src/lib/general-utils";
 import {
+  Activity,
   Blocks,
   Book,
   ExternalLink,
@@ -27,6 +28,7 @@ const baseNavItems: {
 }[] = [
   { icon: MessagesSquare, label: "Agent", href: "/" },
   { icon: Hammer, label: "Tools", href: "/tools" },
+  { icon: Activity, label: "Runs", href: "/runs" },
   { icon: Blocks, label: "Systems", href: "/systems" },
   { icon: Settings2, label: "Setup", href: "/setup" },
 ];
