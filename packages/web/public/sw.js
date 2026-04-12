@@ -1,6 +1,9 @@
-const CACHE_VERSION = "v2-" + Date.now();
-const STATIC_CACHE = "garza-glue-static-" + CACHE_VERSION;
-const RUNTIME_CACHE = "garza-glue-runtime-" + CACHE_VERSION;
+// Garza Glue PWA Service Worker
+// Cache version is derived from the build ID injected by Next.js at build time.
+// When a new build deploys, the SW file changes → browser detects update → old caches purged.
+const BUILD_ID = "{{BUILD_ID}}";
+const STATIC_CACHE = "gg-static-" + BUILD_ID;
+const RUNTIME_CACHE = "gg-runtime-" + BUILD_ID;
 
 const PRECACHE_URLS = [
   "/",
@@ -50,7 +53,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Cache-first for static assets (Next.js chunks, images, fonts)
+  // Cache-first for immutable static assets (Next.js chunks, images, fonts)
   if (
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.match(/\.(png|jpg|jpeg|svg|ico|woff2?|css|js)$/)
@@ -70,26 +73,26 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Network-first for pages, with offline fallback
+  // Stale-while-revalidate for pages — serve cached immediately, update in background
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => cache.put(event.request, clone));
-        }
-        return response;
-      })
-      .catch(() =>
-        caches.match(event.request).then((cached) => {
-          if (cached) return cached;
-          // If it's a navigation request and nothing cached, show offline page
+    caches.match(event.request).then((cached) => {
+      const fetchPromise = fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+        .catch(() => {
           if (event.request.mode === "navigate") {
             return caches.match("/offline.html");
           }
           return new Response("Offline", { status: 503, statusText: "Offline" });
-        }),
-      ),
+        });
+
+      return cached || fetchPromise;
+    }),
   );
 });
 
@@ -141,6 +144,5 @@ self.addEventListener("sync", (event) => {
 
 async function syncPendingMessages() {
   // Future: read from IndexedDB queue and POST to /v1/conversations
-  // For now, just log — actual implementation requires the chat to queue messages
   console.log("[SW] Background sync triggered for chat messages");
 }

@@ -7,9 +7,28 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { cn } from "@/src/lib/general-utils";
 import { formatBytes } from "@/src/lib/file-utils";
 import { ALLOWED_FILE_EXTENSIONS } from "@garzaglue/shared";
-import { AlertTriangle, ChevronUp, Paperclip, Send, Square } from "lucide-react";
+import { AlertTriangle, ChevronUp, Mic, MicOff, Paperclip, Send, Square } from "lucide-react";
 import React, { useCallback, useEffect, useRef } from "react";
 import { useAgentContext } from "./AgentContextProvider";
+
+interface WebSpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onresult:
+    | ((event: {
+        resultIndex: number;
+        results: {
+          length: number;
+          [index: number]: { isFinal: boolean; 0: { transcript: string } };
+        };
+      }) => void)
+    | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
 
 export interface AgentInputAreaProps {
   value: string;
@@ -86,32 +105,92 @@ export function AgentInputArea({
     el.style.height = `${Math.min(el.scrollHeight, maxH)}px`;
   }, [value, compact]);
 
-  // Mobile keyboard: translate input up when virtual keyboard opens
+  // Voice recording state
+  const [isRecording, setIsRecording] = React.useState(false);
+  const mediaRecorderRef = React.useRef<MediaRecorder | null>(null);
+  const recognitionRef = React.useRef<WebSpeechRecognition | null>(null);
+  const [speechSupported, setSpeechSupported] = React.useState(false);
+
   useEffect(() => {
-    if (compact) return;
-    const vv = window.visualViewport;
-    if (!vv) return;
+    const SpeechRecognition =
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    setSpeechSupported(!!SpeechRecognition);
+  }, []);
 
-    const container = inputContainerRef?.current;
-    if (!container) return;
+  const handleToggleRecording = useCallback(() => {
+    if (isRecording) {
+      recognitionRef.current?.stop();
+      mediaRecorderRef.current?.stop();
+      setIsRecording(false);
+      return;
+    }
 
-    const handleResize = () => {
-      const keyboardHeight = window.innerHeight - vv.height - vv.offsetTop;
-      if (keyboardHeight > 50) {
-        container.style.transform = `translateY(-${keyboardHeight}px)`;
-      } else {
-        container.style.transform = "";
-      }
-    };
+    const SpeechRecognition =
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
-    vv.addEventListener("resize", handleResize);
-    vv.addEventListener("scroll", handleResize);
-    return () => {
-      vv.removeEventListener("resize", handleResize);
-      vv.removeEventListener("scroll", handleResize);
-      if (container) container.style.transform = "";
-    };
-  }, [compact, inputContainerRef]);
+    if (SpeechRecognition) {
+      const recognition: WebSpeechRecognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "en-US";
+
+      let finalTranscript = value;
+
+      recognition.onresult = (event) => {
+        let interim = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += (finalTranscript ? " " : "") + transcript;
+            onChange(finalTranscript);
+          } else {
+            interim = transcript;
+          }
+        }
+        if (interim) {
+          onChange(finalTranscript + (finalTranscript ? " " : "") + interim);
+        }
+      };
+
+      recognition.onerror = () => {
+        setIsRecording(false);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+
+      recognitionRef.current = recognition;
+      recognition.start();
+      setIsRecording(true);
+    } else {
+      // Fallback: record audio as file attachment
+      navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .then((stream) => {
+          const mediaRecorder = new MediaRecorder(stream);
+          const chunks: BlobPart[] = [];
+
+          mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+          mediaRecorder.onstop = () => {
+            stream.getTracks().forEach((t) => t.stop());
+            const blob = new Blob(chunks, { type: "audio/webm" });
+            const file = new File([blob], `voice-memo-${Date.now()}.webm`, {
+              type: "audio/webm",
+            });
+            handleFilesUpload([file]);
+            setIsRecording(false);
+          };
+
+          mediaRecorderRef.current = mediaRecorder;
+          mediaRecorder.start();
+          setIsRecording(true);
+        })
+        .catch(() => {
+          setIsRecording(false);
+        });
+    }
+  }, [isRecording, value, onChange, handleFilesUpload]);
 
   const canSend = value.trim() && value.length <= maxLength;
   const showCount = showCharCount && value.length > maxLength * 0.8;
@@ -119,7 +198,7 @@ export function AgentInputArea({
   return (
     <div
       ref={inputContainerRef}
-      className={cn(!compact && "sticky bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm")}
+      className={cn(!compact && "flex-shrink-0 bg-background/95 backdrop-blur-sm")}
     >
       <div className={cn(compact ? "p-0" : "mx-0 sm:mx-2 lg:mx-6 pb-4 px-2 sm:px-4")}>
         <div className={cn(!compact && "max-w-7xl mx-auto")}>
@@ -285,6 +364,28 @@ export function AgentInputArea({
                     <Paperclip className={cn(compact ? "w-4 h-4" : "w-5 h-5")} />
                   </Button>
                 </div>
+
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className={cn(
+                    "p-0 rounded-xl",
+                    isRecording
+                      ? "bg-red-500/20 text-red-500 hover:bg-red-500/30 animate-pulse"
+                      : "bg-transparent hover:bg-black/5 dark:hover:bg-white/10 text-muted-foreground hover:text-foreground",
+                    "transition-all",
+                    compact ? "h-8 w-8" : "h-9 w-9",
+                  )}
+                  onClick={handleToggleRecording}
+                  disabled={isLoading}
+                  title={isRecording ? "Stop recording" : "Voice input"}
+                >
+                  {isRecording ? (
+                    <MicOff className={cn(compact ? "w-4 h-4" : "w-5 h-5")} />
+                  ) : (
+                    <Mic className={cn(compact ? "w-4 h-4" : "w-5 h-5")} />
+                  )}
+                </Button>
 
                 <Button
                   onClick={isLoading ? onStop : onSend}
