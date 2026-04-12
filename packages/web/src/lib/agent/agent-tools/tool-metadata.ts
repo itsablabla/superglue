@@ -140,12 +140,7 @@ export const CATEGORY_ORDER: ToolCategory[] = [
 
 export type ApprovalMode = "auto" | "approval_after" | "approval_before";
 
-export function getApprovalMode(toolName: string): ApprovalMode {
-  const policy = TOOL_POLICIES[toolName];
-  if (!policy) return "auto";
-  if (policy.defaultMode === "confirm_before_execution") return "approval_before";
-  if (policy.defaultMode === "confirm_after_execution") return "approval_after";
-  if (policy.computeModeFromInput) return "approval_before";
+export function getApprovalMode(_toolName: string): ApprovalMode {
   return "auto";
 }
 
