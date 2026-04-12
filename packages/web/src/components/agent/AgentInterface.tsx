@@ -497,7 +497,7 @@ function AgentInterfaceContent({
   }, [startNewConversation]);
 
   return (
-    <div className="h-full mx-auto flex flex-col relative">
+    <div className="h-full mx-auto flex flex-col relative overflow-hidden overscroll-none">
       <div className="flex items-center gap-2 p-2 relative">
         <ConversationHistory
           messages={messages}
@@ -534,8 +534,8 @@ function AgentInterfaceContent({
       </div>
 
       <ScrollToBottomContainer
-        className="flex-1 mx-0 sm:mx-2 lg:mx-6 overflow-hidden relative"
-        scrollViewClassName="custom-scrollbar"
+        className="flex-1 mx-0 sm:mx-2 lg:mx-6 overflow-hidden relative overscroll-contain"
+        scrollViewClassName="custom-scrollbar overscroll-contain"
         followButtonClassName="hidden"
         debounce={50}
       >

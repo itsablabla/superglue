@@ -16,5 +16,9 @@ export default function Main() {
     };
   }, [promptParam]);
 
-  return <AgentInterface initialPrompts={initialPrompts} />;
+  return (
+    <div className="w-full h-full overflow-hidden overscroll-none">
+      <AgentInterface initialPrompts={initialPrompts} />
+    </div>
+  );
 }
