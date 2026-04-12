@@ -145,7 +145,7 @@ export function ClientWrapper({ children, config }: Props) {
                             <AgentModalContent />
                           </div>
                         ) : (
-                          <div className="flex h-svh lg:h-dvh overflow-hidden">
+                          <div className="flex h-dvh overflow-hidden">
                             {token && <LeftSidebar />}
                             <div className="relative flex-1 min-w-0 h-full">
                               <AnimatePresence mode="wait">
