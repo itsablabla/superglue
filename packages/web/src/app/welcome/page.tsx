@@ -120,7 +120,7 @@ export default function WelcomePage() {
           <Card className="w-full max-w-md overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-muted/50 to-muted/30 dark:from-muted/50 dark:to-muted/30 backdrop-blur-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
             <CardHeader className="space-y-3 text-center">
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-border/40 bg-background/50 backdrop-blur-sm shadow-sm">
-                <img src="/logo.svg" alt="superglue" className="h-7 w-7 object-contain" />
+                <img src="/logo.svg" alt="Garza Glue" className="h-7 w-7 object-contain" />
               </div>
               <CardTitle className="text-2xl">Loading...</CardTitle>
               <CardDescription>Checking your workspace setup.</CardDescription>
@@ -142,10 +142,10 @@ export default function WelcomePage() {
         <Card className="w-full max-w-md overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-muted/50 to-muted/30 dark:from-muted/50 dark:to-muted/30 backdrop-blur-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200">
           <CardHeader className="space-y-4 text-center">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-border/40 bg-background/50 backdrop-blur-sm shadow-sm">
-              <img src="/logo.svg" alt="superglue" className="h-8 w-8 object-contain" />
+              <img src="/logo.svg" alt="Garza Glue" className="h-8 w-8 object-contain" />
             </div>
             <div className="space-y-1.5">
-              <CardTitle className="text-2xl">Welcome to superglue</CardTitle>
+              <CardTitle className="text-2xl">Welcome to Garza Glue</CardTitle>
               <CardDescription className="mx-auto max-w-sm text-sm leading-6">
                 Share an email if you want product updates and important notices about changes to
                 the OSS.

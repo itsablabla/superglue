@@ -9,31 +9,31 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
-    default: "superglue",
-    template: "%s | superglue",
+    default: "Garza Glue",
+    template: "%s | Garza Glue",
   },
   description:
     "AI integration platform. Build and manage integrations 10x faster with AI-powered data transformation and schema mapping.",
   keywords: ["API integration", "data transformation", "AI integration", "ETL", "data mapping"],
-  authors: [{ name: "superglue" }],
+  authors: [{ name: "Garza Glue" }],
   openGraph: {
-    title: "superglue",
+    title: "Garza Glue",
     description:
       "AI integration platform. Build and manage integrations 10x faster with AI-powered data transformation.",
-    url: "https://app.superglue.cloud",
-    siteName: "superglue",
+    url: "https://s1.garzaglue.com",
+    siteName: "Garza Glue",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "superglue",
+    title: "Garza Glue",
     description: "AI integration platform. Build and manage integrations 10x faster with AI.",
   },
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
-  metadataBase: new URL("https://superglue.ai"),
+  metadataBase: new URL("https://s1.garzaglue.com"),
 };
 
 export default function RootLayout({

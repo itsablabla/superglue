@@ -22,6 +22,7 @@ import { useToken } from "../hooks/use-token";
 import { queryClient } from "@/src/queries";
 import { useEffect, useState } from "react";
 import { connectionMonitor } from "@/src/lib/connection-monitor";
+import { useIOSScrollLock } from "@/src/hooks/use-ios-scroll-lock";
 
 interface Props {
   children: React.ReactNode;
@@ -124,6 +125,7 @@ export function ClientWrapper({ children, config }: Props) {
   const pathname = usePathname();
   const token = useToken();
   const isWelcomePage = pathname === "/welcome";
+  useIOSScrollLock();
 
   return (
     <QueryClientProvider client={queryClient}>

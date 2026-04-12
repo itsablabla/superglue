@@ -34,7 +34,7 @@ export function AgentInputArea({
   onSend,
   onStop,
   isLoading,
-  placeholder = "Message superglue...",
+  placeholder = "Message Garza Glue...",
   maxLength = 50000,
   compact = false,
   showCharCount = false,

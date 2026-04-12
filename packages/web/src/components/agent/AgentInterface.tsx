@@ -120,7 +120,7 @@ const MemoMessage = React.memo(
           {message.role === "assistant" && (
             <img
               src="/favicon.png"
-              alt="superglue"
+              alt="Garza Glue"
               className="w-5 h-5 object-contain dark:invert"
             />
           )}
@@ -129,7 +129,7 @@ const MemoMessage = React.memo(
         <div className="flex-1 space-y-3 min-w-0 overflow-hidden">
           <div className="flex items-center gap-2">
             <span className="font-medium text-base">
-              {message.role === "user" ? "You" : "superglue"}
+              {message.role === "user" ? "You" : "Garza Glue"}
             </span>
             <span className="text-xs text-muted-foreground">
               {formatTimestamp(message.timestamp)}
@@ -581,7 +581,7 @@ function AgentInterfaceContent({
         onSend={onSendMessage}
         onStop={handleStopStreaming}
         isLoading={isLoading}
-        placeholder="Message superglue..."
+        placeholder="Message Garza Glue..."
         maxLength={MAX_MESSAGE_LENGTH}
         showCharCount
         inputContainerRef={inputContainerRef}

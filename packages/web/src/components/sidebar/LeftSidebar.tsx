@@ -146,7 +146,7 @@ export function LeftSidebar() {
             <div className="p-4">
               <div className="flex items-center justify-between mb-3">
                 <Link href="/" onClick={() => setIsOpen(false)}>
-                  <img src="/logo.svg" alt="superglue Logo" className="h-8 w-auto cursor-pointer" />
+                  <img src="/logo.svg" alt="Garza Glue Logo" className="h-8 w-auto cursor-pointer" />
                 </Link>
                 {themeToggle}
               </div>
@@ -163,7 +163,7 @@ export function LeftSidebar() {
             <Link href="/">
               <img
                 src="/logo.svg"
-                alt="superglue Logo"
+                alt="Garza Glue Logo"
                 className="max-w-full h-[50px] w-auto ml-auto mr-auto cursor-pointer"
               />
             </Link>

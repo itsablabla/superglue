@@ -57,7 +57,7 @@ import {
 
 const buildToolDefinition = (): ToolDefinition => ({
   name: "build_tool",
-  description: `Builds a new superglue tool by accepting the full tool configuration JSON.
+  description: `Builds a new Garza Glue tool by accepting the full tool configuration JSON.
     Load the tool-building skill via load_skill first — it contains the exact config structure and build recipe.
     In the main agent, successful builds are auto-saved. In the tool playground, builds remain draft-only until explicitly saved.`,
   inputSchema: {
@@ -2054,7 +2054,7 @@ const runFindSystem = async (
 
 const loadSkillDefinition = (): ToolDefinition => ({
   name: "load_skill",
-  description: `Loads superglue skills into context.
+  description: `Loads Garza Glue skills into context.
 
 Available skills:
 ${skillIndexDescription}

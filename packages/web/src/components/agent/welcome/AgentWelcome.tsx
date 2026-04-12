@@ -8,13 +8,13 @@ import { SystemConfig } from "@superglue/shared";
 
 const EXAMPLES = {
   CAPABILITIES: {
-    title: "What can superglue do for you?",
-    description: "Explain superglue's capabilities",
-    user: "What can I do with superglue?",
+    title: "What can Garza Glue do for you?",
+    description: "Explain Garza Glue's capabilities",
+    user: "What can I do with Garza Glue?",
   },
   TEMPLATES: {
     title: "Give me a demo",
-    description: "Show me what superglue can do",
+    description: "Show me what Garza Glue can do",
     user: "Give me a demo.",
     hiddenStarterMessage:
       "After a brief welcome message, call load_skill with skills ['demos'] and follow it exactly. Narrate each step briefly and map it to real customer systems.",
