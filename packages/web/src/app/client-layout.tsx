@@ -24,6 +24,16 @@ import { useEffect, useState } from "react";
 import { connectionMonitor } from "@/src/lib/connection-monitor";
 import { useIOSScrollLock } from "@/src/hooks/use-ios-scroll-lock";
 
+function useServiceWorker(): void {
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        // SW registration failed — non-critical, ignore
+      });
+    }
+  }, []);
+}
+
 interface Props {
   children: React.ReactNode;
   config: Config;
@@ -126,6 +136,7 @@ export function ClientWrapper({ children, config }: Props) {
   const token = useToken();
   const isWelcomePage = pathname === "/welcome";
   useIOSScrollLock();
+  useServiceWorker();
 
   return (
     <QueryClientProvider client={queryClient}>

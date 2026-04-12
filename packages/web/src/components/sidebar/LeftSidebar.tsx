@@ -3,15 +3,20 @@
 import { cn } from "@/src/lib/general-utils";
 import {
   Activity,
+  Bell,
   Blocks,
   Book,
+  ChevronUp,
   ExternalLink,
   Hammer,
+  Key,
+  Map,
   Menu,
   MessagesSquare,
   Moon,
   Settings2,
   Sun,
+  Timer,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -20,25 +25,123 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../../hooks/use-theme";
 import { Button } from "../ui/button";
 
-const baseNavItems: {
+interface NavItem {
   icon: typeof MessagesSquare;
   label: string;
   href: string;
   target?: string;
-}[] = [
+}
+
+interface NavGroup {
+  icon: typeof MessagesSquare;
+  label: string;
+  basePath: string;
+  children: NavItem[];
+}
+
+const topNavItems: NavItem[] = [
   { icon: MessagesSquare, label: "Agent", href: "/" },
+  { icon: Map, label: "Landscape", href: "/landscape" },
   { icon: Hammer, label: "Tools", href: "/tools" },
-  { icon: Activity, label: "Runs", href: "/runs" },
   { icon: Blocks, label: "Systems", href: "/systems" },
-  { icon: Settings2, label: "Setup", href: "/setup" },
+  { icon: Activity, label: "Runs", href: "/runs" },
 ];
 
-const docsNavItem = {
+const controlPanelGroup: NavGroup = {
+  icon: Settings2,
+  label: "Control Panel",
+  basePath: "/control-panel",
+  children: [
+    { icon: Settings2, label: "Overview", href: "/control-panel/overview" },
+    { icon: Timer, label: "Schedules", href: "/control-panel/schedules" },
+    { icon: Key, label: "API Keys", href: "/control-panel/api-keys" },
+  ],
+};
+
+const bottomNavItems: NavItem[] = [{ icon: Bell, label: "Notifications", href: "/notifications" }];
+
+const docsNavItem: NavItem = {
   icon: Book,
   label: "Docs",
   href: "https://docs.superglue.cloud",
   target: "_blank",
 };
+
+const linkClass = (isActive: boolean): string =>
+  cn(
+    "flex items-center px-3 py-2.5 mb-1 text-sm rounded-xl transition-all duration-200",
+    isActive
+      ? "bg-gradient-to-br from-muted/70 to-muted/50 dark:from-muted/70 dark:to-muted/50 backdrop-blur-sm border border-border/50 dark:border-border/70 shadow-sm text-foreground font-medium"
+      : "text-muted-foreground hover:bg-gradient-to-br hover:from-muted/40 hover:to-muted/20 dark:hover:from-muted/40 dark:hover:to-muted/20 hover:text-foreground",
+  );
+
+function NavLink({ item, pathname }: { item: NavItem; pathname: string }) {
+  const Icon = item.icon;
+  const isActive = pathname === item.href;
+  return (
+    <Link href={item.href} target={item.target || "_self"} className={linkClass(isActive)}>
+      <Icon className="h-4 w-4 mr-3" />
+      {item.label}
+      {item.target === "_blank" && <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />}
+    </Link>
+  );
+}
+
+function CollapsibleGroup({ group, pathname }: { group: NavGroup; pathname: string }) {
+  const isGroupActive = pathname.startsWith(group.basePath);
+  const [isExpanded, setIsExpanded] = useState(isGroupActive);
+  const Icon = group.icon;
+
+  useEffect(() => {
+    if (isGroupActive) setIsExpanded(true);
+  }, [isGroupActive]);
+
+  return (
+    <div className="mb-1">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={cn(
+          "flex items-center w-full px-3 py-2.5 text-sm rounded-xl transition-all duration-200",
+          isGroupActive
+            ? "text-foreground font-medium"
+            : "text-muted-foreground hover:text-foreground",
+        )}
+      >
+        <Icon className="h-4 w-4 mr-3" />
+        {group.label}
+        <ChevronUp
+          className={cn(
+            "h-3.5 w-3.5 ml-auto transition-transform duration-200",
+            !isExpanded && "rotate-180",
+          )}
+        />
+      </button>
+      {isExpanded && (
+        <div className="ml-4 pl-3 border-l border-border/50">
+          {group.children.map((child) => {
+            const ChildIcon = child.icon;
+            const isActive = pathname === child.href;
+            return (
+              <Link
+                key={child.href}
+                href={child.href}
+                className={cn(
+                  "flex items-center px-3 py-2 mb-0.5 text-sm rounded-lg transition-all duration-200",
+                  isActive
+                    ? "bg-muted/50 text-foreground font-medium"
+                    : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
+                )}
+              >
+                <ChildIcon className="h-3.5 w-3.5 mr-2.5" />
+                {child.label}
+              </Link>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function LeftSidebar() {
   const pathname = usePathname();
@@ -51,13 +154,11 @@ export function LeftSidebar() {
 
   useEffect(() => {
     if (!isOpen) return;
-
     const handleClickOutside = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
@@ -69,38 +170,14 @@ export function LeftSidebar() {
 
   const navContent = (
     <>
-      {baseNavItems.map((item) => {
-        const Icon = item.icon;
-        const isActive = pathname === item.href;
-        return (
-          <Link
-            key={item.href}
-            href={item.href}
-            target={item.target || "_self"}
-            className={cn(
-              "flex items-center px-3 py-2.5 mb-1 text-sm rounded-xl transition-all duration-200",
-              isActive
-                ? "bg-gradient-to-br from-muted/70 to-muted/50 dark:from-muted/70 dark:to-muted/50 backdrop-blur-sm border border-border/50 dark:border-border/70 shadow-sm text-foreground font-medium"
-                : "text-muted-foreground hover:bg-gradient-to-br hover:from-muted/40 hover:to-muted/20 dark:hover:from-muted/40 dark:hover:to-muted/20 hover:text-foreground",
-            )}
-          >
-            <Icon className="h-4 w-4 mr-3" />
-            {item.label}
-            {item.target === "_blank" && <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />}
-          </Link>
-        );
-      })}
-
-      {/* Docs Link */}
-      <Link
-        href={docsNavItem.href}
-        target={docsNavItem.target}
-        className="flex items-center px-3 py-2.5 mb-1 text-sm rounded-xl text-muted-foreground hover:bg-gradient-to-br hover:from-muted/40 hover:to-muted/20 dark:hover:from-muted/40 dark:hover:to-muted/20 hover:text-foreground transition-all duration-200"
-      >
-        <docsNavItem.icon className="h-4 w-4 mr-3" />
-        {docsNavItem.label}
-        <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />
-      </Link>
+      {topNavItems.map((item) => (
+        <NavLink key={item.href} item={item} pathname={pathname} />
+      ))}
+      <CollapsibleGroup group={controlPanelGroup} pathname={pathname} />
+      {bottomNavItems.map((item) => (
+        <NavLink key={item.href} item={item} pathname={pathname} />
+      ))}
+      <NavLink item={docsNavItem} pathname={pathname} />
     </>
   );
 
@@ -160,7 +237,7 @@ export function LeftSidebar() {
         </div>
       )}
 
-      {/* Desktop: static sidebar (unchanged) */}
+      {/* Desktop: static sidebar */}
       <div className="hidden lg:flex w-48 flex-shrink-0 bg-background border-r border-border flex-col">
         <div className="p-5">
           <div className="relative mx-auto flex flex-col items-center">
