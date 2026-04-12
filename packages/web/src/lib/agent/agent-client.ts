@@ -216,6 +216,22 @@ export class AgentClient {
                     output = { type: "error-text", value: "Unknown tool status" };
                 }
 
+                let sanitizedInput = part.tool.input ?? {};
+                if (typeof sanitizedInput === "string") {
+                  try {
+                    sanitizedInput = JSON.parse(sanitizedInput);
+                  } catch {
+                    sanitizedInput = { rawInput: sanitizedInput };
+                  }
+                }
+                if (
+                  typeof sanitizedInput !== "object" ||
+                  sanitizedInput === null ||
+                  Array.isArray(sanitizedInput)
+                ) {
+                  sanitizedInput = { rawInput: sanitizedInput };
+                }
+
                 aiMessages.push({
                   role: "assistant",
                   content: [
@@ -223,7 +239,7 @@ export class AgentClient {
                       type: "tool-call",
                       toolName: part.tool.name,
                       toolCallId: part.tool.id,
-                      input: part.tool.input ?? {},
+                      input: sanitizedInput,
                     },
                   ],
                 });
