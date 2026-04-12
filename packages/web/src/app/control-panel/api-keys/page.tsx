@@ -77,12 +77,11 @@ export default function ApiKeysPage() {
                 <div className="flex items-center gap-3">
                   <Key className="h-5 w-5 text-muted-foreground" />
                   <div>
-                    <code className="text-sm font-medium">
-                      {`${key.id.slice(0, 12)}...`}
-                    </code>
+                    <code className="text-sm font-medium">{`${key.id.slice(0, 12)}...`}</code>
                     <p className="text-xs text-muted-foreground mt-0.5">
                       Created {new Date(key.createdAt).toLocaleDateString()}
-                      {" · "}{key.mode} mode
+                      {" · "}
+                      {key.mode} mode
                     </p>
                   </div>
                 </div>
