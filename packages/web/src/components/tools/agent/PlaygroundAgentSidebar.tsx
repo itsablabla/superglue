@@ -314,10 +314,7 @@ export function PlaygroundAgentContent({
           {!hasVisibleMessages && (
             <div className="flex flex-col items-center justify-center h-full py-12 text-center">
               <div className="h-10 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center mb-3">
-                <img
-                  src="/favicon.png"
-                  alt="Garza Glue"
-                />
+                <img src="/favicon.png" alt="Garza Glue" />
               </div>
               <p className="text-sm text-muted-foreground">{emptyStateText.title}</p>
               <p className="text-xs text-muted-foreground/70 mt-2 max-w-[240px]">
@@ -345,10 +342,7 @@ export function PlaygroundAgentContent({
                           Y
                         </span>
                       ) : (
-                        <img
-                          src="/favicon.png"
-                          alt="Garza Glue"
-                        />
+                        <img src="/favicon.png" alt="Garza Glue" />
                       )}
                     </div>
                     <span className="font-medium text-sm">

@@ -42,7 +42,8 @@ export function useIOSScrollLock(): void {
       const currentY = e.touches[0].clientY;
       const deltaY = currentY - startY;
       const atTop = scrollable.scrollTop <= 0;
-      const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1;
+      const atBottom =
+        scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight - 1;
 
       if ((atTop && deltaY > 0) || (atBottom && deltaY < 0)) {
         e.preventDefault();
