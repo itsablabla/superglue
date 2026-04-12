@@ -1,6 +1,7 @@
 "use client";
 
 import { useRuns } from "@/src/queries/runs";
+import type { Run } from "@superglue/shared";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import {
@@ -85,7 +86,7 @@ export default function RunsPage() {
     status: statusFilter !== "all" ? statusFilter : undefined,
   });
 
-  const runs = data?.data ?? [];
+  const runs = data?.items ?? [];
   const hasMore = data?.hasMore ?? false;
   const total = data?.total;
 
@@ -176,7 +177,7 @@ export default function RunsPage() {
                 </TableCell>
               </TableRow>
             ) : (
-              runs.map((run: any) => (
+              runs.map((run: Run) => (
                 <TableRow
                   key={run.runId}
                   className="hover:bg-secondary cursor-pointer"
