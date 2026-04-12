@@ -15,7 +15,15 @@ interface WebSpeechRecognition extends EventTarget {
   continuous: boolean;
   interimResults: boolean;
   lang: string;
-  onresult: ((event: { resultIndex: number; results: { length: number; [index: number]: { isFinal: boolean; 0: { transcript: string } } } }) => void) | null;
+  onresult:
+    | ((event: {
+        resultIndex: number;
+        results: {
+          length: number;
+          [index: number]: { isFinal: boolean; 0: { transcript: string } };
+        };
+      }) => void)
+    | null;
   onerror: (() => void) | null;
   onend: (() => void) | null;
   start(): void;
