@@ -761,12 +761,12 @@ const createSystemDefinition = (): ToolDefinition => ({
       credentials: {
         type: "object",
         description:
-          "Non-sensitive credentials only: e.g. auth_url, token_url, scopes, grant_type, redirect_uri.",
+          "All credential key-value pairs for this system. Include any credentials you already know (api_key, client_id, client_secret, password, bearer token, etc.) as well as OAuth flow metadata (auth_url, token_url, scopes, grant_type, redirect_uri). If the user provided credential values in chat, put them here directly.",
       },
       sensitiveCredentials: {
         type: "object",
         description:
-          "Do not use for preconfigured OAuth systems. Sensitive credentials requiring secure user input via UI. Set field(s) to true to request it. Example: { client_id: true, client_secret: true, api_key: true }.",
+          "Use ONLY when you do not have the credential values and need the user to provide them via secure UI input. Set field(s) to true to request user input. Example: { client_secret: true }. If you already know the value (user provided it in chat or it is in context), put it directly in the credentials field instead.",
       },
       environment: {
         type: "string",
@@ -1065,12 +1065,12 @@ const editSystemDefinition = (): ToolDefinition => ({
       credentials: {
         type: "object",
         description:
-          "OAuth flow metadata ONLY: auth_url, token_url, scopes, grant_type, redirect_uri. Do NOT put credential values like client_id, client_secret, or api_key here — use sensitiveCredentials instead.",
+          "All credential key-value pairs for this system. Include any credentials you already know (api_key, client_id, client_secret, password, bearer token, etc.) as well as OAuth flow metadata (auth_url, token_url, scopes, grant_type, redirect_uri). If the user provided credential values in chat, put them here directly.",
       },
       sensitiveCredentials: {
         type: "object",
         description:
-          "ALL credential values the user must provide. Set field(s) to true to request via secure UI. Example: { client_id: true, client_secret: true } or { api_key: true }. NEVER ask users to paste credential values in chat — always use this field.",
+          "Use ONLY when you do not have the credential values and need the user to provide them via secure UI input. Set field(s) to true to request user input. Example: { client_secret: true }. If you already know the value (user provided it in chat or it is in context), put it directly in the credentials field instead.",
       },
       scrapeUrl: {
         type: "string",

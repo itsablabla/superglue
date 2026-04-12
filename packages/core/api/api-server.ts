@@ -42,7 +42,7 @@ export async function startApiServer(datastore: EEDataStore, workerPools: Worker
 
   const fastify = Fastify({
     logger: false,
-    bodyLimit: 1024 * 1024 * 1024, // 1GB
+    bodyLimit: 50 * 1024 * 1024, // 50MB
     routerOptions: {
       ignoreTrailingSlash: true,
     },

@@ -6,19 +6,32 @@ Systems are reusable building blocks for superglue tools that store system confi
 
 Two fields in system creation and editing tools, split by purpose:
 
-### `credentials` — OAuth flow metadata and completely insensitive credentials (no secrets, no identifiers)
+### `credentials` — All credential key-value pairs
+
+Include any credentials you already know (api_key, client_id, client_secret, password, bearer token, etc.) as well as OAuth flow metadata (auth_url, token_url, scopes, grant_type, redirect_uri).
+
+If the user has provided credential values in chat, put them directly here:
 
 ```
-auth_url, token_url, scopes, grant_type, redirect_uri
+create_system({
+  id: "shopify",
+  name: "Shopify Store",
+  url: "https://mystore.myshopify.com",
+  credentials: { client_id: "abc", client_secret: "xyz", shop_name: "mystore" }
+})
 ```
 
-### `sensitiveCredentials` — ALL credential values (client ids, client secrets, api keys, usernames, passwords etc.)
+### `sensitiveCredentials` — Request user input via secure UI (fallback only)
+
+Use ONLY when you do not have the credential values and need the user to provide them.
 
 ```json
 { "client_id": true, "client_secret": true, "api_key": true }
 ```
 
-Setting a field to `true` triggers a **secure UI** where the user enters the actual value(s) The agent never sees the raw secrets — only masked placeholders like `<<masked_api_key>>`.
+Setting a field to `true` triggers a **secure UI** where the user enters the actual value(s). The agent never sees the raw secrets — only masked placeholders like `<<masked_api_key>>`.
+
+**Rule:** If the user already gave you the credential values (in chat, in context, or via environment), always use `credentials` directly. Only fall back to `sensitiveCredentials` when you genuinely do not have the values.
 
 ### Credential Use in Tools
 
@@ -89,8 +102,8 @@ create_system({ id: "slack", templateId: "slack" })
 
 ### For Custom OAuth
 
-1. `create_system` with `sensitiveCredentials: { client_id: true, client_secret: true }`
-2. User enters `client_id` and `client_secret` in secure UI
+1. `create_system` with credentials directly if you have them: `credentials: { client_id: "abc", client_secret: "xyz" }`. Or use `sensitiveCredentials: { client_id: true, client_secret: true }` if you need the user to provide them.
+2. If using sensitiveCredentials, user enters values in secure UI
 3. `authenticate_oauth` with `systemId`, `scopes`, and optionally `auth_url`, `token_url`
 4. User completes OAuth flow
 
@@ -174,9 +187,11 @@ create_system({
   id: "salesforce",
   environment: "dev",
   url: "https://sandbox.salesforce.com",
-  sensitiveCredentials: { client_secret: true, api_key: true }
+  credentials: { client_secret: "xyz", api_key: "abc" }
 })
 ```
+
+If you don't have the credential values, use `sensitiveCredentials: { client_secret: true, api_key: true }` instead.
 
 **Always ask for new credentials** — never copy from the prod system. Sandbox environments use separate OAuth apps with their own client_id/client_secret.
 
