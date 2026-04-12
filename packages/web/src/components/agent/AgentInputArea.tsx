@@ -11,6 +11,17 @@ import { AlertTriangle, ChevronUp, Mic, MicOff, Paperclip, Send, Square } from "
 import React, { useCallback, useEffect, useRef } from "react";
 import { useAgentContext } from "./AgentContextProvider";
 
+interface WebSpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  onresult: ((event: { resultIndex: number; results: { length: number; [index: number]: { isFinal: boolean; 0: { transcript: string } } } }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+
 export interface AgentInputAreaProps {
   value: string;
   onChange: (value: string) => void;
@@ -89,7 +100,7 @@ export function AgentInputArea({
   // Voice recording state
   const [isRecording, setIsRecording] = React.useState(false);
   const mediaRecorderRef = React.useRef<MediaRecorder | null>(null);
-  const recognitionRef = React.useRef<SpeechRecognition | null>(null);
+  const recognitionRef = React.useRef<WebSpeechRecognition | null>(null);
   const [speechSupported, setSpeechSupported] = React.useState(false);
 
   useEffect(() => {
@@ -110,14 +121,14 @@ export function AgentInputArea({
       (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (SpeechRecognition) {
-      const recognition = new SpeechRecognition();
+      const recognition: WebSpeechRecognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
       recognition.lang = "en-US";
 
       let finalTranscript = value;
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event) => {
         let interim = "";
         for (let i = event.resultIndex; i < event.results.length; i++) {
           const transcript = event.results[i][0].transcript;
