@@ -17,24 +17,32 @@ import type { SystemConfig } from "../tool-evals/types.js";
 import { LlmToolRunner } from "./services/llm-tool-runner.js";
 
 // Load environment variables
-const envPath = process.cwd().endsWith('packages/core')
-  ? path.join(process.cwd(), '../../.env')
-  : path.join(process.cwd(), '.env');
+const envPath = process.cwd().endsWith("packages/core")
+  ? path.join(process.cwd(), "../../.env")
+  : path.join(process.cwd(), ".env");
 config({ path: envPath });
 
 const PROVIDERS = [
-  { name: 'gpt-4.1', envProvider: 'openai', envModel: 'gpt-4.1' },
-  { name: 'gpt-5', envProvider: 'openai', envModel: 'gpt-5' },
-  { name: 'claude-sonnet-4-5', envProvider: 'anthropic', envModel: 'claude-sonnet-4-5' },
-  { name: 'claude-sonnet-4-20250514', envProvider: 'anthropic', envModel: 'claude-sonnet-4-20250514' },
-  { name: 'gemini-2.5-flash-lite', envProvider: 'gemini', envModel: 'gemini-2.5-flash-lite' },
-  { name: 'gemini-3-pro-preview', envProvider: 'gemini', envModel: 'gemini-3-pro-preview' },
-  { name: 'claude-opus-4-5-20251101', envProvider: 'anthropic', envModel: 'claude-opus-4-5-20251101' },
+  { name: "gpt-4.1", envProvider: "openai", envModel: "gpt-4.1" },
+  { name: "gpt-5", envProvider: "openai", envModel: "gpt-5" },
+  { name: "claude-sonnet-4-5", envProvider: "anthropic", envModel: "claude-sonnet-4-5" },
+  {
+    name: "claude-sonnet-4-20250514",
+    envProvider: "anthropic",
+    envModel: "claude-sonnet-4-20250514",
+  },
+  { name: "gemini-2.5-flash-lite", envProvider: "gemini", envModel: "gemini-2.5-flash-lite" },
+  { name: "gemini-3-pro-preview", envProvider: "gemini", envModel: "gemini-3-pro-preview" },
+  {
+    name: "claude-opus-4-5-20251101",
+    envProvider: "anthropic",
+    envModel: "claude-opus-4-5-20251101",
+  },
 ];
 
 function applyEnvironmentVariablesToCredentials(
   systems: SystemConfig[],
-  metadata: ServiceMetadata
+  metadata: ServiceMetadata,
 ): void {
   for (const system of systems) {
     if (!system.credentials || !system.id) {
@@ -42,13 +50,17 @@ function applyEnvironmentVariablesToCredentials(
     }
 
     for (const [key] of Object.entries(system.credentials)) {
-      const expectedEnvVarName = `${system.id.toUpperCase().replace(/-/g, '_')}_${key.toUpperCase()}`;
+      const expectedEnvVarName = `${system.id.toUpperCase().replace(/-/g, "_")}_${key.toUpperCase()}`;
       const envValue = process.env[expectedEnvVarName];
 
       if (envValue) {
         system.credentials[key] = envValue;
       } else {
-        logMessage('warn', `Missing credential: ${system.id}.${key} (${expectedEnvVarName})`, metadata);
+        logMessage(
+          "warn",
+          `Missing credential: ${system.id}.${key} (${expectedEnvVarName})`,
+          metadata,
+        );
       }
     }
 
@@ -70,22 +82,23 @@ async function main(): Promise<void> {
 
   try {
     const evalConfig = await loadConfig("../../llm-benchmark-evals/llm-benchmark-config.json");
-    const enabledTools = evalConfig.enabledTools === 'all' 
-      ? evalConfig.tools 
-      : evalConfig.tools.filter(tool => evalConfig.enabledTools.includes(tool.id));
+    const enabledTools =
+      evalConfig.enabledTools === "all"
+        ? evalConfig.tools
+        : evalConfig.tools.filter((tool) => evalConfig.enabledTools.includes(tool.id));
 
     // Filter systems to only those used by enabled tools
-    const usedSystemIds = new Set(
-      enabledTools.flatMap(tool => tool.systemIds)
-    );
-    const systems = evalConfig.systems.filter(system => 
-      usedSystemIds.has(system.id)
-    );
+    const usedSystemIds = new Set(enabledTools.flatMap((tool) => tool.systemIds));
+    const systems = evalConfig.systems.filter((system) => usedSystemIds.has(system.id));
 
     // Apply environment variables to credentials
     applyEnvironmentVariablesToCredentials(systems, metadata);
 
-    logMessage("info", `Loaded ${systems.length} systems, ${enabledTools.length} enabled tools`, metadata);
+    logMessage(
+      "info",
+      `Loaded ${systems.length} systems, ${enabledTools.length} enabled tools`,
+      metadata,
+    );
 
     const baseDir = dirname(fileURLToPath(import.meta.url));
 
@@ -96,13 +109,13 @@ async function main(): Promise<void> {
       // Set environment variables for this provider
       const originalProvider = process.env.LLM_PROVIDER;
       const originalModel = process.env[`${provider.envProvider.toUpperCase()}_MODEL`];
-      
+
       process.env.LLM_PROVIDER = provider.envProvider;
       process.env[`${provider.envProvider.toUpperCase()}_MODEL`] = provider.envModel;
 
       const providerModel = initializeAIModel({
-        providerEnvVar: 'LLM_PROVIDER',
-        defaultModel: provider.envModel
+        providerEnvVar: "LLM_PROVIDER",
+        defaultModel: provider.envModel,
       });
 
       const runner = new LlmToolRunner(metadata, evalConfig.validationLlmConfig);
@@ -110,14 +123,14 @@ async function main(): Promise<void> {
         providerModel,
         provider.name,
         enabledTools,
-        systems
+        systems,
       );
 
       const metricsCalculator = new MetricsCalculator();
       const metrics = metricsCalculator.calculateMetrics(toolAttempts);
 
-      const timestamp = new Date().toISOString().split('.')[0].replace(/[:.]/g, '-');
-      const providerSafeKey = provider.name.replace(/[^a-zA-Z0-9]/g, '-');
+      const timestamp = new Date().toISOString().split(".")[0].replace(/[:.]/g, "-");
+      const providerSafeKey = provider.name.replace(/[^a-zA-Z0-9]/g, "-");
 
       const csvReporter = new CsvReporter(baseDir, metadata);
       csvReporter.report(`${timestamp}-${providerSafeKey}`, metrics);
@@ -126,9 +139,13 @@ async function main(): Promise<void> {
       jsonReporter.reportAttempts(`${timestamp}-${providerSafeKey}`, toolAttempts, evalConfig);
 
       const duration = Date.now() - providerStartTime;
-      logMessage("info", `Provider ${provider.name} completed in ${(duration / 1000).toFixed(1)}s`, metadata);
+      logMessage(
+        "info",
+        `Provider ${provider.name} completed in ${(duration / 1000).toFixed(1)}s`,
+        metadata,
+      );
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       ConsoleReporter.report(metrics, `${timestamp}-${providerSafeKey}`, baseDir);
 
       // Restore environment variables
@@ -157,8 +174,7 @@ async function main(): Promise<void> {
   }
 }
 
-main().catch(error => {
-  console.error('Fatal error:', error);
+main().catch((error) => {
+  console.error("Fatal error:", error);
   process.exit(1);
 });
-

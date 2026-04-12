@@ -29,15 +29,15 @@ docker run -p 3002:3002 --env-file .env garzaglue-server:latest
 
 ## Ports
 
-| Port | Service |
-|------|---------|
+| Port | Service                 |
+| ---- | ----------------------- |
 | 3001 | Web dashboard (Next.js) |
-| 3002 | REST API |
+| 3002 | REST API                |
 
 ## Docker Compose Profiles
 
-| Command | What starts |
-|---------|------------|
-| `docker compose up` | garzaglue only |
+| Command                             | What starts                  |
+| ----------------------------------- | ---------------------------- |
+| `docker compose up`                 | garzaglue only               |
 | `docker compose --profile infra up` | garzaglue + postgres + minio |
-| `docker compose --profile all up` | same as infra |
+| `docker compose --profile all up`   | same as infra                |

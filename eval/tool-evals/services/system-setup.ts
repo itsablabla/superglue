@@ -10,29 +10,30 @@ export class SystemSetupService {
   constructor(
     private datastore: DataStore,
     private config: AgentEvalConfig,
-    private metadata: ServiceMetadata
+    private metadata: ServiceMetadata,
   ) {}
 
   async setupSystems(): Promise<System[]> {
-    const enabledTools = this.config.enabledTools === 'all' 
-      ? this.config.tools 
-      : this.config.tools.filter(tool => this.config.enabledTools.includes(tool.id));
-    
-    const usedSystemIds = new Set(
-      enabledTools.flatMap(tool => tool.systemIds)
-    );
-    
-    const systemConfigs = this.config.systems.filter(system => 
-      usedSystemIds.has(system.id)
-    );
+    const enabledTools =
+      this.config.enabledTools === "all"
+        ? this.config.tools
+        : this.config.tools.filter((tool) => this.config.enabledTools.includes(tool.id));
+
+    const usedSystemIds = new Set(enabledTools.flatMap((tool) => tool.systemIds));
+
+    const systemConfigs = this.config.systems.filter((system) => usedSystemIds.has(system.id));
 
     this.applyEnvironmentVariablesToConfigs(systemConfigs);
 
     const systems = await Promise.all(
-      systemConfigs.map((config) => this.setupSingleSystem(config))
+      systemConfigs.map((config) => this.setupSingleSystem(config)),
     );
 
-    logMessage("info", `${systems.length}/${systemConfigs.length} systems setup complete`, this.metadata);
+    logMessage(
+      "info",
+      `${systems.length}/${systemConfigs.length} systems setup complete`,
+      this.metadata,
+    );
     return systems;
   }
 
@@ -56,7 +57,7 @@ export class SystemSetupService {
         acc[`${systemConfig.id}_${key}`] = value;
         return acc;
       },
-      {} as Record<string, string>
+      {} as Record<string, string>,
     );
 
     const docFetcher = new DocumentationFetcher(
@@ -68,7 +69,7 @@ export class SystemSetupService {
         keywords: systemConfig.keywords,
       },
       scopedCredentials,
-      this.metadata
+      this.metadata,
     );
 
     const docString = await docFetcher.fetchAndProcess();
@@ -110,13 +111,13 @@ export class SystemSetupService {
       }
 
       for (const [key, _] of Object.entries(config.credentials)) {
-        const expectedEnvVarName = `${config.id.toUpperCase().replace(/-/g, '_')}_${key.toUpperCase()}`;
+        const expectedEnvVarName = `${config.id.toUpperCase().replace(/-/g, "_")}_${key.toUpperCase()}`;
         const envValue = process.env[expectedEnvVarName];
 
         if (envValue) {
           config.credentials[key] = envValue;
         } else {
-          logMessage('warn', `Missing credential: ${config.id}.${key} (${expectedEnvVarName})`);
+          logMessage("warn", `Missing credential: ${config.id}.${key} (${expectedEnvVarName})`);
         }
       }
     }

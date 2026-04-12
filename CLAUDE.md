@@ -16,6 +16,7 @@ Ports: 3000 (GraphQL), 3001 (Web), 3002 (REST API)
 This is the **Enterprise Edition**. OSS at `../garzaglue` (upstream).
 
 EE-only code lives in `ee/` subdirs:
+
 - `packages/core/scheduler/` - cron scheduling
 - `packages/core/notifications/` - Slack/email alerts
 - `packages/core/api/ee/` - metrics, discovery, run-results, tool-history, api-key-scopes, webhooks, settings
@@ -53,13 +54,13 @@ const myHandler: RouteHandler = async (request, reply) => {
   const authReq = request as AuthenticatedFastifyRequest;
   const params = request.params as { id: string };
   const metadata = authReq.toMetadata();
-  
+
   const data = await authReq.datastore.someMethod({ orgId: authReq.authInfo.orgId });
-  
+
   if (!data) {
     return sendError(reply, 404, "Not found");
   }
-  
+
   return addTraceHeader(reply, authReq.traceId).code(200).send({ data });
 };
 
@@ -79,6 +80,7 @@ registerApiModule({
 3. Import in `packages/core/api/ee/index.ts` (for EE) or appropriate index
 
 Key types from `./types.ts`:
+
 - `AuthenticatedFastifyRequest` - has `authInfo`, `datastore`, `workerPools`, `traceId`
 - `RouteHandler` - `(request, reply) => Promise<any>`
 - `RoutePermission` - `{ type, resource, allowRestricted?, checkResourceId? }`
@@ -92,6 +94,7 @@ Add to `packages/shared/types.ts`. Export from `packages/shared/index.ts` if nee
 UI primitives in `packages/web/src/components/ui/` (shadcn/Radix based).
 
 Pattern:
+
 ```typescript
 import { cn } from "@/src/lib/general-utils";
 import { Button } from "@/src/components/ui/button";
@@ -99,10 +102,10 @@ import { Button } from "@/src/components/ui/button";
 
 Use `cn()` for conditional classnames. Check existing UI components before creating new ones.
 
-
 ## Worker Pools
 
 For async/CPU-intensive work:
+
 ```typescript
 authReq.workerPools.toolExecution.runTask(runId, payload);
 ```
@@ -147,11 +150,13 @@ Run single test file: `npm run test -- packages/core/api/my-feature.test.ts`
 ## API Response Formats
 
 List endpoints:
+
 ```typescript
 return reply.code(200).send({ data, page, limit, total, hasMore });
 ```
 
 Single resource:
+
 ```typescript
 return reply.code(200).send({ success: true, data });
 ```
