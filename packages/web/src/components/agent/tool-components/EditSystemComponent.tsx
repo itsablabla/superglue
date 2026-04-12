@@ -8,7 +8,7 @@ import {
   createToolInteractionEntry,
   ToolMutation,
 } from "@/src/lib/agent/agent-tools/tool-call-state";
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { AlertCircle, CheckCircle, Eye, EyeOff, KeyRound, Loader2, Settings } from "lucide-react";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ToolCallWrapper } from "./ToolComponentWrapper";

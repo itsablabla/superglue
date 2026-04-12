@@ -2,13 +2,13 @@
 
 import { useConfig } from "@/src/app/config-context";
 import { useInvalidateSystems } from "@/src/queries/systems";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { ErrorMessage } from "@/src/components/ui/error-message";
 import { OAuthConnectButton } from "@/src/components/ui/oauth-connect-button";
 import { ToolMutation } from "@/src/lib/agent/agent-tools/tool-call-state";
 import { triggerOAuthFlow } from "@/src/lib/oauth-utils";
 import { tokenRegistry } from "@/src/lib/token-registry";
-import { findTemplateForSystem, ToolCall } from "@superglue/shared";
+import { findTemplateForSystem, ToolCall } from "@garzaglue/shared";
 import { Loader2 } from "lucide-react";
 import { useCallback, useState } from "react";
 import { ToolCallWrapper } from "./ToolComponentWrapper";
@@ -36,7 +36,7 @@ export function AuthenticateOAuthComponent({
 }: AuthenticateOAuthComponentProps) {
   const config = useConfig();
   const invalidateSystems = useInvalidateSystems();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const [buttonState, setButtonState] = useState<"idle" | "loading" | "completed" | "error">(
     "idle",
   );

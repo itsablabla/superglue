@@ -1,4 +1,4 @@
-import { ServiceMetadata, System, Tool, ToolStep, TunnelConnection } from "@superglue/shared";
+import { ServiceMetadata, System, Tool, ToolStep, TunnelConnection } from "@garzaglue/shared";
 import { FastifyInstance } from "fastify";
 import * as net from "net";
 import { v4 as uuidv4 } from "uuid";

@@ -35,11 +35,11 @@
         "jira": {
             "id": "jira",
             "name": "JIRA",
-            "urlHost": "https://superglue-team-test.atlassian.net",
+            "urlHost": "https://garzaglue-team-test.atlassian.net",
             "urlPath": "/rest/api/3",
             "documentationUrl": "https://developer.atlassian.com/cloud/jira/platform/rest/v3",
             "credentials": {
-                "email": "michael@superglue.ai",
+                "email": "support@garzaglue.com",
                 "api_token": ""
             },
             "description": "JIRA project management API"
@@ -313,8 +313,8 @@
                 "sendgrid"
             ],
             "payload": {
-                "to_email": "michael@superglue.ai",
-                "from_email": "michael@superglue.ai",
+                "to_email": "support@garzaglue.com",
+                "from_email": "support@garzaglue.com",
                 "subject": "Testing Integrations with Sendgrid ABC",
                 "message_content": "This is test email 1",
                 "content_type": "text/plain"
@@ -346,8 +346,8 @@
                 "slack"
             ],
             "payload": {
-                "email": "michael@superglue.ai",
-                "message": "Hi, this is superglue-bot testing Slack workflows!"
+                "email": "support@garzaglue.com",
+                "message": "Hi, this is garzaglue-bot testing Slack workflows!"
             }
         },
         "bitbucket-repos": {
@@ -369,7 +369,7 @@
             "payload": {
                 "guild_id": "1389218511934722080",
                 "target_username": "michaelfuest_89135",
-                "dm_message": "Hi! I just analyzed your Discord server and found the following channels. This is a test from the superglue Discord integration bot!"
+                "dm_message": "Hi! I just analyzed your Discord server and found the following channels. This is a test from the Garza Glue Discord integration bot!"
             }
         },
         "asana-tasks": {
@@ -386,12 +386,12 @@
         "notion-duplicate-email-analysis": {
             "id": "notion-duplicate-email-analysis",
             "name": "Notion Duplicate Email Analysis",
-            "instruction": "Query the superglue Database in Notion to retrieve all records with email data, analyze the email column to identify duplicate email addresses, count the total number of duplicates, and return a list of the duplicate emails along with how many times each appears",
+            "instruction": "Query the Garza Glue Database in Notion to retrieve all records with email data, analyze the email column to identify duplicate email addresses, count the total number of duplicates, and return a list of the duplicate emails along with how many times each appears",
             "integrationIds": [
                 "notion"
             ],
             "payload": {
-                "database_name": "superglue Database"
+                "database_name": "Garza Glue Database"
             }
         },
         "huggingface-model-metadata": {

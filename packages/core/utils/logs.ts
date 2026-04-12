@@ -1,4 +1,4 @@
-import { Log, ServiceMetadata } from "@superglue/shared";
+import { Log, ServiceMetadata } from "@garzaglue/shared";
 import EventEmitter from "events";
 import pino from "pino";
 import { isMainThread, parentPort } from "worker_threads";
@@ -7,7 +7,7 @@ export const logEmitter = new EventEmitter();
 
 export const logger = pino({
   level: "debug",
-  base: { service: "superglue" },
+  base: { service: "garzaglue" },
   timestamp: true,
   transport: {
     target: "pino-pretty",

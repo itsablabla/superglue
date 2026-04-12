@@ -1,4 +1,4 @@
-import { RequestSource, Run, RunStatus, type Role } from "@superglue/shared";
+import { RequestSource, Run, RunStatus, type Role } from "@garzaglue/shared";
 import { getAllowedToolIds, isToolAllowed } from "../auth/access-rule-evaluator.js";
 import type { DataStore } from "../datastore/types.js";
 import { RunLifecycleManager } from "../runs/run-lifecycle.js";

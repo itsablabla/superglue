@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  title: superglue AI API
+  title: Garza Glue API
   version: 1.0.0
-  description: API for running superglue AI tools
+  description: API for running Garza Glue tools
   contact:
-    name: superglue AI Support
-    email: stefan@superglue.ai
+    name: Garza Glue Support
+    email: support@garzaglue.com
 
 servers:
-  - url: https://api.superglue.ai/v1
+  - url: https://s1.garzaglue.com/v1
     description: Production
 
 security:
@@ -203,7 +203,7 @@ components:
 
         Alternatively, you can use the `token` query parameter to authenticate.
 
-        API keys can be generated in your superglue dashboard.
+        API keys can be generated in your Garza Glue dashboard.
 
   schemas:
     Tool:
@@ -515,7 +515,7 @@ components:
                 URL to receive completion webhook when run finishes (for both sync and async executions).
                 Webhook receives POST request with Run object (same schema as getRun response) in body.
                 Alternatively, a tool to run after - run via tool:toolId
-              example: https://your-app.com/webhooks/superglue
+              example: https://your-app.com/webhooks/garzaglue
             traceId:
               type: string
               description: Custom trace ID for log tracking

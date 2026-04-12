@@ -7,7 +7,7 @@ import { useToast } from "@/src/hooks/use-toast";
 import { useSystemActions } from "@/src/hooks/use-system-actions";
 import { SystemIcon } from "@/src/components/ui/system-icon";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { System, SystemInput, ToolCall } from "@superglue/shared";
+import { System, SystemInput, ToolCall } from "@garzaglue/shared";
 import {
   createToolInteractionEntry,
   ToolMutation,

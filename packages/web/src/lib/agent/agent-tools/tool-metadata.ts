@@ -25,7 +25,7 @@ export const TOOL_METADATA: Record<string, ToolMeta> = {
   run_tool: {
     displayName: "Run Tool",
     summary:
-      "Executes a superglue tool via tool id or draft id with an optional payload and returns results",
+      "Executes a garzaglue tool via tool id or draft id with an optional payload and returns results",
     category: "execution",
   },
   edit_tool: {
@@ -40,12 +40,12 @@ export const TOOL_METADATA: Record<string, ToolMeta> = {
   },
   create_system: {
     displayName: "Create System",
-    summary: "Registers a new superglue system with URL, auth, and docs",
+    summary: "Registers a new garzaglue system with URL, auth, and docs",
     category: "systems",
   },
   edit_system: {
     displayName: "Edit System",
-    summary: "Updates an existing superglue system's configuration or credentials",
+    summary: "Updates an existing garzaglue system's configuration or credentials",
     category: "systems",
   },
   call_system: {
@@ -66,7 +66,7 @@ export const TOOL_METADATA: Record<string, ToolMeta> = {
   },
   find_tool: {
     displayName: "Find Tool",
-    summary: "Looks up an existing superglue tool by ID or search query",
+    summary: "Looks up an existing garzaglue tool by ID or search query",
     category: "context",
   },
   find_system: {
@@ -92,7 +92,7 @@ export const TOOL_METADATA: Record<string, ToolMeta> = {
   },
   load_skill: {
     displayName: "Load Skill",
-    summary: "Loads superglue skills into context",
+    summary: "Loads garzaglue skills into context",
     category: "context",
   },
   inspect_role: {
@@ -162,9 +162,9 @@ export interface AgentSummary {
 
 export const AGENT_SUMMARIES: Record<string, AgentSummary> = {
   [AgentType.MAIN]: {
-    title: "superglue agent",
+    title: "garzaglue agent",
     description:
-      "The most comprehensive agent that builds, tests, and deploys system integrations end-to-end. Manages systems, builds multi-step tools, handles auth, and gathers context from the web, existing superglue systems and their documentation.",
+      "The most comprehensive agent that builds, tests, and deploys system integrations end-to-end. Manages systems, builds multi-step tools, handles auth, and gathers context from the web, existing garzaglue systems and their documentation.",
   },
   [AgentType.PLAYGROUND]: {
     title: "Tool Playground Agent",

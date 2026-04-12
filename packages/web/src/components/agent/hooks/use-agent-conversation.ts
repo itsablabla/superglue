@@ -1,6 +1,6 @@
 "use client";
 
-import { Message } from "@superglue/shared";
+import { Message } from "@garzaglue/shared";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Conversation } from "../ConversationHistory";
 import type { UseAgentConversationReturn } from "./types";

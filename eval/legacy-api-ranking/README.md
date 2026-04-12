@@ -22,14 +22,14 @@ Average success rate across all tested API integration tasks:
 
 | Rank | LLM | Success Rate |
 |------|-----|--------------|
-| 1 | superglue¹ | 91% |
+| 1 | Garza Glue¹ | 91% |
 | 2 | Claude Sonnet 4 | 68% |
 | 3 | Gemini 2.5 Flash | 67% |
 | 4 | Claude Opus 4 | 65% |
 | 5 | GPT-4.1 | 62% |
 | 6 | O4 Mini | 56% |
 
-¹ superglue is an integration layer designed specifically for agent-API integrations, not a general-purpose LLM
+¹ Garza Glue is an integration layer designed specifically for agent-API integrations, not a general-purpose LLM
 
 ## 🏅 Best Agent-Ready APIs
 
@@ -40,7 +40,7 @@ Which APIs can agents figure out and use without human help?
 - **JIRA:** "Get sprint issues, calculate completion %, identify blocked/high-priority items"
 - **Notion:** "Query database, find duplicate emails, return count and list"
 
-| Rank | API | Score | superglue | claude-4-sonnet | claude-4-opus | gpt-4.1 | o4-mini | gemini-2.5-flash |
+| Rank | API | Score | Garza Glue | claude-4-sonnet | claude-4-opus | gpt-4.1 | o4-mini | gemini-2.5-flash |
 |------|-----|-------|-----------|-----------------|---------------|---------|---------|------------------|
 | 1 | Shopify | 1.00 | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% |
 | 2 | SendGrid | 1.00 | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% | ✅ 100% |
@@ -69,7 +69,7 @@ Which APIs can agents figure out and use without human help?
 - **91% vs 56-68%:** Specialized agent platforms outperform general-purpose LLMs by 20-35 points
 - **6 APIs achieved perfect scores** across all LLMs - Shopify, SendGrid, Zendesk, GitHub, Slack, and JIRA
 - **Multi-step workflows expose weaknesses:** Performance drops significantly for complex APIs
-- **Bottom tier APIs (Snowflake, Attio, Asana, PostHog)** struggle across all LLMs except superglue
+- **Bottom tier APIs (Snowflake, Attio, Asana, PostHog)** struggle across all LLMs except garzaglue
 
 ## 🎯 What Makes APIs Agent-Ready
 
@@ -87,11 +87,11 @@ Out of 630 integration attempts (21 APIs × 6 platforms × 5 attempts each):
 - **23% failed** - The agent couldn't even complete basic tasks
 - **Only 6 APIs worked 100% of the time** across all platforms
 - **Custom query and request schemes are the biggest struggle**, they usually require careful planning and prompt engineering
-- **superglue beats general-purpose LLMs by 30+ points** - purpose-built wins
+- **garzaglue beats general-purpose LLMs by 30+ points** - purpose-built wins
 
 ### How We Test
 
-#### superglue Evaluation
+#### garzaglue Evaluation
 1. Each workflow is run **5 times** to ensure consistency
 2. For each attempt:
    - Build the workflow using LLM to generate API configurations
@@ -104,7 +104,7 @@ Out of 630 integration attempts (21 APIs × 6 platforms × 5 attempts each):
    - Total API call failures across all attempts
 
 #### Direct LLM Evaluation
-To compare superglue's performance with direct LLM usage:
+To compare garzaglue's performance with direct LLM usage:
 
 **Models tested:**
 - **Claude Sonnet 4** (`claude-sonnet-4-20250514`)
@@ -129,7 +129,7 @@ The generated code is executed in a sandboxed Node.js environment with:
 Final Score = Average Success Rate (0-1) for each tested LLM
 ```
 
-_Note: superglue is an integration layer designed specifically for agent-API integrations, not a general-purpose LLM. We included it to show the performance gap between specialized agent systems and general language models._
+_Note: garzaglue is an integration layer designed specifically for agent-API integrations, not a general-purpose LLM. We included it to show the performance gap between specialized agent systems and general language models._
 
 ## 🚀 Running the Benchmark
 
@@ -181,10 +181,10 @@ For direct LLM comparison:
 ### Output
 
 The generated `ranking.csv` contains:
-- **Rank**: Position based on superglue Score
+- **Rank**: Position based on garzaglue Score
 - **API**: Name of the API/integration
-- **superglue Score**: Combined performance score (0-1)
-- **superglue Success %**: Percentage of successful runs
+- **garzaglue Score**: Combined performance score (0-1)
+- **garzaglue Success %**: Percentage of successful runs
 - **Claude Sonnet 4**: Success rate for Claude Sonnet 4
 - **Claude Opus 4**: Success rate for Claude Opus 4
 - **GPT-4.1**: Success rate for GPT-4.1
@@ -208,8 +208,8 @@ To add a new API to the ranking:
 
 We hope you found this helpful and would love to hear from you on [LinkedIn](https://linkedin.com/company/superglue-ai), [Twitter](https://twitter.com/superglue_d) and [GitHub](https://github.com/superglue-ai/superglue).
 
-Connect with us via these channels for any inquiries: **hi@superglue.ai**
+Connect with us via these channels for any inquiries: **hi@garzaglue.ai**
 
 ---
 
-Made with ❤️ by the superglue team
+Made with ❤️ by the garzaglue team

@@ -7,7 +7,7 @@ import {
   processAndExtractFile,
   sanitizeFileName,
 } from "@/src/lib/file-utils";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useCallback, useRef, useState } from "react";
 import type { UploadedFile, UseAgentFileUploadReturn } from "./types";
 
@@ -16,7 +16,7 @@ interface UseAgentFileUploadOptions {
 }
 
 export function useAgentFileUpload({ toast }: UseAgentFileUploadOptions): UseAgentFileUploadReturn {
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const [pendingFiles, setPendingFiles] = useState<UploadedFile[]>([]);
   const [sessionFiles, setSessionFiles] = useState<UploadedFile[]>([]);
   const [filePayloads, setFilePayloads] = useState<Record<string, any>>({});

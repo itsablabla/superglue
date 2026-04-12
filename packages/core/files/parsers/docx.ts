@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import * as mammoth from "mammoth";
 import { NodeHtmlMarkdown } from "node-html-markdown";
 import * as unzipper from "unzipper";

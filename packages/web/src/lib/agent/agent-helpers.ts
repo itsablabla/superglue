@@ -5,7 +5,7 @@ import {
   SystemConfig,
   systems,
   Tool,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import * as jsonpatch from "fast-json-patch";
 import { EditToolSaveResult, ToolExecutionContext } from "./agent-types";
 import { SKILL_INDEX } from "./skills/index";
@@ -452,7 +452,7 @@ export async function tryTriggerScrapeJob(
 ): Promise<string | null> {
   if (!scrapeInput) return null;
   try {
-    await ctx.superglueClient.triggerSystemDocumentationScrapeJob(systemId, scrapeInput);
+    await ctx.garzaGlueClient.triggerSystemDocumentationScrapeJob(systemId, scrapeInput);
     return null;
   } catch (error: any) {
     return `Documentation scrape failed to start: ${error.message}`;
@@ -510,7 +510,7 @@ export const resolveOriginalConfig = async (
 
   if (toolId) {
     try {
-      return await ctx.superglueClient.getWorkflow(toolId);
+      return await ctx.garzaGlueClient.getWorkflow(toolId);
     } catch {}
   }
 

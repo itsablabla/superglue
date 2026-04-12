@@ -11,7 +11,7 @@ import { CopyButton } from "@/src/components/tools/shared/CopyButton";
 import { JsonEditor } from "@/src/components/editors/JsonEditor";
 import { CallSystemAutoExecute } from "@/src/lib/agent/agent-types";
 import { ToolMutation } from "@/src/lib/agent/agent-tools/tool-call-state";
-import { ToolCall, getConnectionProtocol } from "@superglue/shared";
+import { ToolCall, getConnectionProtocol } from "@garzaglue/shared";
 import { ChevronDown, Database, FolderOpen, Globe, Loader2, Terminal } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ToolCallPendingState } from "./ToolCallPendingState";

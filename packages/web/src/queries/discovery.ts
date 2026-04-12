@@ -1,8 +1,8 @@
 import { useQuery, type QueryClient } from "@tanstack/react-query";
-import { DiscoveryRun, DiscoveryRunStatus, FileReference, FileStatus } from "@superglue/shared";
+import { DiscoveryRun, DiscoveryRunStatus, FileReference, FileStatus } from "@garzaglue/shared";
 import { useOrg } from "@/src/app/org-context";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 
 const DISCOVERY_POLL_INTERVAL_MS = 3000;
 
@@ -64,7 +64,7 @@ export function seedDiscoveryQueryData(
 
 export function useDiscoveryRunsQuery() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery({
     queryKey: queryKeys.discovery.list(orgId),
@@ -78,7 +78,7 @@ export function useDiscoveryRunsQuery() {
 
 export function useDiscoveryRunQuery(runId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery({
     queryKey: queryKeys.discovery.detail(orgId, runId ?? ""),
@@ -94,7 +94,7 @@ export function useDiscoveryRunQuery(runId: string | undefined) {
 
 export function useDiscoveryFilesQuery(runId: string | undefined, fileIds: string[]) {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const fileIdsKey = fileIds.join(",");
 
   return useQuery({

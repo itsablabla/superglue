@@ -12,7 +12,7 @@ import {
   RequestStepConfig,
   isRequestConfig,
   safeStringify,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { MessagesSquare, Pencil, Plus, X } from "lucide-react";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Streamdown } from "streamdown";
@@ -44,7 +44,7 @@ import { useExecution } from "../context/tool-execution-context";
 import { useRightSidebar } from "../../sidebar/RightSidebarContext";
 import type { SystemContextForAgent } from "../../systems/context/types";
 import { AccessRulesContext } from "@/src/lib/agent/agent-types";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 
 const MAX_MESSAGE_LENGTH = 50000;
 
@@ -509,7 +509,7 @@ function ToolPlaygroundAgentSidebar({
 }: Omit<PlaygroundAgentSidebarProps, "mode" | "systemConfig">) {
   const toolConfig = useToolConfig();
   const execution = useExecution();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const { setSavedTool } = useRightSidebar();
   const toolId = toolConfig.tool.id;
 

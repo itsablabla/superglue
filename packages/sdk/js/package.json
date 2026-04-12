@@ -1,7 +1,7 @@
 {
   "name": "@superglue/client",
   "version": "3.0.4",
-  "description": "TypeScript SDK for the Superglue AI API",
+  "description": "TypeScript SDK for the GarzaGlue AI API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
@@ -22,7 +22,7 @@
     "typescript": "^5.0.0"
   },
   "keywords": [
-    "superglue",
+    "garzaglue",
     "api",
     "sdk",
     "typescript"

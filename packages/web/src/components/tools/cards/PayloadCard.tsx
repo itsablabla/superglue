@@ -7,7 +7,7 @@ import { HelpTooltip } from "@/src/components/utils/HelpTooltip";
 import { formatBytes, isAllowedFileType, MAX_TOTAL_FILE_SIZE_TOOLS } from "@/src/lib/file-utils";
 import { buildCategorizedSources } from "@/src/lib/templating-utils";
 import { useResizable } from "@/src/hooks/use-resizable";
-import { ALLOWED_FILE_EXTENSIONS } from "@superglue/shared";
+import { ALLOWED_FILE_EXTENSIONS } from "@garzaglue/shared";
 import { FileBraces, FileBracesCorner, FileJson, Upload } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { JsonEditor } from "../../editors/JsonEditor";

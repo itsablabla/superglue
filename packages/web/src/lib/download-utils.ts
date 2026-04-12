@@ -1,4 +1,4 @@
-import { safeStringify } from "@superglue/shared";
+import { safeStringify } from "@garzaglue/shared";
 
 export const DEFAULT_MAX_DOWNLOAD_BYTES = 1000 * 1024 * 1024; // 1000 MB
 

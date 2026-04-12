@@ -1,4 +1,4 @@
-import type { NotificationSummaryPayload, SlackChannelConfig } from "@superglue/shared";
+import type { NotificationSummaryPayload, SlackChannelConfig } from "@garzaglue/shared";
 import axios from "axios";
 import { logMessage } from "../../utils/logs.js";
 import type { NotificationPayload, NotifierResult } from "../types.js";
@@ -35,7 +35,7 @@ export class SlackNotifier extends BaseNotifier {
   async test(baseUrl?: string): Promise<NotifierResult> {
     try {
       const blocks = this.buildTestMessageBlocks(baseUrl);
-      const fallbackText = "Test notification from Superglue - your Slack integration is working!";
+      const fallbackText = "Test notification from GarzaGlue - your Slack integration is working!";
 
       if (this.config.authType === "webhook" && this.config.webhookUrl) {
         return await this.sendViaWebhook(blocks, fallbackText);
@@ -88,7 +88,7 @@ export class SlackNotifier extends BaseNotifier {
         type: "header",
         text: {
           type: "plain_text",
-          text: `Superglue ${periodLabel} Summary`,
+          text: `GarzaGlue ${periodLabel} Summary`,
           emoji: false,
         },
       },
@@ -221,7 +221,7 @@ export class SlackNotifier extends BaseNotifier {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "This is a test notification. Below is an example of what a real failure notification looks like. Use the buttons at the bottom to quickly view run details or have superglue investigate the failure.",
+          text: "This is a test notification. Below is an example of what a real failure notification looks like. Use the buttons at the bottom to quickly view run details or have garzaglue investigate the failure.",
         },
       },
       {

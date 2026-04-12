@@ -1,4 +1,4 @@
-import { Log } from "@superglue/shared";
+import { Log } from "@garzaglue/shared";
 import { PassThrough } from "stream";
 import { logEmitter } from "../utils/logs.js";
 import { registerApiModule } from "./registry.js";

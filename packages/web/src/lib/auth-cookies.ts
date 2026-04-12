@@ -5,8 +5,8 @@ export interface AuthCredentials {
   apiUrl: string;
 }
 
-const API_KEY_COOKIE = "superglue_api_key";
-const API_URL_COOKIE = "superglue_api_url";
+const API_KEY_COOKIE = "garzaglue_api_key";
+const API_URL_COOKIE = "garzaglue_api_url";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365; // 1 year
 
 export function setAuthCookies(credentials: AuthCredentials): void {

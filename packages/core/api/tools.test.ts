@@ -6,7 +6,7 @@ import {
   mapFailureBehavior,
   mapPaginationType,
   validateToolStructure,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { describe, expect, it } from "vitest";
 import { buildRunResponse } from "./tools.js";
 

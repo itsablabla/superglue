@@ -8,7 +8,7 @@ export * from "./types.js";
 export * from "./utils.js";
 export * from "./utils/vm-helpers.js";
 export * from "./utils/cli-oauth.js";
-export { SuperglueClient } from "./superglue-client.js";
+export { GarzaGlueClient } from "./garza-glue-client.js";
 export {
   SSELogSubscriptionManager,
   type SSELogSubscriptionOptions,

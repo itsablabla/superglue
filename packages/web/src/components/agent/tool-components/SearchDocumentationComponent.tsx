@@ -2,7 +2,7 @@
 
 import { useSystems } from "@/src/queries/systems";
 import { ErrorMessage } from "@/src/components/ui/error-message";
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { AlertCircle, BookOpen, FileText, Loader2 } from "lucide-react";
 import { useMemo } from "react";
 import { ToolCallWrapper } from "./ToolComponentWrapper";

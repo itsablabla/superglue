@@ -111,7 +111,7 @@ export function SdkAccordion({
                 <>
                   <div className="mt-3">
                     <div className="text-xs text-muted-foreground mb-2">Install</div>
-                    <CodeSnippet code="pip install superglue-client" language="bash" />
+                    <CodeSnippet code="pip install garza-glue-client" language="bash" />
                   </div>
                   <div className="mt-4">
                     <div className="text-xs text-muted-foreground mb-2">Code</div>
@@ -121,7 +121,7 @@ export function SdkAccordion({
               ) : (
                 <>
                   <div className="text-xs text-muted-foreground mb-1">
-                    pip install superglue-client
+                    pip install garza-glue-client
                   </div>
                   <CodeSnippet code={pythonCode} language="python" />
                 </>
@@ -165,7 +165,7 @@ export function SdkAccordion({
 
       <div className={cn("text-xs text-muted-foreground", isModal ? "mt-5" : "pt-2")}>
         <a
-          href="https://docs.superglue.cloud/sdk/overview"
+          href="https://docs.garzaglue.com/sdk/overview"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 hover:underline"

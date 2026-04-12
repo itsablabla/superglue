@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import * as htmlparser2 from "htmlparser2";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";
 

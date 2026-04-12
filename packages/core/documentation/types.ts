@@ -2,7 +2,7 @@
  * Shared types for documentation fetching and processing strategies
  */
 
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 
 export interface DocumentationConfig {
   url?: string;

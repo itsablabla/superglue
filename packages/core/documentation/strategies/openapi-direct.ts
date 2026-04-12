@@ -1,4 +1,4 @@
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import * as yaml from "js-yaml";
 
 import { logMessage } from "../../utils/logs.js";

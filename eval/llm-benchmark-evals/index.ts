@@ -1,8 +1,8 @@
 import { dirname, join } from "node:path";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { ServiceMetadata } from "@superglue/shared";
-import { initializeAIModel } from "@superglue/shared/utils";
+import type { ServiceMetadata } from "@garzaglue/shared";
+import { initializeAIModel } from "@garzaglue/shared/utils";
 import { config } from "dotenv";
 import { PlaywrightFetchingStrategy } from "../../packages/core/documentation/strategies/fetching-playwright.js";
 import { closeAllPools } from "../../packages/core/tools/strategies/postgres/postgres.js";

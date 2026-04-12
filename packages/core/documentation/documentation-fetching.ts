@@ -39,7 +39,7 @@
  * - OpenApiLinkExtractorStrategy: Extracts OpenAPI URLs from JSON/YAML objects containing spec links
  */
 
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import axios from "axios";
 
 import { server_defaults } from "../default.js";

@@ -1,5 +1,5 @@
-import { Pagination, ServiceMetadata, Tool, ToolStep } from "@superglue/shared";
-import type { Role } from "@superglue/shared";
+import { Pagination, ServiceMetadata, Tool, ToolStep } from "@garzaglue/shared";
+import type { Role } from "@garzaglue/shared";
 import { FastifyReply, FastifyRequest } from "fastify";
 import type { EEDataStore } from "../datastore/ee/types.js";
 import type { WorkerPools } from "../worker/types.js";
@@ -8,7 +8,7 @@ import type {
   FileStatus,
   MultiTenancyMode,
   PatchSystemBody,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 export type { PatchSystemBody };
 
 export interface AuthenticatedFastifyRequest extends FastifyRequest {

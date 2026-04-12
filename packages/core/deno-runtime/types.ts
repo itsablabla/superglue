@@ -2,7 +2,7 @@
  * Deno Runtime Types
  *
  * These types are used for communication between Node.js and Deno subprocess.
- * They mirror the types from @superglue/shared but are self-contained for Deno.
+ * They mirror the types from @garzaglue/shared but are self-contained for Deno.
  */
 
 export type ServiceMetadata = {

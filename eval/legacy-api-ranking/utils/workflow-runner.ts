@@ -3,8 +3,8 @@ import { DataStore } from '@core/datastore/types.js';
 import { ToolExecutor } from '@/packages/core/tools/tool-executor.js';
 import { SystemManager } from '@core/systems/system-manager.js';
 import { logEmitter, logMessage } from '@core/utils/logs.js';
-import { System, Tool, ToolResult, RunStatus } from '@superglue/shared';
-import { generateUniqueId } from '@superglue/shared/utils';
+import { System, Tool, ToolResult, RunStatus } from '@garzaglue/shared';
+import { generateUniqueId } from '@garzaglue/shared/utils';
 import { BaseWorkflowConfig } from './config-loader.js';
 import { validateWorkflowResult, type SoftValidationResult } from './soft-validator.js';
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import {
   Search,
   BookOpen,
@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { cn } from "@/src/lib/general-utils";
-import { MessagePart } from "@superglue/shared";
+import { MessagePart } from "@garzaglue/shared";
 import { useState } from "react";
 
 interface BackgroundToolConfig {

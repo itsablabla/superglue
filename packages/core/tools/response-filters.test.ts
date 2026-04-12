@@ -1,4 +1,4 @@
-import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@superglue/shared";
+import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@garzaglue/shared";
 import { describe, expect, it } from "vitest";
 import { applyResponseFilters, FilterMatchError } from "./response-filters.js";
 

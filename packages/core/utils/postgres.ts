@@ -3,7 +3,7 @@
  * These don't require sandboxed execution.
  */
 
-import { RequestOptions, ServiceMetadata, RequestStepConfig } from "@superglue/shared";
+import { RequestOptions, ServiceMetadata, RequestStepConfig } from "@garzaglue/shared";
 import { Pool, PoolConfig } from "pg";
 import { server_defaults } from "../default.js";
 import { parseJSON } from "../files/index.js";

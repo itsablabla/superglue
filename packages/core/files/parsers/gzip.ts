@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { promisify } from "util";
 import { gunzip } from "zlib";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";

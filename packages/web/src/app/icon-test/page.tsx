@@ -39,7 +39,7 @@ const styles = `
 }
 `;
 
-function SuperglueIcon1({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon1({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-black dark:bg-white flex items-center justify-center"
@@ -50,7 +50,7 @@ function SuperglueIcon1({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon2({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon2({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-white dark:bg-black border border-neutral-200 dark:border-neutral-800 flex items-center justify-center"
@@ -61,7 +61,7 @@ function SuperglueIcon2({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon3({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon3({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-gradient-to-br from-neutral-100 to-neutral-300 dark:from-neutral-800 dark:to-neutral-900 flex items-center justify-center shadow-inner"
@@ -72,7 +72,7 @@ function SuperglueIcon3({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon4({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon4({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-black dark:bg-white flex items-center justify-center animate-pulse-subtle"
@@ -83,7 +83,7 @@ function SuperglueIcon4({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon5({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon5({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-gradient-to-b from-black to-neutral-700 dark:from-white dark:to-neutral-300 flex items-center justify-center"
@@ -94,7 +94,7 @@ function SuperglueIcon5({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon6({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon6({ size = 40 }: { size?: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div className="absolute inset-0 rounded-full bg-black/20 dark:bg-white/20 blur-sm" />
@@ -105,7 +105,7 @@ function SuperglueIcon6({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon7({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon7({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full border-2 border-black dark:border-white flex items-center justify-center"
@@ -116,7 +116,7 @@ function SuperglueIcon7({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon8({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon8({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-black dark:bg-white flex items-center justify-center animate-glow"
@@ -127,7 +127,7 @@ function SuperglueIcon8({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon9({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon9({ size = 40 }: { size?: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div className="absolute inset-0 rounded-full border border-neutral-300 dark:border-neutral-700 animate-spin-slow" />
@@ -138,7 +138,7 @@ function SuperglueIcon9({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon10({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon10({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-xl bg-black dark:bg-white flex items-center justify-center"
@@ -149,7 +149,7 @@ function SuperglueIcon10({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon11({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon11({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-lg bg-gradient-to-br from-neutral-900 to-black dark:from-neutral-100 dark:to-white flex items-center justify-center"
@@ -160,7 +160,7 @@ function SuperglueIcon11({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon12({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon12({ size = 40 }: { size?: number }) {
   return (
     <img
       src="/favicon.png"
@@ -171,7 +171,7 @@ function SuperglueIcon12({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon13({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon13({ size = 40 }: { size?: number }) {
   return (
     <img
       src="/favicon.png"
@@ -182,7 +182,7 @@ function SuperglueIcon13({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon14({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon14({ size = 40 }: { size?: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neutral-200 via-white to-neutral-200 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800 animate-shimmer" />
@@ -193,7 +193,7 @@ function SuperglueIcon14({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon15({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon15({ size = 40 }: { size?: number }) {
   return (
     <div className="flex items-center justify-center" style={{ width: size, height: size }}>
       <span className="font-black text-black dark:text-white" style={{ fontSize: size * 0.5 }}>
@@ -203,7 +203,7 @@ function SuperglueIcon15({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon16({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon16({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-black dark:bg-white flex items-center justify-center"
@@ -216,7 +216,7 @@ function SuperglueIcon16({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon17({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon17({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full border-2 border-black dark:border-white flex items-center justify-center"
@@ -229,7 +229,7 @@ function SuperglueIcon17({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon18({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon18({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full bg-gradient-to-br from-neutral-800 to-black dark:from-neutral-200 dark:to-white flex items-center justify-center"
@@ -242,7 +242,7 @@ function SuperglueIcon18({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon19({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon19({ size = 40 }: { size?: number }) {
   return (
     <div className="relative" style={{ width: size, height: size }}>
       <div className="absolute inset-0 rounded-full bg-black dark:bg-white opacity-10" />
@@ -253,7 +253,7 @@ function SuperglueIcon19({ size = 40 }: { size?: number }) {
   );
 }
 
-function SuperglueIcon20({ size = 40 }: { size?: number }) {
+function GarzaGlueIcon20({ size = 40 }: { size?: number }) {
   return (
     <div
       className="rounded-full flex items-center justify-center"
@@ -418,27 +418,27 @@ function UserIcon10({ size = 40 }: { size?: number }) {
   );
 }
 
-const superglueIcons = [
-  { name: "Solid Black Circle + Favicon", component: SuperglueIcon1 },
-  { name: "White Circle + Favicon", component: SuperglueIcon2 },
-  { name: "Gradient Circle + Favicon", component: SuperglueIcon3 },
-  { name: "Pulsing Black Circle", component: SuperglueIcon4 },
-  { name: "Vertical Gradient", component: SuperglueIcon5 },
-  { name: "Drop Shadow", component: SuperglueIcon6 },
-  { name: "Outline Only", component: SuperglueIcon7 },
-  { name: "Glowing", component: SuperglueIcon8 },
-  { name: "Spinning Ring", component: SuperglueIcon9 },
-  { name: "Rounded Square", component: SuperglueIcon10 },
-  { name: "Rounded Square Gradient", component: SuperglueIcon11 },
-  { name: "Favicon Only", component: SuperglueIcon12 },
-  { name: "Favicon Bouncing", component: SuperglueIcon13 },
-  { name: "Shimmer Border", component: SuperglueIcon14 },
-  { name: "S Letter Only", component: SuperglueIcon15 },
-  { name: "S in Circle", component: SuperglueIcon16 },
-  { name: "S Outline Circle", component: SuperglueIcon17 },
-  { name: "sg Initials", component: SuperglueIcon18 },
-  { name: "Ghost Circle", component: SuperglueIcon19 },
-  { name: "Conic Gradient Ring", component: SuperglueIcon20 },
+const garzaglueIcons = [
+  { name: "Solid Black Circle + Favicon", component: GarzaGlueIcon1 },
+  { name: "White Circle + Favicon", component: GarzaGlueIcon2 },
+  { name: "Gradient Circle + Favicon", component: GarzaGlueIcon3 },
+  { name: "Pulsing Black Circle", component: GarzaGlueIcon4 },
+  { name: "Vertical Gradient", component: GarzaGlueIcon5 },
+  { name: "Drop Shadow", component: GarzaGlueIcon6 },
+  { name: "Outline Only", component: GarzaGlueIcon7 },
+  { name: "Glowing", component: GarzaGlueIcon8 },
+  { name: "Spinning Ring", component: GarzaGlueIcon9 },
+  { name: "Rounded Square", component: GarzaGlueIcon10 },
+  { name: "Rounded Square Gradient", component: GarzaGlueIcon11 },
+  { name: "Favicon Only", component: GarzaGlueIcon12 },
+  { name: "Favicon Bouncing", component: GarzaGlueIcon13 },
+  { name: "Shimmer Border", component: GarzaGlueIcon14 },
+  { name: "S Letter Only", component: GarzaGlueIcon15 },
+  { name: "S in Circle", component: GarzaGlueIcon16 },
+  { name: "S Outline Circle", component: GarzaGlueIcon17 },
+  { name: "sg Initials", component: GarzaGlueIcon18 },
+  { name: "Ghost Circle", component: GarzaGlueIcon19 },
+  { name: "Conic Gradient Ring", component: GarzaGlueIcon20 },
 ];
 
 const userIcons = [
@@ -466,9 +466,9 @@ export default function IconTestPage() {
 
       <div className="space-y-16">
         <section>
-          <h2 className="text-2xl font-semibold mb-6">Superglue Icons ({superglueIcons.length})</h2>
+          <h2 className="text-2xl font-semibold mb-6">GarzaGlue Icons ({garzaglueIcons.length})</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {superglueIcons.map(({ name, component: Icon }) => (
+            {garzaglueIcons.map(({ name, component: Icon }) => (
               <div
                 key={name}
                 className="flex flex-col items-center gap-3 p-4 rounded-xl border border-border bg-card"
@@ -498,7 +498,7 @@ export default function IconTestPage() {
         <section>
           <h2 className="text-2xl font-semibold mb-6">Chat Previews</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {superglueIcons.slice(0, 12).map(({ name: sgName, component: SgIcon }, idx) => {
+            {garzaglueIcons.slice(0, 12).map(({ name: sgName, component: SgIcon }, idx) => {
               const UserIcon = userIcons[idx % userIcons.length].component;
               return (
                 <div key={sgName} className="border rounded-xl p-4 bg-card">
@@ -515,7 +515,7 @@ export default function IconTestPage() {
                     <div className="flex items-start gap-3">
                       <SgIcon size={40} />
                       <div className="flex-1">
-                        <div className="text-sm font-medium">superglue</div>
+                        <div className="text-sm font-medium">garzaglue</div>
                         <div className="text-sm text-muted-foreground">
                           I can help you set up a connection...
                         </div>
@@ -536,7 +536,7 @@ export default function IconTestPage() {
           <div className="flex items-end gap-8 flex-wrap">
             {[24, 32, 40, 48, 56].map((size) => (
               <div key={size} className="flex flex-col items-center gap-2">
-                <SuperglueIcon1 size={size} />
+                <GarzaGlueIcon1 size={size} />
                 <span className="text-xs text-muted-foreground">{size}px</span>
               </div>
             ))}

@@ -1,6 +1,6 @@
 # Systems Handling
 
-Systems are reusable building blocks for superglue tools that store system configuration details and credentials.
+Systems are reusable building blocks for Garza Glue tools that store system configuration details and credentials.
 
 ## Credential Model
 

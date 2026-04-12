@@ -1,4 +1,4 @@
-import { TunnelConnection } from "@superglue/shared";
+import { TunnelConnection } from "@garzaglue/shared";
 import { WebSocket } from "ws";
 import { ConnectedTunnel } from "./tunnel-types.js";
 

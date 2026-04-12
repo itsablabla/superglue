@@ -1,6 +1,6 @@
 import { useArchiveTool } from "@/src/queries/tools";
 import { cn } from "@/src/lib/general-utils";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { Archive, ArchiveRestore, CopyPlus, Download, Edit2, MoreVertical } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";

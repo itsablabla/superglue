@@ -1,6 +1,6 @@
 import { Metrics, ToolMetrics } from "../types.js";
 import { writeFileSync, mkdirSync, existsSync } from "fs";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../../../packages/core/utils/logs.js";
 import { join, dirname } from "path";
 

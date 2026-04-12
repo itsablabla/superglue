@@ -119,7 +119,7 @@ export function AuthModal({ isOpen, defaultApiUrl }: AuthModalProps) {
       <DialogContent className="sm:max-w-[425px]" onPointerDownOutside={(e) => e.preventDefault()}>
         <form onSubmit={handleSubmit}>
           <DialogHeader>
-            <DialogTitle>Welcome to Superglue</DialogTitle>
+            <DialogTitle>Welcome to GarzaGlue</DialogTitle>
             <DialogDescription>Enter your credentials to access the application.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">

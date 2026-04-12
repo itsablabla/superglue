@@ -22,7 +22,7 @@
 //     totalAttempts: number;
 //     successfulAttempts: number;
 //     apiFailureCount: number;
-//     superglueScore: number;
+//     garzaGlueScore: number;
 //     softValidation?: {
 //         success: boolean;
 //         confidence: number;
@@ -93,7 +93,7 @@
 //                 workflow.integrationIds.includes(i.id)
 //             );
 
-//             // Run superglue evaluation
+//             // Run Garza Glue evaluation
 //             const runResult = await workflowRunner.runWorkflow(
 //                 workflow,
 //                 workflowIntegrations,
@@ -173,12 +173,12 @@
 //                 totalAttempts: runResult.totalAttempts,
 //                 successfulAttempts: runResult.successfulAttempts,
 //                 apiFailureCount,
-//                 superglueScore: calculateAverageScore(runResult.successRate, llmResults),
+//                 garzaGlueScore: calculateAverageScore(runResult.successRate, llmResults),
 //                 llmResults
 //             });
 //         }
 
-//         results.sort((a, b) => b.superglueScore - a.superglueScore);
+//         results.sort((a, b) => b.garzaGlueScore - a.garzaGlueScore);
 
 //         const csvPath = path.join(process.cwd(), 'eval/api-ranking/ranking.csv');
 //         await generateRankingCsv(results, csvPath);
@@ -209,7 +209,7 @@
 // }
 
 // function calculateAverageScore(
-//     superglueSuccessRate: number,
+//     garzaGlueSuccessRate: number,
 //     llmResults: {
 //         'claude-sonnet-4-20250514': number;
 //         'claude-opus-4-20250514': number;
@@ -220,7 +220,7 @@
 // ): number {
 //     // Collect all success rates
 //     const allRates = [
-//         superglueSuccessRate,
+//         garzaGlueSuccessRate,
 //         ...Object.values(llmResults)
 //     ];
 //     // Calculate average
@@ -236,7 +236,7 @@
 //         'Rank',
 //         'API',
 //         'Average Score',
-//         'superglue Success %',
+//         'Garza Glue Success %',
 //         'Claude Sonnet 4',
 //         'Claude Opus 4',
 //         'GPT-4.1',
@@ -249,8 +249,8 @@
 //         return [
 //             index + 1, // Rank
 //             result.api, // API name
-//             result.superglueScore.toFixed(2), // Score
-//             `${(result.successRate * 100).toFixed(0)}%`, // superglue Success %
+//             result.garzaGlueScore.toFixed(2), // Score
+//             `${(result.successRate * 100).toFixed(0)}%`, // Garza Glue Success %
 //             `${(result.llmResults['claude-sonnet-4-20250514'] * 100).toFixed(0)}%`, // Claude Sonnet
 //             `${(result.llmResults['claude-opus-4-20250514'] * 100).toFixed(0)}%`, // Claude Opus
 //             `${(result.llmResults['gpt-4.1'] * 100).toFixed(0)}%`, // GPT-4.1

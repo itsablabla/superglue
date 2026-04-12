@@ -19,7 +19,7 @@ import { useToast } from "@/src/hooks/use-toast";
 import { cn } from "@/src/lib/general-utils";
 import { getOAuthCallbackUrl, triggerOAuthFlow } from "@/src/lib/oauth-utils";
 import { tokenRegistry } from "@/src/lib/token-registry";
-import { findTemplateForSystem, resolveOAuthCertAndKey } from "@superglue/shared";
+import { findTemplateForSystem, resolveOAuthCertAndKey } from "@garzaglue/shared";
 import { ChevronRight, Eye, EyeOff, Upload } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CopyButton } from "@/src/components/tools/shared/CopyButton";

@@ -2,10 +2,10 @@ import {
   ToolStep,
   System,
   ResponseFilter,
-  SuperglueClient,
+  GarzaGlueClient,
   Tool,
   isTransformConfig,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { isAbortError } from "./general-utils";
 import { tokenRegistry } from "./token-registry";
 import { connectionMonitor } from "./connection-monitor";
@@ -68,7 +68,7 @@ export interface ToolExecutionState {
 }
 
 export async function abortExecution(
-  client: SuperglueClient,
+  client: GarzaGlueClient,
   runId: string | null,
 ): Promise<boolean> {
   if (!runId) return false;
@@ -91,7 +91,7 @@ export async function executeSingleStep({
   mode,
   systemIds,
 }: {
-  client: SuperglueClient;
+  client: GarzaGlueClient;
   step: ToolStep;
   payload: any;
   previousResults: Record<string, any>;
@@ -144,7 +144,7 @@ export async function executeToolStepByStep({
   mode,
   systemIds,
 }: {
-  client: SuperglueClient;
+  client: GarzaGlueClient;
   tool: Tool;
   payload: any;
   onStepComplete?: (stepIndex: number, result: StepExecutionResult) => void;
@@ -268,7 +268,7 @@ export async function executeOutputTransform({
   onRunIdGenerated,
   responseFilters,
 }: {
-  client: SuperglueClient;
+  client: GarzaGlueClient;
   outputTransform: string;
   outputSchema: any;
   inputSchema: any;

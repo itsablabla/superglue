@@ -1,4 +1,4 @@
-import { Message } from "@superglue/shared";
+import { Message } from "@garzaglue/shared";
 import { jsonSchema } from "ai";
 import { tavilySearch } from "@tavily/ai-sdk";
 import { AgentType, getAgent } from "./registries/agent-registry";

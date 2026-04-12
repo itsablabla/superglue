@@ -1,4 +1,4 @@
-import { getRoleIds } from "@superglue/shared";
+import { getRoleIds } from "@garzaglue/shared";
 import { registerApiModule } from "../registry.js";
 import { addTraceHeader } from "../response-helpers.js";
 import type { AuthenticatedFastifyRequest, RouteHandler } from "../types.js";

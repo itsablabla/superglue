@@ -322,7 +322,7 @@ async function main() {
   const postgresConfig = {
     host: process.env.POSTGRES_HOST || "localhost",
     port: parseInt(process.env.POSTGRES_PORT || "5432"),
-    database: process.env.POSTGRES_DB || "superglue",
+    database: process.env.POSTGRES_DB || "garzaglue",
     user: process.env.POSTGRES_USERNAME || "postgres",
     password: process.env.POSTGRES_PASSWORD || "postgres",
   };

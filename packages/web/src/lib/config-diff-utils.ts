@@ -1,4 +1,4 @@
-import { Tool, ToolDiff, normalizeToolSchemas, normalizeToolDiffs } from "@superglue/shared";
+import { Tool, ToolDiff, normalizeToolSchemas, normalizeToolDiffs } from "@garzaglue/shared";
 import * as jsonpatch from "fast-json-patch";
 
 // Types

@@ -3,7 +3,7 @@
 import { tokenRegistry } from "@/src/lib/token-registry";
 import { AgentRequest, ToolExecutionPolicies } from "@/src/lib/agent/agent-types";
 import { truncateFileContent } from "@/src/lib/file-utils";
-import { Message } from "@superglue/shared";
+import { Message } from "@garzaglue/shared";
 import { useCallback, useRef } from "react";
 import type { AgentConfig, UploadedFile, UseAgentRequestReturn } from "./types";
 import type { StreamState } from "./use-agent-streaming";

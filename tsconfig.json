@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["*"],
-      "@superglue/*": ["packages/*/"],
+      "@garzaglue/*": ["packages/*/"],
       "@core/*": ["packages/core/*"],
       "@shared/*": ["packages/shared/*"],
       "@web/*": ["packages/web/*"]

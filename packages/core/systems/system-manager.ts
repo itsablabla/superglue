@@ -7,7 +7,7 @@ import {
   System,
   Tool,
   getToolSystemIds,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { isMainThread, parentPort } from "worker_threads";
 import { DataStore } from "../datastore/types.js";
 import { isEEDataStore } from "../datastore/ee/types.js";

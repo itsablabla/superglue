@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { ToolSchedule } from "@superglue/shared";
+import { ToolSchedule } from "@garzaglue/shared";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
 import { useCallback } from "react";
 
@@ -16,7 +16,7 @@ export function useInvalidateSchedules() {
 
 export function useSchedules() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   const query = useQuery({
     queryKey: queryKeys.schedules.list(orgId),
@@ -45,7 +45,7 @@ export function useSchedules() {
 
 export function useCreateSchedule() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -72,7 +72,7 @@ export function useCreateSchedule() {
 
 export function useUpdateSchedule() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -95,7 +95,7 @@ export function useUpdateSchedule() {
 
 export function useDeleteSchedule() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ toolId, scheduleId }: { toolId: string; scheduleId: string }) => {

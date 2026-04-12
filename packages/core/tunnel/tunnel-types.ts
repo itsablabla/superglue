@@ -1,4 +1,4 @@
-import { TunnelConnection, TunnelTarget } from "@superglue/shared";
+import { TunnelConnection, TunnelTarget } from "@garzaglue/shared";
 import { WebSocket } from "ws";
 
 // Protocol messages between cloud and agent

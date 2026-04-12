@@ -1,6 +1,6 @@
 import { useConfig } from "@/src/app/config-context";
 import { useMemo } from "react";
-import { safeStringify } from "@superglue/shared";
+import { safeStringify } from "@garzaglue/shared";
 
 export interface ToolCodeSnippets {
   typescriptCode: string;
@@ -32,11 +32,11 @@ async function main() {
 
 main();`;
 
-    const pythonCode = `from superglue_client import SuperglueClient
-from superglue_client.api.tools import run_tool
-from superglue_client.models import RunRequest, RunRequestInputs
+    const pythonCode = `from garzaglue_client import GarzaGlueClient
+from garzaglue_client.api.tools import run_tool
+from garzaglue_client.models import RunRequest, RunRequestInputs
 
-client = SuperglueClient(
+client = GarzaGlueClient(
     base_url="${config.apiEndpoint}/v1",
     token="<YOUR_SUPERGLUE_API_KEY>"
 )
@@ -58,11 +58,11 @@ with client as client:
 
     const mcpConfig = `{
   "mcpServers": {
-    "superglue": {
+    "garzaglue": {
       "command": "npx",
       "args": [
         "mcp-remote",
-        "${config.apiEndpoint.includes("https://api.superglue") ? "https://mcp.superglue.ai" : `${config.apiEndpoint}/mcp`}",
+        "${config.apiEndpoint.includes("https://api.garzaglue") ? "https://mcp.garzaglue.ai" : `${config.apiEndpoint}/mcp`}",
         "--header",
         "Authorization:\${AUTH_HEADER}"
       ],

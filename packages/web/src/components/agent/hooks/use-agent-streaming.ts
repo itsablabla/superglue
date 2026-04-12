@@ -1,6 +1,6 @@
 "use client";
 
-import { Message } from "@superglue/shared";
+import { Message } from "@garzaglue/shared";
 import { useCallback, useRef } from "react";
 import type { AgentConfig, UseAgentStreamingReturn } from "./types";
 

@@ -1,22 +1,22 @@
-# Superglue TypeScript SDK
+# GarzaGlue TypeScript SDK
 
-Auto-generated TypeScript SDK for the Superglue AI API.
+Auto-generated TypeScript SDK for the GarzaGlue AI API.
 
 ## Installation
 
 ```bash
-npm install @superglue/client
+npm install @garzaglue/client
 ```
 
 ## Usage
 
 ```typescript
-import { configure, listTools, runTool, getRun, cancelRun } from "@superglue/client";
+import { configure, listTools, runTool, getRun, cancelRun } from "@garzaglue/client";
 
 // Configure once at startup
 configure({
   apiKey: "YOUR_API_KEY",
-  baseUrl: "https://api.superglue.ai/v1", // optional
+  baseUrl: "https://api.garzaglue.ai/v1", // optional
 });
 
 // List tools

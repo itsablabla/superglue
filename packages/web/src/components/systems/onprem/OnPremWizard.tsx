@@ -1,6 +1,6 @@
 "use client";
 
-import { TunnelConnection, TunnelTarget, slugify } from "@superglue/shared";
+import { TunnelConnection, TunnelTarget, slugify } from "@garzaglue/shared";
 import { cn } from "@/src/lib/general-utils";
 import { useState, useCallback } from "react";
 import { ArrowLeft, CheckCircle2, CloudOff } from "lucide-react";
@@ -187,7 +187,7 @@ export function OnPremWizard({ onClose, className }: OnPremWizardProps) {
                 autoFocus
               />
               <p className="text-xs text-muted-foreground">
-                A friendly name to identify this system in Superglue
+                A friendly name to identify this system in GarzaGlue
               </p>
             </div>
 

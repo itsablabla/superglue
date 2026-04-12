@@ -27,7 +27,7 @@ afterAll(async () => {
   await client.deleteSystem(SYSTEM_ID).catch(() => {});
 });
 
-describe('Superglue SDK Integration Tests', () => {
+describe('GarzaGlue SDK Integration Tests', () => {
   it('should create GitHub system', async () => {
     const system = await client.upsertSystem(SYSTEM_ID, {
       name: 'GitHub',

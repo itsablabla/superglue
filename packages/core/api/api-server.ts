@@ -1,8 +1,8 @@
 import cors from "@fastify/cors";
 import formbody from "@fastify/formbody";
 import multipart from "@fastify/multipart";
-import type { Role, ServiceMetadata } from "@superglue/shared";
-import { getBaseRoleId, getRoleIds } from "@superglue/shared";
+import type { Role, ServiceMetadata } from "@garzaglue/shared";
+import { getBaseRoleId, getRoleIds } from "@garzaglue/shared";
 import Fastify, { FastifyRequest } from "fastify";
 import { registerAllRoutes } from "../api/index.js";
 import { extractTokenFromFastifyRequest, validateToken } from "../auth/auth.js";
@@ -12,7 +12,7 @@ import {
   isSystemVisible,
   getSystemAccessLevel,
 } from "../auth/access-rule-evaluator.js";
-import { SystemAccessLevel } from "@superglue/shared";
+import { SystemAccessLevel } from "@garzaglue/shared";
 import { EEDataStore } from "../datastore/ee/types.js";
 import { mcpHandler } from "../mcp/mcp-server.js";
 import { getTunnelService } from "../tunnel/index.js";

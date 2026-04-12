@@ -1,6 +1,6 @@
 # SDK Integration Test
 
-This folder contains integration tests for the published `@superglue/client` npm package against the local Superglue GraphQL server.
+This folder contains integration tests for the published `@garzaglue/client` npm package against the local GarzaGlue GraphQL server.
 
 ## Purpose
 
@@ -50,7 +50,7 @@ npm run test:sdk
 
 This command will:
 1. Install dependencies in `eval/sdk-test/`
-2. Start the Superglue GraphQL server (`packages/core`)
+2. Start the GarzaGlue GraphQL server (`packages/core`)
 3. Wait for the server to be ready
 4. Run the SDK integration tests
 5. Stop the server automatically
@@ -85,7 +85,7 @@ The test creates:
 Successful test run:
 
 ```
-[2024-01-01T00:00:00.000Z] Step 0: Initializing SuperglueClient...
+[2024-01-01T00:00:00.000Z] Step 0: Initializing GarzaGlueClient...
 [2024-01-01T00:00:00.100Z] Step 1: Creating GitHub integration...
 [2024-01-01T00:00:00.500Z] Step 1: ✓ Created integration: github-test - GitHub
 ...
@@ -121,7 +121,7 @@ To modify the tests:
 
 ## Notes
 
-- Tests use only the published `@superglue/client` npm package, not local code
+- Tests use only the published `@garzaglue/client` npm package, not local code
 - All resources created during tests are automatically cleaned up
 - The test is idempotent and can be run multiple times
 

@@ -1,5 +1,5 @@
 import { UploadedFileInfo } from "@/src/lib/file-utils";
-import { ToolStep, System, ResponseFilter } from "@superglue/shared";
+import { ToolStep, System, ResponseFilter } from "@garzaglue/shared";
 
 export interface PayloadState {
   manualPayloadText: string;

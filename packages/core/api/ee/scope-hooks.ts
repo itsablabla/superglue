@@ -1,5 +1,5 @@
 import type { DataStore } from "../../datastore/types.js";
-import type { Role, RequestSource } from "@superglue/shared";
+import type { Role, RequestSource } from "@garzaglue/shared";
 
 export interface ScopeContext {
   userId?: string;

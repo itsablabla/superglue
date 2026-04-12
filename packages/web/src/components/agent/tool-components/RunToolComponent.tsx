@@ -2,7 +2,7 @@
 
 import { ErrorMessage } from "@/src/components/ui/error-message";
 import { JsonEditor } from "@/src/components/editors/JsonEditor";
-import { ToolCall, Tool } from "@superglue/shared";
+import { ToolCall, Tool } from "@garzaglue/shared";
 import { FilePlay, Play } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { ToolCallToolDisplay } from "./ToolComponentDisplay";

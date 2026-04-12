@@ -1,6 +1,6 @@
 import { cn, truncateValue } from "@/src/lib/general-utils";
 import { truncateTemplateValue } from "@/src/lib/templating-utils";
-import { maskCredentials } from "@superglue/shared";
+import { maskCredentials } from "@garzaglue/shared";
 import { Code2, FileJson, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { TemplateEditPopover } from "./TemplateEditPopover";

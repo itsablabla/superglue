@@ -17,8 +17,8 @@ import {
   RequestSource,
   SystemAccessLevel,
   validateToolStructure,
-} from "@superglue/shared";
-import { systems, findTemplateForSystem } from "@superglue/shared/templates";
+} from "@garzaglue/shared";
+import { systems, findTemplateForSystem } from "@garzaglue/shared/templates";
 import * as jsonpatch from "fast-json-patch";
 import { findDraftInMessages } from "../agent-context";
 import {
@@ -246,7 +246,7 @@ const runRunTool = async (input: any, ctx: ToolExecutionContext) => {
 
   if (toolId) {
     try {
-      toolConfig = await ctx.superglueClient.getWorkflow(toolId);
+      toolConfig = await ctx.garzaGlueClient.getWorkflow(toolId);
     } catch (error: any) {
       return {
         success: false,
@@ -309,12 +309,12 @@ const runRunTool = async (input: any, ctx: ToolExecutionContext) => {
 
   try {
     const result: ToolResult = isDraft
-      ? await ctx.superglueClient.runToolConfig({
+      ? await ctx.garzaGlueClient.runToolConfig({
           tool: toolConfig,
           payload: resolvedPayload,
           traceId,
         })
-      : await ctx.superglueClient.runTool({
+      : await ctx.garzaGlueClient.runTool({
           toolId: toolId!,
           payload: resolvedPayload,
           options: { requestSource: RequestSource.FRONTEND },
@@ -415,7 +415,7 @@ const runEditTool = async (input: any, ctx: ToolExecutionContext) => {
 
   if (toolId) {
     try {
-      const savedTool = await ctx.superglueClient.getWorkflow(toolId);
+      const savedTool = await ctx.garzaGlueClient.getWorkflow(toolId);
       if (!savedTool) {
         return {
           success: false,
@@ -699,7 +699,7 @@ const runSaveTool = async (input: any, ctx: ToolExecutionContext) => {
       systemIds: draft.systemIds,
     };
 
-    const savedTool = await ctx.superglueClient.upsertWorkflow(toolId, toolToSave);
+    const savedTool = await ctx.garzaGlueClient.upsertWorkflow(toolId, toolToSave);
 
     return {
       success: true,
@@ -864,11 +864,11 @@ const runCreateSystem = async (input: any, ctx: ToolExecutionContext) => {
   } = systemInput;
 
   try {
-    const result = await ctx.superglueClient.createSystem(createPayload);
+    const result = await ctx.garzaGlueClient.createSystem(createPayload);
 
     if (fileUploadResult.files.length > 0) {
       try {
-        await ctx.superglueClient.uploadSystemFileReferences(result.id, fileUploadResult.files);
+        await ctx.garzaGlueClient.uploadSystemFileReferences(result.id, fileUploadResult.files);
       } catch (uploadError: any) {
         return {
           success: true,
@@ -880,7 +880,7 @@ const runCreateSystem = async (input: any, ctx: ToolExecutionContext) => {
 
     if (documentationUrl && !sensitiveCredentials) {
       try {
-        await ctx.superglueClient.triggerSystemDocumentationScrapeJob(result.id, {
+        await ctx.garzaGlueClient.triggerSystemDocumentationScrapeJob(result.id, {
           url: documentationUrl,
         });
       } catch (scrapeError: any) {
@@ -894,7 +894,7 @@ const runCreateSystem = async (input: any, ctx: ToolExecutionContext) => {
 
     if (openApiUrl && !sensitiveCredentials) {
       try {
-        await ctx.superglueClient.fetchOpenApiSpec(result.id, openApiUrl);
+        await ctx.garzaGlueClient.fetchOpenApiSpec(result.id, openApiUrl);
       } catch {
         // non-fatal — spec fetch failure doesn't block system creation
       }
@@ -983,14 +983,14 @@ const processCreateSystemConfirmation = async (
     );
 
     try {
-      const result = await ctx.superglueClient.createSystem({
+      const result = await ctx.garzaGlueClient.createSystem({
         ...cleanSystemConfig,
         credentials: finalCredentials,
       });
 
       if (documentationUrl) {
         try {
-          await ctx.superglueClient.triggerSystemDocumentationScrapeJob(result.id, {
+          await ctx.garzaGlueClient.triggerSystemDocumentationScrapeJob(result.id, {
             url: documentationUrl,
           });
         } catch {
@@ -1000,7 +1000,7 @@ const processCreateSystemConfirmation = async (
 
       if (openApiUrl) {
         try {
-          await ctx.superglueClient.fetchOpenApiSpec(result.id, openApiUrl);
+          await ctx.garzaGlueClient.fetchOpenApiSpec(result.id, openApiUrl);
         } catch {
           // spec fetch failure is non-fatal
         }
@@ -1129,7 +1129,7 @@ const runEditSystem = async (input: any, ctx: ToolExecutionContext) => {
   const scrapeInput = buildScrapeInput(scrapeUrl, scrapeKeywords);
 
   try {
-    const existingSystem = await ctx.superglueClient.getSystem(patchPayload.id, {
+    const existingSystem = await ctx.garzaGlueClient.getSystem(patchPayload.id, {
       environment: env,
     });
     if (!existingSystem) {
@@ -1151,8 +1151,8 @@ const runEditSystem = async (input: any, ctx: ToolExecutionContext) => {
     }
 
     if (!hasPatch && hasFiles) {
-      await ctx.superglueClient.uploadSystemFileReferences(patchPayload.id, fileUploadResult.files);
-      const updated = await ctx.superglueClient.getSystem(patchPayload.id, { environment: env });
+      await ctx.garzaGlueClient.uploadSystemFileReferences(patchPayload.id, fileUploadResult.files);
+      const updated = await ctx.garzaGlueClient.getSystem(patchPayload.id, { environment: env });
       const scrapeWarning = await tryTriggerScrapeJob(ctx, patchPayload.id, scrapeInput);
       return {
         success: true,
@@ -1183,13 +1183,13 @@ const runEditSystem = async (input: any, ctx: ToolExecutionContext) => {
       );
     }
 
-    const result = await ctx.superglueClient.updateSystem(patchPayload.id, patchPayload, {
+    const result = await ctx.garzaGlueClient.updateSystem(patchPayload.id, patchPayload, {
       environment: env,
     });
 
     if (fileUploadResult.files.length > 0) {
       try {
-        await ctx.superglueClient.uploadSystemFileReferences(result.id, fileUploadResult.files);
+        await ctx.garzaGlueClient.uploadSystemFileReferences(result.id, fileUploadResult.files);
       } catch (uploadError: any) {
         return {
           success: true,
@@ -1273,7 +1273,7 @@ const processEditSystemConfirmation = async (
     }
 
     try {
-      const existingSystem = await ctx.superglueClient.getSystem(cleanSystemConfig.id, {
+      const existingSystem = await ctx.garzaGlueClient.getSystem(cleanSystemConfig.id, {
         environment: env,
       });
       if (!existingSystem) {
@@ -1304,11 +1304,11 @@ const processEditSystemConfirmation = async (
         };
       }
       if (!hasPatch && hasFilesToUpload && !("error" in fileUploadResult)) {
-        await ctx.superglueClient.uploadSystemFileReferences(
+        await ctx.garzaGlueClient.uploadSystemFileReferences(
           cleanSystemConfig.id,
           fileUploadResult.files,
         );
-        const updated = await ctx.superglueClient.getSystem(cleanSystemConfig.id, {
+        const updated = await ctx.garzaGlueClient.getSystem(cleanSystemConfig.id, {
           environment: env,
         });
         const scrapeWarning = await tryTriggerScrapeJob(ctx, cleanSystemConfig.id, scrapeInput);
@@ -1348,7 +1348,7 @@ const processEditSystemConfirmation = async (
         existingSystem?.credentials,
       );
 
-      const result = await ctx.superglueClient.updateSystem(
+      const result = await ctx.garzaGlueClient.updateSystem(
         cleanSystemConfig.id,
         {
           ...cleanSystemConfig,
@@ -1477,7 +1477,7 @@ const runCallSystem = async (
       },
     };
 
-    const result = await ctx.superglueClient.executeStep({
+    const result = await ctx.garzaGlueClient.executeStep({
       step,
       payload: {},
       mode,
@@ -1567,7 +1567,7 @@ const runSearchDocumentation = async (input: any, ctx: ToolExecutionContext) => 
   const { systemId, keywords } = input;
 
   try {
-    const result = await ctx.superglueClient.searchSystemDocumentation(systemId, keywords);
+    const result = await ctx.garzaGlueClient.searchSystemDocumentation(systemId, keywords);
 
     const hasNoDocumentation = result.trim().length === 0;
     const hasNoResults = result.startsWith("No relevant sections found");
@@ -1668,7 +1668,7 @@ const runAuthenticateOAuth = async (input: any, ctx: ToolExecutionContext) => {
   const env: "dev" | "prod" = input.environment === "dev" ? "dev" : "prod";
 
   try {
-    const system = await ctx.superglueClient.getSystem(input.systemId, { environment: env });
+    const system = await ctx.garzaGlueClient.getSystem(input.systemId, { environment: env });
     if (!system) {
       return {
         success: false,
@@ -1785,7 +1785,7 @@ const processAuthenticateOAuthConfirmation = async (
     }
 
     try {
-      const currentSystem = await ctx.superglueClient.getSystem(systemId, { environment: env });
+      const currentSystem = await ctx.garzaGlueClient.getSystem(systemId, { environment: env });
       const { extraHeaders, ...restOauthConfig } = oauthConfig;
       const updatedCredentials = {
         ...currentSystem?.credentials,
@@ -1800,7 +1800,7 @@ const processAuthenticateOAuthConfirmation = async (
         expires_at: tokens.expires_at,
       };
 
-      await ctx.superglueClient.updateSystem(
+      await ctx.garzaGlueClient.updateSystem(
         systemId,
         { credentials: updatedCredentials },
         { environment: env },
@@ -1907,7 +1907,7 @@ const runFindTool = async (
 ): Promise<any> => {
   try {
     if (input.id) {
-      const tool = await ctx.superglueClient.getWorkflow(input.id);
+      const tool = await ctx.garzaGlueClient.getWorkflow(input.id);
       if (!tool) {
         return { success: false, error: `Tool '${input.id}' not found` };
       }
@@ -1918,7 +1918,7 @@ const runFindTool = async (
     }
 
     const rawQuery = (input.query || "").trim();
-    const { items } = await ctx.superglueClient.listWorkflows(1000);
+    const { items } = await ctx.garzaGlueClient.listWorkflows(1000);
 
     const filtered =
       !rawQuery || rawQuery === "*" || rawQuery === "all"
@@ -1993,7 +1993,7 @@ const runFindSystem = async (
   };
 
   try {
-    const { items: allSystems } = await ctx.superglueClient.listSystems(1000, 1);
+    const { items: allSystems } = await ctx.garzaGlueClient.listSystems(1000, 1);
 
     let systems = input.environment
       ? allSystems.filter((s) => s.environment === input.environment)
@@ -2327,12 +2327,12 @@ const runFindRole = async (
 ): Promise<any> => {
   try {
     if (input.id) {
-      const role = await ctx.superglueClient.getRole(input.id);
+      const role = await ctx.garzaGlueClient.getRole(input.id);
       if (!role) return { success: false, error: `Role '${input.id}' not found` };
       return { success: true, roles: [role] };
     }
 
-    const allRoles = await ctx.superglueClient.listRoles();
+    const allRoles = await ctx.garzaGlueClient.listRoles();
     if (!input.query || input.query === "*") {
       return {
         success: true,

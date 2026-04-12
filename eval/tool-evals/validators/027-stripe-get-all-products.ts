@@ -8,7 +8,7 @@ const EXPECTED_DATA = {
       "active": true,
       "created": 1760910770,
       "updated": 1760910770,
-      "name": "Superglue Cap"
+      "name": "Garza Glue Cap"
     },
     {
       "id": "prod_TGbjqL1f2Rqqkv",
@@ -16,7 +16,7 @@ const EXPECTED_DATA = {
       "active": true,
       "created": 1760910683,
       "updated": 1760910683,
-      "name": "Superglue T-Shirt"
+      "name": "Garza Glue T-Shirt"
     },
     {
       "id": "prod_TGbixpbyW32QWP",
@@ -24,7 +24,7 @@ const EXPECTED_DATA = {
       "active": true,
       "created": 1760910671,
       "updated": 1760910671,
-      "name": "Superglue Coffee Mug"
+      "name": "Garza Glue Coffee Mug"
     }
   ]
 };

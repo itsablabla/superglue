@@ -1,4 +1,4 @@
-import { ALLOWED_FILE_EXTENSIONS } from "@superglue/shared";
+import { ALLOWED_FILE_EXTENSIONS } from "@garzaglue/shared";
 
 export const MAX_TOTAL_FILE_SIZE_CHAT = 10 * 1024 * 1024;
 export const MAX_TOTAL_FILE_SIZE_TOOLS = 1000 * 1024 * 1024;

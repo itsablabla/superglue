@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "./query-keys";
-import { useSuperglueClient } from "./use-client";
+import { useGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
 
 interface UseRunsParams {
@@ -25,7 +25,7 @@ export function useRuns({
   startedAfter,
 }: UseRunsParams) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const filters = {
     search,
@@ -85,7 +85,7 @@ export function useToolRuns(
   },
 ) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   return useQuery({
     queryKey: queryKeys.runs.list(orgId, {

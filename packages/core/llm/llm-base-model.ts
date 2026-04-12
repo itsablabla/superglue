@@ -5,7 +5,7 @@ import type {
   ToolModelMessage,
   UserModelMessage,
 } from "ai";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { LLMToolCall, LLMToolCallResult, LLMToolDefinition } from "./llm-tool-utils.js";
 import { AiSdkModel } from "./ai-sdk-model.js";
 

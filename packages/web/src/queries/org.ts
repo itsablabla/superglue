@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { queryKeys } from "./query-keys";
 
 export interface BillingStatus {
@@ -7,7 +7,7 @@ export interface BillingStatus {
 }
 
 export function useOrgProfileQuery(orgId: string | undefined, token: string | null) {
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery({
     queryKey: [...queryKeys.org.me(orgId ?? ""), token ?? ""],
@@ -20,7 +20,7 @@ export function useBillingStatusQuery(userId: string | undefined, enabled: boole
   return useQuery({
     queryKey: queryKeys.org.billing(userId ?? ""),
     queryFn: async (): Promise<BillingStatus> => {
-      const response = await fetch(`https://billing.superglue.cloud/v1/billing/status/${userId}`);
+      const response = await fetch(`https://billing.garzaglue.com/v1/billing/status/${userId}`);
       if (!response.ok) {
         throw new Error(`Billing API returned ${response.status}`);
       }

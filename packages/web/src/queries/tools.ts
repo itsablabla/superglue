@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { queryKeys } from "./query-keys";
-import { useSuperglueClient, useEESuperglueClient } from "./use-client";
+import { useGarzaGlueClient, useEEGarzaGlueClient } from "./use-client";
 import { useOrg, useOrgOptional } from "@/src/app/org-context";
 
 export function useInvalidateTools() {
@@ -15,7 +15,7 @@ export function useInvalidateTools() {
 }
 
 function useToolsInternal(orgId: string | undefined) {
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const query = useQuery<Tool[]>({
     queryKey: queryKeys.tools.list(orgId ?? ""),
@@ -51,7 +51,7 @@ export function useToolsOptional() {
 
 export function useUpsertTool() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, input }: { id: string; input: Partial<Tool> }) => {
@@ -66,7 +66,7 @@ export function useUpsertTool() {
 
 export function useArchiveTool() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, archived }: { id: string; archived: boolean }) => {
@@ -81,7 +81,7 @@ export function useArchiveTool() {
 
 export function useRenameTool() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ oldId, newId }: { oldId: string; newId: string }) => {
@@ -96,7 +96,7 @@ export function useRenameTool() {
 
 export function useRestoreToolVersion() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ toolId, version }: { toolId: string; version: number }) => {
@@ -111,7 +111,7 @@ export function useRestoreToolVersion() {
 
 export function useToolsIncludingArchived() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const query = useQuery<Tool[]>({
     queryKey: queryKeys.tools.listIncludingArchived(orgId),

@@ -1,7 +1,7 @@
 import { resolveFileReferences, validateFileReferences } from "@/src/lib/agent/agent-helpers";
 import { abortExecution, generateUUID, shouldDebounceAbort } from "@/src/lib/client-utils";
-import { useSuperglueClient } from "@/src/queries/use-client";
-import { Tool, ToolCall } from "@superglue/shared";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
+import { Tool, ToolCall } from "@garzaglue/shared";
 import { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 
 export interface RunResult {
@@ -37,7 +37,7 @@ export function useToolExecution({
   editablePayload,
   filePayloads,
 }: UseToolExecutionOptions): UseToolExecutionReturn {
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const [isRunning, setIsRunning] = useState(false);
   const [runResult, setRunResult] = useState<RunResult | null>(null);

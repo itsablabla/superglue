@@ -14,7 +14,7 @@ function getCurrentTheme(): "light" | "dark" {
 function defineThemes(monaco: typeof Monaco | any) {
   if (themeInitialized) return;
 
-  monaco.editor.defineTheme("superglue-light", {
+  monaco.editor.defineTheme("garzaglue-light", {
     base: "vs",
     inherit: true,
     rules: [
@@ -40,7 +40,7 @@ function defineThemes(monaco: typeof Monaco | any) {
     },
   });
 
-  monaco.editor.defineTheme("superglue-dark", {
+  monaco.editor.defineTheme("garzaglue-dark", {
     base: "vs-dark",
     inherit: true,
     rules: [
@@ -70,7 +70,7 @@ function defineThemes(monaco: typeof Monaco | any) {
 }
 
 function updateAllEditorsTheme(theme: "light" | "dark") {
-  const themeName = theme === "dark" ? "superglue-dark" : "superglue-light";
+  const themeName = theme === "dark" ? "garzaglue-dark" : "garzaglue-light";
   loader.init().then((monaco) => {
     defineThemes(monaco);
     monaco.editor.setTheme(themeName);
@@ -110,7 +110,7 @@ export function useMonacoTheme() {
       defineThemes(monaco);
       const theme = getCurrentTheme();
       if (mounted) setCurrentTheme(theme);
-      monaco.editor.setTheme(theme === "dark" ? "superglue-dark" : "superglue-light");
+      monaco.editor.setTheme(theme === "dark" ? "garzaglue-dark" : "garzaglue-light");
     });
     return () => {
       mounted = false;
@@ -124,7 +124,7 @@ export function useMonacoTheme() {
     loader.init().then((monaco) => {
       defineThemes(monaco);
       const theme = getCurrentTheme();
-      const themeName = theme === "dark" ? "superglue-dark" : "superglue-light";
+      const themeName = theme === "dark" ? "garzaglue-dark" : "garzaglue-light";
       editor.updateOptions({ theme: themeName });
     });
 
@@ -133,7 +133,7 @@ export function useMonacoTheme() {
     };
   }, []);
 
-  const themeName = currentTheme === "dark" ? "superglue-dark" : "superglue-light";
+  const themeName = currentTheme === "dark" ? "garzaglue-dark" : "garzaglue-light";
 
   return {
     theme: themeName,

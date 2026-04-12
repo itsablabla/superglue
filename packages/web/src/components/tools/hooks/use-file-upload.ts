@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { useToast } from "@/src/hooks/use-toast";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import {
   formatBytes,
   generateUniqueKey,
@@ -41,7 +41,7 @@ export function useFileUpload(options: UseFileUploadOptions = {}): UseFileUpload
     externalPayloads,
   } = options;
 
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const { toast } = useToast();
 
   const [localUploadedFiles, setLocalUploadedFiles] = useState<UploadedFileInfo[]>([]);

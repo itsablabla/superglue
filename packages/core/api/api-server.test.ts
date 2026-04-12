@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { Role } from "@superglue/shared";
+import type { Role } from "@garzaglue/shared";
 import { checkRouteAccess } from "./api-server.js";
 import type { BaseRoleId } from "./types.js";
 

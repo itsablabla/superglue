@@ -4,10 +4,10 @@ import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { cn } from "@/src/lib/general-utils";
 
-import { Message, MessagePart } from "@superglue/shared";
+import { Message, MessagePart } from "@garzaglue/shared";
 import { MessagesSquare, Trash2, X, Loader2 } from "lucide-react";
 import { startTransition, useCallback, useEffect, useRef, useState } from "react";
-import { useEESuperglueClient } from "@/src/queries/use-client";
+import { useEEGarzaGlueClient } from "@/src/queries/use-client";
 
 const MAX_CONVERSATIONS = 50;
 const SUMMARY_REGEN_USER_MESSAGE_INTERVAL = 5;
@@ -308,7 +308,7 @@ export function ConversationHistory({
   const suppressNextAutoSaveForIdRef = useRef<string | null>(null);
   const summaryDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const serverSaveDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   const saveConversationToServer = useCallback(
     (conversation: Conversation) => {

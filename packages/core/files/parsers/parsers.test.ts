@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { describe, expect, it } from "vitest";
 import { parseFile, FileStrategyRegistry } from "../index.js";
 import { parseZIP, ZIPStrategy } from "./zip.js";

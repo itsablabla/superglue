@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 // TODO: think about where to put tests for shared utils
-import { calculateNextRun, validateCronExpression } from "@superglue/shared";
+import { calculateNextRun, validateCronExpression } from "@garzaglue/shared";
 
 describe("calculateNextRun", () => {
   it("should calculate next run for every minute cron expression", () => {

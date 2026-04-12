@@ -30,7 +30,7 @@ afterAll(async () => {
   }
 });
 
-describe('Superglue SDK System Tests', () => {
+describe('GarzaGlue SDK System Tests', () => {
   it('should create GitHub system', async () => {
     const githubToken = process.env.GITHUB_API_TOKEN!;
     

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/src/components/ui/button";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { CloudUpload } from "lucide-react";
 import { useState } from "react";
 import { ToolDeployModal } from "./ToolDeployModal";

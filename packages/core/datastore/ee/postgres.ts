@@ -5,8 +5,8 @@ import type {
   PortalToken,
   Role,
   RoleInput,
-} from "@superglue/shared";
-import { isPredefinedRole } from "@superglue/shared";
+} from "@garzaglue/shared";
+import { isPredefinedRole } from "@garzaglue/shared";
 import crypto from "crypto";
 import type { PoolConfig } from "pg";
 import { PostgresService } from "../postgres.js";

@@ -37,7 +37,7 @@ import {
   RequestStepConfig,
   isRequestConfig,
   System,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { useEnvironment } from "@/src/app/environment-context";
 import { useOrgOptional } from "@/src/app/org-context";
 

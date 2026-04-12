@@ -1,4 +1,4 @@
-import { Message, ToolCall, ToolInteractionEntry } from "@superglue/shared";
+import { Message, ToolCall, ToolInteractionEntry } from "@garzaglue/shared";
 
 export interface ToolMutation {
   status?: ToolCall["status"];

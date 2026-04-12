@@ -3,7 +3,7 @@ import { registerApiModule } from "../registry.js";
 import { sendError, addTraceHeader } from "../response-helpers.js";
 import type { AuthenticatedFastifyRequest } from "../types.js";
 import { logMessage } from "../../utils/logs.js";
-import { initializeAIModel } from "@superglue/shared/utils/ai-model-init";
+import { initializeAIModel } from "@garzaglue/shared/utils/ai-model-init";
 
 const MAX_INPUT_CHARS = 10000;
 const MAX_OUTPUT_TOKENS = 80;

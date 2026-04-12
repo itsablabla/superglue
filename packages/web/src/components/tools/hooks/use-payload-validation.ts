@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Validator } from "jsonschema";
-import { generateDefaultFromSchema } from "@superglue/shared";
+import { generateDefaultFromSchema } from "@garzaglue/shared";
 import { deepEqual } from "@/src/lib/general-utils";
 
 interface UsePayloadValidationOptions {

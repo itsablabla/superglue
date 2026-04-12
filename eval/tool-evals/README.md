@@ -1,6 +1,6 @@
 # Tool Evaluation Framework
 
-Tests Superglue's tool builder and executor against real API integrations. Validates that the AI agent can correctly build and execute tools for various APIs.
+Tests Garza Glue's tool builder and executor against real API integrations. Validates that the AI agent can correctly build and execute tools for various APIs.
 
 ## What It Tests
 

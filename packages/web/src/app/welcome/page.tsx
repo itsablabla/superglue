@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { usePostHog } from "posthog-js/react";
 import { useEffect, useState } from "react";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import {
@@ -24,7 +24,7 @@ export default function WelcomePage() {
   const [error, setError] = useState("");
   const router = useRouter();
   const posthog = usePostHog();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const tenantQuery = useQuery({
     queryKey: ["tenant-info"],

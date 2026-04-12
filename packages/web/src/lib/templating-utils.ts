@@ -1,4 +1,4 @@
-import { executeWithVMHelpers, isArrowFunction } from "@superglue/shared";
+import { executeWithVMHelpers, isArrowFunction } from "@garzaglue/shared";
 import { truncateValue } from "./general-utils";
 
 export const DEFAULT_CODE_TEMPLATE = "(sourceData) => { return {} }";

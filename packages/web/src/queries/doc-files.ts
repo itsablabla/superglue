@@ -1,8 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "./query-keys";
-import { useSuperglueClient } from "./use-client";
+import { useGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
-import type { SuperglueClient } from "@superglue/shared";
+import type { GarzaGlueClient } from "@garzaglue/shared";
 
 export interface DocFile {
   id: string;
@@ -25,7 +25,7 @@ function hasProcessingFiles(files: DocFile[] | undefined): boolean {
 
 export function useDocFilesQuery(systemId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const query = useQuery<DocFile[]>({
     queryKey: queryKeys.docFiles.list(orgId, systemId ?? ""),
@@ -48,7 +48,7 @@ export function useDocFilesQuery(systemId: string | undefined) {
 
 export function useUploadDocFiles(systemId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   const queryKey = queryKeys.docFiles.list(orgId, systemId ?? "");
 
@@ -113,7 +113,7 @@ export function useUploadDocFiles(systemId: string | undefined) {
 
 export function useAddDocUrl(systemId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   const queryKey = queryKeys.docFiles.list(orgId, systemId ?? "");
 
@@ -173,7 +173,7 @@ export function useAddDocUrl(systemId: string | undefined) {
 }
 
 async function fallbackToScrape(
-  client: SuperglueClient,
+  client: GarzaGlueClient,
   systemId: string,
   url: string,
 ): Promise<DocFile> {
@@ -189,7 +189,7 @@ async function fallbackToScrape(
 
 export function useDeleteDocFile(systemId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   const queryKey = queryKeys.docFiles.list(orgId, systemId ?? "");
 

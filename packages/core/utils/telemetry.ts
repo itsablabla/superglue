@@ -20,6 +20,6 @@ export const telemetryClient =
 if (telemetryClient) {
   logMessage(
     "info",
-    "superglue uses telemetry to understand how many users are using the platform. See self-hosting guide for more info.",
+    "garzaglue uses telemetry to understand how many users are using the platform. See self-hosting guide for more info.",
   );
 }

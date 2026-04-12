@@ -4,7 +4,7 @@
  * Generates database schema documentation for PostgreSQL connections.
  */
 
-import { RequestStepConfig, ServiceMetadata } from "@superglue/shared";
+import { RequestStepConfig, ServiceMetadata } from "@garzaglue/shared";
 import { callPostgres } from "../../utils/postgres.js";
 import { logMessage } from "../../utils/logs.js";
 import { DocumentationConfig, DocumentationProcessingStrategy } from "../types.js";

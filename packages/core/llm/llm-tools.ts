@@ -1,5 +1,5 @@
 import { tavilySearch } from "@tavily/ai-sdk";
-import { System, ServiceMetadata } from "@superglue/shared";
+import { System, ServiceMetadata } from "@garzaglue/shared";
 import { LLMToolDefinition, LLMToolImplementation } from "./llm-tool-utils.js";
 import { SystemManager } from "../systems/system-manager.js";
 

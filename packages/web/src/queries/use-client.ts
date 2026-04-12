@@ -1,15 +1,15 @@
 import { useCallback } from "react";
-import { SuperglueClient } from "@superglue/shared";
-import { EESuperglueClient } from "@/src/lib/ee-superglue-client";
+import { GarzaGlueClient } from "@garzaglue/shared";
+import { EEGarzaGlueClient } from "@/src/lib/ee-garza-glue-client";
 import { useConfig } from "@/src/app/config-context";
 import { tokenRegistry } from "@/src/lib/token-registry";
 import { connectionMonitor } from "@/src/lib/connection-monitor";
 
-export function useSuperglueClient() {
+export function useGarzaGlueClient() {
   const { apiEndpoint } = useConfig();
 
   return useCallback(() => {
-    return new SuperglueClient({
+    return new GarzaGlueClient({
       apiEndpoint,
       apiKey: tokenRegistry.getToken(),
       onInfrastructureError: () => connectionMonitor.onInfrastructureError(apiEndpoint),
@@ -17,11 +17,11 @@ export function useSuperglueClient() {
   }, [apiEndpoint]);
 }
 
-export function useEESuperglueClient() {
+export function useEEGarzaGlueClient() {
   const { apiEndpoint } = useConfig();
 
   return useCallback(() => {
-    return new EESuperglueClient({
+    return new EEGarzaGlueClient({
       apiEndpoint,
       apiKey: tokenRegistry.getToken(),
       onInfrastructureError: () => connectionMonitor.onInfrastructureError(apiEndpoint),

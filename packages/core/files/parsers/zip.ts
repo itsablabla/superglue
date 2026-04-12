@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import JSZip from "jszip";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";
 

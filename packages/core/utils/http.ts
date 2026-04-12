@@ -8,7 +8,7 @@ import https from "https";
 import { server_defaults } from "../default.js";
 import { parseJSON } from "../files/index.js";
 import { logMessage } from "./logs.js";
-import { RequestOptions } from "@superglue/shared";
+import { RequestOptions } from "@garzaglue/shared";
 
 export class ApiCallError extends Error {
   statusCode?: number;

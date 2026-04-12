@@ -1,4 +1,4 @@
-import { Tool, ToolResult } from "@superglue/shared";
+import { Tool, ToolResult } from "@garzaglue/shared";
 
 export interface SystemConfig {
     id: string;

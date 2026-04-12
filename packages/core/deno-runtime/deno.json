@@ -1,5 +1,5 @@
 {
-  "name": "@superglue/deno-runtime",
+  "name": "@garzaglue/deno-runtime",
   "version": "1.0.0",
   "exports": "./workflow-executor.ts",
   "tasks": {

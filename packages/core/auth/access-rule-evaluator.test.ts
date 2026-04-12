@@ -7,8 +7,8 @@ import {
   getSystemAccessLevel,
   evaluateExpression,
 } from "./access-rule-evaluator.js";
-import type { Role } from "@superglue/shared";
-import { SystemAccessLevel } from "@superglue/shared";
+import type { Role } from "@garzaglue/shared";
+import { SystemAccessLevel } from "@garzaglue/shared";
 
 function makeRole(overrides: Partial<Role> & { id: string }): Role {
   return {

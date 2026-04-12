@@ -1,4 +1,4 @@
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { S3FileService } from "./s3-file-service.js";
 
 export interface FileService {

@@ -23,6 +23,7 @@ import { queryClient } from "@/src/queries";
 import { useEffect, useState } from "react";
 import { connectionMonitor } from "@/src/lib/connection-monitor";
 import { useIOSScrollLock } from "@/src/hooks/use-ios-scroll-lock";
+import { IOSInstallBanner } from "@/src/components/pwa/IOSInstallBanner";
 
 function useServiceWorker(): void {
   useEffect(() => {
@@ -185,6 +186,7 @@ export function ClientWrapper({ children, config }: Props) {
                       </WelcomeGate>
                       <Toaster />
                       {token && !isWelcomePage && <ConnectionToast />}
+                      <IOSInstallBanner />
                     </div>
                   </SystemPickerModalProvider>
                 </AgentModalProvider>

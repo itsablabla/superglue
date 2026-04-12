@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as yaml from "js-yaml";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../../utils/logs.js";
 import { OpenApiFetchingStrategy } from "../types.js";
 import { isValidOpenApiSpec } from "../documentation-utils.js";

@@ -1,7 +1,7 @@
-import { ConfirmationAction, Message, ConnectionProtocol, Tool } from "@superglue/shared";
+import { ConfirmationAction, Message, ConnectionProtocol, Tool } from "@garzaglue/shared";
 import { SSESubscriptionClient } from "../sse-subscriptions";
 import { AgentType } from "./registries/agent-registry";
-import { EESuperglueClient } from "../ee-superglue-client";
+import { EEGarzaGlueClient } from "../ee-garza-glue-client";
 import { TextStreamPart, ToolSet } from "ai";
 import type { SkillName } from "./skills/index";
 
@@ -114,7 +114,7 @@ export interface ToolDefinition {
 
 export interface ToolExecutionContext {
   agentId: AgentType;
-  superglueClient: EESuperglueClient;
+  garzaGlueClient: EEGarzaGlueClient;
   filePayloads: Record<string, any>;
   messages: Message[];
   logCallback?: (message: string) => void;

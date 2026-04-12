@@ -125,7 +125,7 @@
     {
       "id": "confluence",
       "name": "Confluence",
-      "urlHost": "https://superglue-evals.atlassian.net",
+      "urlHost": "https://garzaglue-evals.atlassian.net",
       "urlPath": "/wiki/rest/api",
       "documentationUrl": "https://docs.atlassian.com/atlassian-confluence/REST/6.6.0/",
       "openApiUrl": "https://developer.atlassian.com/cloud/confluence/swagger.json",
@@ -212,7 +212,7 @@
     {
       "id": "jira",
       "name": "JIRA",
-      "urlHost": "https://superglue-team-test.atlassian.net",
+      "urlHost": "https://garzaglue-team-test.atlassian.net",
       "urlPath": "rest/api/3",
       "documentationUrl": "https://developer.atlassian.com/cloud/jira/platform/rest/v3",
       "openApiUrl": "https://developer.atlassian.com/cloud/jira/platform/swagger-v3.json",
@@ -849,7 +849,7 @@
       "integrationIds": ["stripe"],
       "payload": {},
       "validationFunction": "validators/027-stripe-get-all-products.ts",
-      "expectedResultDescription": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'."
+      "expectedResultDescription": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'."
     },
     {
       "id": "028-attio-get-15-oldest-people",
@@ -1005,13 +1005,13 @@
       "name": "Slack Post Eval Message",
       "description": "Post a message to the evals channel",
       "type": "action",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "integrationIds": [
         "slack"
       ],
       "payload": {},
       "validationFunction": "validators/042-slack-post-eval-message.ts",
-      "expectedResultDescription": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID."
+      "expectedResultDescription": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID."
     },
     {
       "id": "043-slack-list-non-sg-channels",
@@ -1029,15 +1029,15 @@
     {
       "id": "044-slack-get-last-20-messages",
       "name": "Slack Get Last 20 Messages",
-      "description": "Retrieve exactly 20 messages from all-superglue channel",
+      "description": "Retrieve exactly 20 messages from all-garzaglue channel",
       "type": "retrieval",
-      "instruction": "Retrieve the last 20 messages from the all-superglue channel. Return a JSON object with this structure: { message_count: number, messages: Array<{type: string, ts: string, text: string}> }. The message_count must equal the number of messages retrieved.",
+      "instruction": "Retrieve the last 20 messages from the all-garzaglue channel. Return a JSON object with this structure: { message_count: number, messages: Array<{type: string, ts: string, text: string}> }. The message_count must equal the number of messages retrieved.",
       "integrationIds": [
         "slack"
       ],
       "payload": {},
       "validationFunction": "validators/044-slack-get-last-20-messages.ts",
-      "expectedResultDescription": "Should retrieve exactly 20 most recent messages from the 'all-superglue' Slack channel. Expected message_count to be exactly 20."
+      "expectedResultDescription": "Should retrieve exactly 20 most recent messages from the 'all-garzaglue' Slack channel. Expected message_count to be exactly 20."
     },
     {
       "id": "045-slack-get-all-messages",

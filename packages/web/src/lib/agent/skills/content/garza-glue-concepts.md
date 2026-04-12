@@ -1,6 +1,6 @@
-# superglue Concepts
+# Garza Glue Concepts
 
-superglue is an integration platform that builds and runs deterministic multi-step workflows ("tools") connecting APIs, databases, file servers and other systems. superglue agents generate tool configurations during building — execution is deterministic JavaScript, no LLMs involved.
+Garza Glue is an integration platform that builds and runs deterministic multi-step workflows ("tools") connecting APIs, databases, file servers and other systems. Garza Glue agents generate tool configurations during building — execution is deterministic JavaScript, no LLMs involved.
 
 ## Tools
 
@@ -48,7 +48,7 @@ All user-provided JS (data selectors, transforms, stop conditions) runs in an is
 
 ## File Handling
 
-superglue auto-parses files from any source:
+Garza Glue auto-parses files from any source:
 
 - CSV → array of objects (auto-detects delimiters/headers)
 - Excel → `{sheetName: [rows]}`
@@ -66,33 +66,33 @@ There are four primary deployment patterns, each optimized for a different runti
 
 ### 1) API + SDK (Python/TypeScript) in your application codebase
 
-Documentation: https://docs.superglue.cloud/sdk/overview
+Documentation: https://docs.Garza Glue.cloud/sdk/overview
 
 Use this when tools should run inside product logic, backend jobs, webhooks, or request handlers.
 
 **How it works**
 
-- Your app calls superglue via REST API or SDK
+- Your app calls Garza Glue via REST API or SDK
 - You pass a payload (and optionally credentials/context) to a specific tool
-- superglue executes deterministically and returns structured results
+- Garza Glue executes deterministically and returns structured results
 
 **When to choose this**
 
 - Real-time user-triggered workflows
 - Backend orchestration across your own services
 - Programmatic retries, branching, and composition with existing app logic
-- Tight observability and error handling in your app stack and on the superglue web app
+- Tight observability and error handling in your app stack and on the Garza Glue web app
 
 ### 2) Scheduler (web interface)
 
-Documentation: https://docs.superglue.cloud/enterprise/scheduling
+Documentation: https://docs.Garza Glue.cloud/enterprise/scheduling
 
 Use this when a tool should run automatically on a fixed cadence without app code invoking it each time.
 
 **How it works**
 
 - Configure schedule(s) for a tool in the web UI
-- superglue triggers execution at the specified interval/timezone
+- Garza Glue triggers execution at the specified interval/timezone
 - Runs are tracked and visible in platform history/logging
 
 **When to choose this**
@@ -107,24 +107,24 @@ Use this when a tool should run automatically on a fixed cadence without app cod
 2. Define a schedule with explicit timezone and interval
 3. Provide any static payload defaults required by the workflow
 4. Validate first runs in staging before enabling in production
-5. Set up alerting/monitoring on failure rates and duration. superglue has a dedicated notifications feature for this in the Enterprise edition. It is not part of the OSS product surface.
+5. Set up alerting/monitoring on failure rates and duration. Garza Glue has a dedicated notifications feature for this in the Enterprise edition. It is not part of the OSS product surface.
 
 ### 3) MCP deployment (for agent interfaces)
 
-Documentation: https://docs.superglue.cloud/mcp/using-the-mcp
+Documentation: https://docs.Garza Glue.cloud/mcp/using-the-mcp
 
-Use this when LLM agents (Cursor, Claude Desktop, Langdock, custom MCP clients, etc.) should discover and run superglue tools as callable functions.
+Use this when LLM agents (Cursor, Claude Desktop, Langdock, custom MCP clients, etc.) should discover and run Garza Glue tools as callable functions.
 
-**How superglue MCP works**
+**How Garza Glue MCP works**
 
-- The superglue MCP is designed to provide an interface for an LLM to execute your pre-built superglue tools
+- The Garza Glue MCP is designed to provide an interface for an LLM to execute your pre-built Garza Glue tools
 - Agent clients connect once, discover available tool definitions, then invoke them with structured inputs
-- superglue executes the underlying deterministic workflow and returns normalized output to the agent runtime
+- Garza Glue executes the underlying deterministic workflow and returns normalized output to the agent runtime
 
 **Setup model**
 
-1. Run/connect to the superglue MCP server endpoint
-2. Configure client authentication by providing your sg API key and setting up the correct endpoint (e.g. "https://mcp.superglue.ai" on hosted) in MCP client config
+1. Run/connect to the Garza Glue MCP server endpoint
+2. Configure client authentication by providing your sg API key and setting up the correct endpoint (e.g. "https://mcp.Garza Glue.ai" on hosted) in MCP client config
 3. Verify discovery works (tool list is visible in the agent client)
 4. The API key that is used to authenticate determines which tools are accessible via MCP. Mirrors your API keys RBAC access rules.
 
@@ -132,16 +132,16 @@ Use this when LLM agents (Cursor, Claude Desktop, Langdock, custom MCP clients, 
 
 {
 "mcpServers": {
-"superglue": {
+"Garza Glue": {
 "command": "npx",
 "args": [
 "mcp-remote",
-"https://mcp.superglue.ai",
+"https://mcp.Garza Glue.ai",
 "--header",
 "Authorization:${AUTH_HEADER}"
 ],
 "env": {
-"AUTH_HEADER": "Bearer {YOUR_SUPERGLUE+API_KEY}"
+"AUTH_HEADER": "Bearer {YOUR_GARZA_GLUE_API_KEY}"
 }
 }
 }
@@ -151,14 +151,14 @@ Refer to your MCP client's documentation to get your client-specific setup instr
 
 ### 4) CLI deployment
 
-Install via: npm install -g @superglue/cli
-Documentation: https://docs.superglue.cloud/getting-started/cli-skills
+Install via: npm install -g @Garza Glue/cli
+Documentation: https://docs.Garza Glue.cloud/getting-started/cli-skills
 
 Use this when your agent uses skills, has bash tool access and wants to run non-persisted tools on the fly without building them first. More powerful than MCP. Supports system creation, tool building and saving, and tool execution on the fly without saving.
 
 **How it works**
 
-- The CLI authenticates to superglue via your API key and inherits your RBAC access rules
+- The CLI authenticates to Garza Glue via your API key and inherits your RBAC access rules
 - Output is returned in terminal-friendly format for humans and agents
 
 **Recommended setup**
@@ -172,21 +172,21 @@ Use this when your agent uses skills, has bash tool access and wants to run non-
 
 Usage: sg [options] [command]
 
-superglue CLI — build, run, and manage integration tools
+Garza Glue CLI — build, run, and manage integration tools
 
 Options:
 -V, --version output the version number
---api-key <key> superglue API key
---endpoint <url> superglue API endpoint
+--api-key <key> Garza Glue API key
+--endpoint <url> Garza Glue API endpoint
 --json force JSON output
 -h, --help display help for command
 
 Commands:
-init [options] Set up superglue CLI configuration
-update [options] Update the superglue CLI to the latest version
-skill [topic] Print the superglue skill reference (SKILL.md) for AI agents
-tool Manage superglue tools
-system Manage superglue systems
+init [options] Set up Garza Glue CLI configuration
+update [options] Update the Garza Glue CLI to the latest version
+skill [topic] Print the Garza Glue skill reference (SKILL.md) for AI agents
+tool Manage Garza Glue tools
+system Manage Garza Glue systems
 run View tool execution runs
 help [command] display help for command
 

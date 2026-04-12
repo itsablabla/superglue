@@ -1,7 +1,7 @@
 import crypto from "crypto";
-import { SuperglueClient, systems, decryptCliApiKey } from "@superglue/shared";
+import { GarzaGlueClient, systems, decryptCliApiKey } from "@garzaglue/shared";
 import { OAuthState } from "@/src/lib/oauth-utils";
-import { resolveOAuthCertAndKey } from "@superglue/shared";
+import { resolveOAuthCertAndKey } from "@garzaglue/shared";
 import axios from "axios";
 import https from "https";
 import { NextRequest, NextResponse } from "next/server";
@@ -286,7 +286,7 @@ export async function GET(request: NextRequest) {
   }
 
   // Force HTTPS for production domains
-  if (origin.startsWith("http://") && origin.includes("superglue.cloud")) {
+  if (origin.startsWith("http://") && origin.includes("garzaglue.com")) {
     origin = origin.replace("http://", "https://");
   }
 
@@ -363,7 +363,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const cookieApiUrl = request.cookies.get("superglue_api_url")?.value;
+    const cookieApiUrl = request.cookies.get("garzaglue_api_url")?.value;
     const endpoint = cookieApiUrl
       ? decodeURIComponent(cookieApiUrl)
       : process.env.API_ENDPOINT || "http://localhost:3002";
@@ -445,7 +445,7 @@ export async function GET(request: NextRequest) {
         client_secret: oauthConfig.data.clientSecret,
       };
     } else {
-      const client = new SuperglueClient({
+      const client = new GarzaGlueClient({
         apiKey: apiKey,
         apiEndpoint: endpoint,
       });
@@ -534,7 +534,7 @@ export async function GET(request: NextRequest) {
     // CLI flow: save tokens directly to the system server-side
     if (cliApiKey && apiKey) {
       try {
-        const saveClient = new SuperglueClient({ apiKey, apiEndpoint: endpoint });
+        const saveClient = new GarzaGlueClient({ apiKey, apiEndpoint: endpoint });
         const existingSystem = await saveClient.getSystem(systemId);
         await saveClient.updateSystem(systemId, {
           credentials: { ...existingSystem?.credentials, ...tokens },

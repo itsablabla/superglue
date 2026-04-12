@@ -1,4 +1,4 @@
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { Bot, Calendar, Code, ExternalLink, Webhook, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { CodeSnippet } from "../../editors/ReadonlyCodeEditor";
@@ -97,7 +97,7 @@ export function ToolDeployModal({
                   <p className="text-muted-foreground">
                     For programmatic execution, use our JavaScript or Python SDK, or access the REST
                     API directly via cURL. You'll find your tool-specific code snippets below.
-                    Simply replace the placeholder with your superglue API key.
+                    Simply replace the placeholder with your garzaglue API key.
                   </p>
                 </div>
 
@@ -130,14 +130,14 @@ export function ToolDeployModal({
                 <div className="space-y-2">
                   <p className="text-muted-foreground">
                     Make this tool available to Claude, Cursor, or any MCP-compatible agent. Simply
-                    replace the placeholder with your superglue API key.
+                    replace the placeholder with your garzaglue API key.
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <div>
                     <div className="text-sm font-medium mb-2">
-                      1. Add superglue MCP server to your config
+                      1. Add garzaglue MCP server to your config
                     </div>
                     <CodeSnippet code={snippets.mcpConfig} language="json" />
                   </div>
@@ -145,7 +145,7 @@ export function ToolDeployModal({
                   <div>
                     <div className="text-sm font-medium mb-2">2. Use in your AI agent</div>
                     <CodeSnippet
-                      code={`Please execute the superglue tool "${currentTool.id}"`}
+                      code={`Please execute the garzaglue tool "${currentTool.id}"`}
                       language="bash"
                     />
                   </div>
@@ -153,7 +153,7 @@ export function ToolDeployModal({
 
                 <div className="text-sm text-muted-foreground mt-2">
                   <a
-                    href="https://docs.superglue.cloud/mcp/using-the-mcp"
+                    href="https://docs.garzaglue.com/mcp/using-the-mcp"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 hover:underline"

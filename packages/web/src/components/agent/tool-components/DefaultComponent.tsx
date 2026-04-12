@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { Copy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ToolCallWrapper } from "./ToolComponentWrapper";

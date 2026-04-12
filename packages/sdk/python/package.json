@@ -1,8 +1,8 @@
 {
-  "name": "@superglue/python-sdk",
+  "name": "@garzaglue/python-sdk",
   "version": "1.0.0",
   "private": true,
-  "description": "Build scripts for the Python SDK for the Superglue AI API",
+  "description": "Build scripts for the Python SDK for the GarzaGlue AI API",
   "scripts": {
     "generate": "../scripts/generate-python-sdk.sh",
     "build": "npm run generate && pyproject-build",
@@ -11,7 +11,7 @@
     "publish:major": "../scripts/publish-sdk-python.sh major"
   },
   "keywords": [
-    "superglue",
+    "garzaglue",
     "api",
     "sdk",
     "python"

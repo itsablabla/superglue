@@ -8,15 +8,15 @@ import {
   NotificationRule,
   SlackAuthType,
   StoredRunResults,
-  SuperglueClient,
+  GarzaGlueClient,
   Tool,
   ToolSchedule,
-} from "@superglue/shared";
-import type { Role, OrgMember, OrgInvitation } from "@superglue/shared";
+} from "@garzaglue/shared";
+import type { Role, OrgMember, OrgInvitation } from "@garzaglue/shared";
 import { tokenRegistry } from "./token-registry";
 import { connectionMonitor } from "./connection-monitor";
 
-export class EESuperglueClient extends SuperglueClient {
+export class EEGarzaGlueClient extends GarzaGlueClient {
   async batchCreateFileReferences(
     files: BatchFileUploadRequest["files"],
   ): Promise<BatchFileUploadResponse> {
@@ -541,8 +541,8 @@ export interface ApiKey {
   updatedAt: string;
 }
 
-export function createEESuperglueClient(apiEndpoint: string): EESuperglueClient {
-  return new EESuperglueClient({
+export function createEEGarzaGlueClient(apiEndpoint: string): EEGarzaGlueClient {
+  return new EEGarzaGlueClient({
     apiKey: tokenRegistry.getToken(),
     apiEndpoint,
     onInfrastructureError: () => connectionMonitor.onInfrastructureError(apiEndpoint),

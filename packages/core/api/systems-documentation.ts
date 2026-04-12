@@ -1,4 +1,4 @@
-import { DocumentationFiles, FileReference, FileStatus, uniqueKeywords } from "@superglue/shared";
+import { DocumentationFiles, FileReference, FileStatus, uniqueKeywords } from "@garzaglue/shared";
 import axios from "axios";
 import * as yaml from "js-yaml";
 import { DocumentationFetcher } from "../documentation/documentation-fetching.js";

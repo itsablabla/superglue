@@ -112,24 +112,24 @@ Real-time and historical prices for: Gold, Silver, Crude Oil (WTI/Brent), Natura
 All responses are JSON. Time series data is keyed by date/time strings.`,
     },
     {
-      id: "superglue-email",
-      name: "superglue Email Service",
-      url: "https://api.superglue.cloud/v1/notify/email",
-      templateName: "superglueEmail",
+      id: "garzaglue-email",
+      name: "garzaglue Email Service",
+      url: "https://api.garzaglue.com/v1/notify/email",
+      templateName: "garzaglueEmail",
       icon: "lucide:mail",
       credentials: {},
       specificInstructions:
-        "Send emails to your own email address. Use POST https://api.superglue.cloud/v1/notify/email with your API key in the Authorization header. Request body: { subject: string, body: string }. The email will be sent to the email address you signed up with.",
-      documentationUrl: "https://docs.superglue.cloud/guides/email-service",
-      documentation: `# superglue Email Service
+        "Send emails to your own email address. Use POST https://api.garzaglue.com/v1/notify/email with your API key in the Authorization header. Request body: { subject: string, body: string }. The email will be sent to the email address you signed up with.",
+      documentationUrl: "https://docs.garzaglue.com/guides/email-service",
+      documentation: `# garzaglue Email Service
 
-A simple email notification service that sends emails to your registered superglue account email address.
+A simple email notification service that sends emails to your registered garzaglue account email address.
 
 ## Endpoint
-\`POST https://api.superglue.cloud/v1/notify/email\`
+\`POST https://api.garzaglue.com/v1/notify/email\`
 
 ## Authentication
-Include your superglue API key in the Authorization header:
+Include your garzaglue API key in the Authorization header:
 \`\`\`
 Authorization: Bearer {your_api_key}
 \`\`\`
@@ -167,11 +167,11 @@ Authorization: Bearer {your_api_key}
 
 ## Example Request
 \`\`\`bash
-curl -X POST https://api.superglue.cloud/v1/notify/email \\
+curl -X POST https://api.garzaglue.com/v1/notify/email \\
   -H "Authorization: Bearer your_api_key" \\
   -H "Content-Type: application/json" \\
   -d '{
-    "subject": "Hello from superglue!",
+    "subject": "Hello from garzaglue!",
     "body": "<h1>Welcome!</h1><p>This is a test email.</p>"
   }'
 \`\`\`
@@ -183,20 +183,20 @@ curl -X POST https://api.superglue.cloud/v1/notify/email \\
 - Build notification systems for your integrations
 
 ## Notes
-- Emails are sent FROM superglue's notification system
-- Emails are sent TO the email address associated with your superglue account
+- Emails are sent FROM garzaglue's notification system
+- Emails are sent TO the email address associated with your garzaglue account
 - HTML content is supported for rich formatting
-- Rate limits apply based on your superglue plan`,
+- Rate limits apply based on your garzaglue plan`,
     },
     {
       id: "lego-database",
       name: "Lego Sets Database",
-      url: "postgresql://test_user:LegoTest2026!xK9m@files.superglue.ai:5432/lego",
+      url: "postgresql://test_user:LegoTest2026!xK9m@files.garzaglue.ai:5432/lego",
       templateName: "postgres",
       credentials: {
         user: "test_user",
         password: "LegoTest2026!xK9m",
-        hostname: "files.superglue.ai",
+        hostname: "files.garzaglue.ai",
         port: "5432",
         database_name: "lego",
       },
@@ -375,11 +375,11 @@ Use parameterized queries with $1, $2, etc. placeholders:
           id: "sendEmail",
           instruction: "Send an email with the stock information",
           config: {
-            url: "https://api.superglue.cloud/v1/notify/email",
+            url: "https://api.garzaglue.com/v1/notify/email",
             method: HttpMethod.POST,
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer <<superglue-email_apiKey>>",
+              Authorization: "Bearer <<garzaglue-email_apiKey>>",
             },
             body: `<<(sourceData) => {
               const symbol = sourceData.symbol || 'AAPL';
@@ -398,7 +398,7 @@ Use parameterized queries with $1, $2, etc. placeholders:
                 body: \`
                   <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-                      <h1 style="color: white; margin: 0; font-size: 24px;">🎉 Welcome to superglue!</h1>
+                      <h1 style="color: white; margin: 0; font-size: 24px;">🎉 Welcome to garzaglue!</h1>
                       <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0 0; font-size: 14px;">Your first automated workflow is working</p>
                     </div>
                     
@@ -428,19 +428,19 @@ Use parameterized queries with $1, $2, etc. placeholders:
                     
                     <div style="margin-top: 24px; padding: 20px; background: #fefce8; border-radius: 12px; border: 1px solid #fef08a;">
                       <p style="margin: 0; color: #854d0e; font-size: 14px;">
-                        <strong>💡 This is a demo tool!</strong> You just ran your first superglue tool. 
+                        <strong>💡 This is a demo tool!</strong> You just ran your first garzaglue tool. 
                         Edit this tool or create your own to automate any API integration.
                       </p>
                     </div>
                     
                     <div style="margin-top: 24px; text-align: center; color: #94a3b8; font-size: 12px;">
-                      Powered by <a href="https://superglue.cloud" style="color: #667eea; text-decoration: none;">superglue</a> — The AI-native integration platform
+                      Powered by <a href="https://garzaglue.com" style="color: #667eea; text-decoration: none;">garzaglue</a> — The AI-native integration platform
                     </div>
                   </div>
                 \`
               });
             }>>`,
-            systemId: "superglue-email",
+            systemId: "garzaglue-email",
           },
         },
       ],

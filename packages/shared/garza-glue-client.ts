@@ -17,7 +17,7 @@ import {
 } from "./sse-log-subscription.js";
 import { isAbortError } from "./utils.js";
 
-export class SuperglueClient {
+export class GarzaGlueClient {
   private apiKey: string;
   private sseManager: SSELogSubscriptionManager;
   public readonly apiEndpoint: string;
@@ -33,7 +33,7 @@ export class SuperglueClient {
     onInfrastructureError?: () => void;
   }) {
     this.apiKey = apiKey;
-    this.apiEndpoint = apiEndpoint ?? "https://api.superglue.cloud";
+    this.apiEndpoint = apiEndpoint ?? "https://api.garzaglue.com";
     this.sseManager = new SSELogSubscriptionManager(
       this.apiEndpoint,
       this.apiKey,

@@ -1,4 +1,4 @@
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../utils/logs.js";
 import {
   searchDocumentationToolDefinition,

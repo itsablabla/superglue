@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
-import { TunnelConnection, System } from "@superglue/shared";
+import { TunnelConnection, System } from "@garzaglue/shared";
 import { queryKeys } from "./query-keys";
-import { useSuperglueClient } from "./use-client";
+import { useGarzaGlueClient } from "./use-client";
 import { useOrg, useOrgOptional } from "@/src/app/org-context";
 import { useConfig } from "@/src/app/config-context";
 import { tokenRegistry } from "@/src/lib/token-registry";
@@ -17,7 +17,7 @@ export function useInvalidateSystems() {
 }
 
 function useSystemsInternal(orgId: string | undefined) {
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const { apiEndpoint } = useConfig();
 
   const systemsQuery = useQuery({
@@ -75,7 +75,7 @@ export function useSystemsOptional() {
 
 export function useSystem(systemId: string, options?: { environment?: "dev" | "prod" }) {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   return useQuery<System | null>({
     queryKey: [...queryKeys.systems.detail(orgId, systemId), options?.environment ?? "default"],
     queryFn: async () => {
@@ -88,7 +88,7 @@ export function useSystem(systemId: string, options?: { environment?: "dev" | "p
 
 export function useCreateSystem() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (input: Record<string, any>) => {
@@ -103,7 +103,7 @@ export function useCreateSystem() {
 
 export function useUpdateSystem() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({
@@ -126,7 +126,7 @@ export function useUpdateSystem() {
 
 export function useDeleteSystem() {
   const { orgId } = useOrg();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({

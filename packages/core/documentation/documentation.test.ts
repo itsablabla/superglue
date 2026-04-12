@@ -1,5 +1,5 @@
 import playwright from "@playwright/test";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import axios from "axios";
 import { afterEach, beforeEach, describe, expect, it, Mocked, vi } from "vitest";
 import { server_defaults } from "../default.js";

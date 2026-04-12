@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/src/components/ui/select";
 import { SystemIcon } from "@/src/components/ui/system-icon";
-import { System } from "@superglue/shared";
+import { System } from "@garzaglue/shared";
 
 interface SystemSelectorProps {
   value: string;

@@ -5,7 +5,7 @@ import {
   FileStatus,
   BatchFileUploadRequest,
   BatchFileUploadResponse,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { getFileService } from "../filestore/file-service.js";
 import { FILE_STORAGE_DEFAULT_ORG } from "../filestore/s3-file-service.js";
 import { logMessage } from "../utils/logs.js";

@@ -1,4 +1,4 @@
-import { SystemEnvironment, System, generateUniqueId, getBaseRoleId } from "@superglue/shared";
+import { SystemEnvironment, System, generateUniqueId, getBaseRoleId } from "@garzaglue/shared";
 import { logMessage } from "../utils/logs.js";
 import { deleteFileReferenceById } from "./file-references.js";
 import { filterSystemsByPermissionAsync } from "./ee/index.js";

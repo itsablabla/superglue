@@ -7,7 +7,7 @@ import {
   TunnelConfig,
   validateExternalUrl,
   ALLOWED_PATCH_SYSTEM_FIELDS,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import {
   CreateSystemBody,
   PatchSystemBody,

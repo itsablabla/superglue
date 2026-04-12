@@ -1,6 +1,6 @@
 import axios from "axios";
 import { chromium } from "playwright";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../../utils/logs.js";
 import { OpenApiFetchingStrategy } from "../types.js";
 import { fetchMultipleOpenApiSpecs } from "../documentation-utils.js";

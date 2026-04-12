@@ -1,13 +1,13 @@
 import { decodeJwt } from "jose";
-import type { SuperglueJWTClaims } from "./auth";
+import type { GarzaGlueJWTClaims } from "./auth";
 
-export function decodeJWTPayload(token: string): SuperglueJWTClaims | null {
+export function decodeJWTPayload(token: string): GarzaGlueJWTClaims | null {
   if (!token.includes(".")) {
     return null;
   }
 
   try {
-    return decodeJwt(token) as unknown as SuperglueJWTClaims;
+    return decodeJwt(token) as unknown as GarzaGlueJWTClaims;
   } catch (error: unknown) {
     return null;
   }

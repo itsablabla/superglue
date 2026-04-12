@@ -1,5 +1,5 @@
 export const SKILL_NAMES = [
-  "superglue-concepts",
+  "garza-glue-concepts",
   "data-handling",
   "http-apis",
   "databases",
@@ -15,7 +15,7 @@ export const SKILL_NAMES = [
 export type SkillName = (typeof SKILL_NAMES)[number];
 
 export const SKILL_INDEX: Record<SkillName, string> = {
-  "superglue-concepts": "Core mental model — tools, systems, steps, execution pipeline",
+  "garza-glue-concepts": "Core mental model — tools, systems, steps, execution pipeline",
   "data-handling":
     "<<>> syntax, data selectors, result envelopes, credential injection, sourceData structure, JS sandbox constraints",
   "http-apis": "HTTP step config — auth patterns, pagination, retries, error detection",

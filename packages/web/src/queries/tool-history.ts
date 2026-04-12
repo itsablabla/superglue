@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
 
 export interface ToolHistoryEntry {
@@ -14,7 +14,7 @@ export interface ToolHistoryEntry {
 
 export function useToolHistory(toolId: string | undefined) {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery<ToolHistoryEntry[]>({
     queryKey: queryKeys.tools.history(orgId, toolId ?? ""),

@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useToast } from "@/src/hooks/use-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "@/src/queries/query-keys";
@@ -44,7 +44,7 @@ export function useImportTools({ onImportComplete }: UseImportToolsOptions = {})
   const { systems } = useSystems();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);

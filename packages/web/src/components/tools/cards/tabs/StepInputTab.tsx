@@ -1,4 +1,4 @@
-import { useMonacoTheme } from "@superglue/web/src/hooks/use-monaco-theme";
+import { useMonacoTheme } from "@garzaglue/web/src/hooks/use-monaco-theme";
 import { useResizable } from "@/src/hooks/use-resizable";
 import { cn } from "@/src/lib/general-utils";
 import Editor from "@monaco-editor/react";

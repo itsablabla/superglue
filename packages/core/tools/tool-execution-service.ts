@@ -24,7 +24,7 @@ import {
   ServiceMetadata,
   Tool,
   ToolStepResult,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { DataStore } from "../datastore/types.js";
 import { resolveUserRoles } from "../auth/role-resolver.js";
 import { RunContext, RunLifecycleManager } from "../runs/run-lifecycle.js";

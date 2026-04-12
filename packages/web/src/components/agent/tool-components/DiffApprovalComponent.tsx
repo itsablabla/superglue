@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 import { JsonEditor } from "@/src/components/editors/JsonEditor";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ToolDiff } from "@superglue/shared";
+import { ToolDiff } from "@garzaglue/shared";
 import {
   DiffLine,
   DiffTargetType,

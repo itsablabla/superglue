@@ -1,12 +1,12 @@
 import { openDB, IDBPDatabase, DBSchema } from "idb";
-import { ToolStep } from "@superglue/shared";
+import { ToolStep } from "@garzaglue/shared";
 import { deepEqual } from "./general-utils";
 import { getCacheScopeIdentifier } from "./cache-scope-identifier";
 
-const DB_NAME = "superglue";
+const DB_NAME = "garzaglue";
 const DB_VERSION = 1;
 
-interface SuperglueDB extends DBSchema {
+interface GarzaGlueDB extends DBSchema {
   payloads: {
     key: string; // toolId
     value: string; // JSON payload text
@@ -40,11 +40,11 @@ export interface ToolDraft {
   createdAt: number;
 }
 
-let dbPromise: Promise<IDBPDatabase<SuperglueDB>> | null = null;
+let dbPromise: Promise<IDBPDatabase<GarzaGlueDB>> | null = null;
 
-function getDB(): Promise<IDBPDatabase<SuperglueDB>> {
+function getDB(): Promise<IDBPDatabase<GarzaGlueDB>> {
   if (!dbPromise) {
-    dbPromise = openDB<SuperglueDB>(DB_NAME, DB_VERSION, {
+    dbPromise = openDB<GarzaGlueDB>(DB_NAME, DB_VERSION, {
       upgrade(db) {
         // Create object stores if they don't exist
         if (!db.objectStoreNames.contains("payloads")) {
@@ -84,10 +84,10 @@ async function migrateFromLocalStorage(): Promise<void> {
     try {
       // Migrate payloads
       const payloadKeys = Object.keys(localStorage).filter((k) =>
-        k.startsWith("superglue-payload:"),
+        k.startsWith("garzaglue-payload:"),
       );
       for (const key of payloadKeys) {
-        const toolId = key.replace("superglue-payload:", "");
+        const toolId = key.replace("garzaglue-payload:", "");
         const value = localStorage.getItem(key);
         if (value) {
           await db.put("payloads", value, toolId);
@@ -99,7 +99,7 @@ async function migrateFromLocalStorage(): Promise<void> {
       const cacheKeys = Object.keys(localStorage).filter(
         (k) =>
           k.includes("cache") ||
-          (k.startsWith("superglue-") && !k.startsWith("superglue-payload:")),
+          (k.startsWith("garzaglue-") && !k.startsWith("garzaglue-payload:")),
       );
       for (const key of cacheKeys) {
         const value = localStorage.getItem(key);

@@ -1,5 +1,5 @@
-import type { Role, SystemPermission } from "@superglue/shared";
-import { SystemAccessLevel, isCustomRulePermission } from "@superglue/shared";
+import type { Role, SystemPermission } from "@garzaglue/shared";
+import { SystemAccessLevel, isCustomRulePermission } from "@garzaglue/shared";
 import { logMessage } from "../utils/logs.js";
 
 export type CheckResult = { allowed: boolean; error?: string };

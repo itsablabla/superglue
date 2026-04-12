@@ -13,7 +13,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover";
 import { cn } from "@/src/lib/general-utils";
 import { useOrg } from "@/src/app/org-context";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { Archive, Check, ChevronRight, Filter, Folder, FolderOpen } from "lucide-react";
 import { useMemo, useState } from "react";
 

@@ -2,7 +2,7 @@ import { ToolAttempt } from "../types.js";
 import { writeFileSync } from "fs";
 import { join } from "path";
 import { logMessage } from "../../../packages/core/utils/logs.js";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { AgentEvalConfig } from "../types.js";
 
 export class JsonReporter {

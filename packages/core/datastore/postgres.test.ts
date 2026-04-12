@@ -1,4 +1,4 @@
-import { HttpMethod, Run, RunStatus, System, Tool } from "@superglue/shared";
+import { HttpMethod, Run, RunStatus, System, Tool } from "@garzaglue/shared";
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 import { PostgresService } from "./postgres.js";
 import { ToolScheduleInternal } from "./types.js";
@@ -9,7 +9,7 @@ const testConfig = {
   port: parseInt(process.env.VITE_POSTGRES_PORT || "5432"),
   user: process.env.VITE_POSTGRES_USERNAME,
   password: process.env.VITE_POSTGRES_PASSWORD,
-  database: process.env.VITE_POSTGRES_DATABASE || "superglue_test",
+  database: process.env.VITE_POSTGRES_DATABASE || "garzaglue_test",
 };
 
 if (!testConfig.host || !testConfig.user || !testConfig.password) {

@@ -24136,7 +24136,7 @@
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": false,
       "buildSuccess": true,
@@ -24155,22 +24155,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": true,
       "buildSuccess": true,
@@ -24189,22 +24189,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": false,
       "buildSuccess": true,
@@ -24238,7 +24238,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue Cap",
+                "name": "Garza Glue Cap",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24260,7 +24260,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue T-Shirt",
+                "name": "Garza Glue T-Shirt",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24282,7 +24282,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue Coffee Mug",
+                "name": "Garza Glue Coffee Mug",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24302,7 +24302,7 @@
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": true,
       "buildSuccess": true,
@@ -24321,22 +24321,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": false,
       "buildSuccess": true,
@@ -24355,22 +24355,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": true,
       "buildSuccess": true,
@@ -24389,22 +24389,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": false,
       "buildSuccess": true,
@@ -24438,7 +24438,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue Cap",
+                "name": "Garza Glue Cap",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24460,7 +24460,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue T-Shirt",
+                "name": "Garza Glue T-Shirt",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24482,7 +24482,7 @@
                 "livemode": false,
                 "marketing_features": {},
                 "metadata": {},
-                "name": "Superglue Coffee Mug",
+                "name": "Garza Glue Coffee Mug",
                 "package_dimensions": null,
                 "shippable": null,
                 "statement_descriptor": null,
@@ -24502,7 +24502,7 @@
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": true,
       "buildSuccess": true,
@@ -24521,22 +24521,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": false,
       "buildSuccess": true,
@@ -24555,22 +24555,22 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
     {
       "tool": "027-stripe-get-all-products",
       "toolName": "Stripe Get Products",
-      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Superglue Cap', 'Superglue T-Shirt', and 'Superglue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
+      "description": "Should return all 3 Stripe products (tests nested data structure). Expected products: 'Garza Glue Cap', 'Garza Glue T-Shirt', and 'Garza Glue Coffee Mug'. All products should be active with IDs starting with 'prod_TGb'.",
       "instruction": "Get a complete list of all products from Stripe. I need the ID and the name",
       "selfHealingEnabled": true,
       "buildSuccess": true,
@@ -24589,15 +24589,15 @@
       "data": {
         "0": {
           "id": "prod_TGbk1E8pRkHR51",
-          "name": "Superglue Cap"
+          "name": "Garza Glue Cap"
         },
         "1": {
           "id": "prod_TGbjqL1f2Rqqkv",
-          "name": "Superglue T-Shirt"
+          "name": "Garza Glue T-Shirt"
         },
         "2": {
           "id": "prod_TGbixpbyW32QWP",
-          "name": "Superglue Coffee Mug"
+          "name": "Garza Glue Coffee Mug"
         }
       }
     },
@@ -27521,8 +27521,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": false,
       "buildSuccess": true,
       "buildError": null,
@@ -27594,8 +27594,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": true,
       "buildSuccess": true,
       "buildError": null,
@@ -27667,8 +27667,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": false,
       "buildSuccess": true,
       "buildError": null,
@@ -27740,8 +27740,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": true,
       "buildSuccess": true,
       "buildError": null,
@@ -27813,8 +27813,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": false,
       "buildSuccess": true,
       "buildError": null,
@@ -27886,8 +27886,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": true,
       "buildSuccess": true,
       "buildError": null,
@@ -27959,8 +27959,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": false,
       "buildSuccess": true,
       "buildError": null,
@@ -28032,8 +28032,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": true,
       "buildSuccess": true,
       "buildError": null,
@@ -28105,8 +28105,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": false,
       "buildSuccess": true,
       "buildError": null,
@@ -28178,8 +28178,8 @@
     {
       "tool": "042-slack-post-eval-message",
       "toolName": "Slack Post Eval Message",
-      "description": "Should successfully post message 'Hi, this is the superglue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
-      "instruction": "Post a message into the evals channel with the message 'Hi, this is the superglue bot running some evals'",
+      "description": "Should successfully post message 'Hi, this is the Garza Glue bot running some evals' to the evals channel. Expected response ok: true with a channel ID.",
+      "instruction": "Post a message into the evals channel with the message 'Hi, this is the Garza Glue bot running some evals'",
       "selfHealingEnabled": true,
       "buildSuccess": true,
       "buildError": null,

@@ -4,10 +4,10 @@ import { Button } from "@/src/components/ui/button";
 import { ScrollArea } from "@/src/components/ui/scroll-area";
 import { Switch } from "@/src/components/ui/switch";
 import { cn } from "@/src/lib/general-utils";
-import { Log } from "@superglue/shared";
+import { Log } from "@garzaglue/shared";
 import { ChevronRight, History, MessagesSquare, ScrollText } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useRightSidebar } from "./RightSidebarContext";
 import { EnterpriseFeatureCard } from "@/src/components/ui/enterprise-feature-card";
 
@@ -46,7 +46,7 @@ export function RightSidebar({ className }: RightSidebarProps) {
   const [hasNewLogs, setHasNewLogs] = useState(false);
   const [showDebug, setShowDebug] = useState(false);
   const [expandedLogs, setExpandedLogs] = useState<Set<string>>(new Set());
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
 
   const isExpandedRef = useRef(isExpanded);
   const activePanelRef = useRef(activePanel);

@@ -25,7 +25,7 @@ export async function sendEmail(params: SendEmailParams): Promise<{
     });
 
     await transporter.sendMail({
-      from: params.from || "noreply@superglue.cloud",
+      from: params.from || "noreply@garzaglue.com",
       to: params.to,
       subject: params.subject,
       html: params.html,
@@ -42,17 +42,17 @@ export async function sendEmail(params: SendEmailParams): Promise<{
 }
 
 /**
- * Notify stefan@superglue.ai when a new self-hosted user signs up
+ * Notify stefan@garzaglue.ai when a new self-hosted user signs up
  */
 export async function sendSelfHostedSignupNotification(
   email: string,
 ): Promise<{ success: boolean; error?: string }> {
   return sendEmail({
-    to: "stefan@superglue.ai",
-    subject: "New Self-Hosted Superglue Signup",
+    to: "stefan@garzaglue.ai",
+    subject: "New Self-Hosted GarzaGlue Signup",
     html: `
       <h2>New Self-Hosted User Signup</h2>
-      <p>A new user has signed up on a self-hosted Superglue instance and wants to receive security updates:</p>
+      <p>A new user has signed up on a self-hosted GarzaGlue instance and wants to receive security updates:</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Time:</strong> ${new Date().toISOString()}</p>
     `,
@@ -71,7 +71,7 @@ export async function sendPortalInvitationEmail(params: {
 
   return sendEmail({
     to,
-    subject: "Connect your accounts in superglue",
+    subject: "Connect your accounts in garzaglue",
     html: `<!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +86,7 @@ export async function sendPortalInvitationEmail(params: {
           <!-- Header -->
           <tr>
             <td style="padding: 32px 32px 24px 32px; text-align: center; border-bottom: 1px solid #e8e6e3;">
-              <img src="https://superglue.cloud/logos/sg_logo.png" alt="superglue" height="48" style="height: 48px;">
+              <img src="https://garzaglue.com/logos/sg_logo.png" alt="garzaglue" height="48" style="height: 48px;">
             </td>
           </tr>
           
@@ -97,7 +97,7 @@ export async function sendPortalInvitationEmail(params: {
                 Connect Your Accounts
               </h1>
               <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.6; color: #4a4a4a; text-align: center;">
-                Hi ${name || "there"}, you've been invited to access the superglue portal to connect your accounts to enterprise systems.
+                Hi ${name || "there"}, you've been invited to access the garzaglue portal to connect your accounts to enterprise systems.
               </p>
               
               <!-- Button -->
@@ -114,7 +114,7 @@ export async function sendPortalInvitationEmail(params: {
               <!-- Info Box -->
               <div style="background: #f5f5f4; border-left: 3px solid #1a1a1a; padding: 16px; border-radius: 0 6px 6px 0; margin: 0 0 24px 0;">
                 <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4a4a4a;">
-                  <strong style="color: #1a1a1a;">What is superglue?</strong><br>
+                  <strong style="color: #1a1a1a;">What is garzaglue?</strong><br>
                   Through the portal, you can securely connect your accounts to systems like Salesforce, HubSpot, or Google Workspace. Once connected, AI agents and automation workflows can interact with these systems on your behalf.
                 </p>
               </div>
@@ -130,7 +130,7 @@ export async function sendPortalInvitationEmail(params: {
           <tr>
             <td style="padding: 24px 32px; border-top: 1px solid #e8e6e3; text-align: center;">
               <p style="margin: 0; font-size: 12px; color: #8a8a8a;">
-                superglue · The Agentic Integration Platform
+                garzaglue · The Agentic Integration Platform
               </p>
             </td>
           </tr>
@@ -155,7 +155,7 @@ export async function sendOrgInvitationEmail(params: {
 
   return sendEmail({
     to,
-    subject: `You've been invited to join ${orgName} on superglue`,
+    subject: `You've been invited to join ${orgName} on garzaglue`,
     html: `<!DOCTYPE html>
 <html>
 <head>
@@ -170,7 +170,7 @@ export async function sendOrgInvitationEmail(params: {
           <!-- Header -->
           <tr>
             <td style="padding: 32px 32px 24px 32px; text-align: center; border-bottom: 1px solid #e8e6e3;">
-              <img src="https://superglue.cloud/logos/sg_logo.png" alt="superglue" height="48" style="height: 48px;">
+              <img src="https://garzaglue.com/logos/sg_logo.png" alt="garzaglue" height="48" style="height: 48px;">
             </td>
           </tr>
           
@@ -181,7 +181,7 @@ export async function sendOrgInvitationEmail(params: {
                 You're invited
               </h1>
               <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.6; color: #4a4a4a; text-align: center;">
-                You've been invited to join <strong style="color: #1a1a1a;">${orgName}</strong> on superglue — the agentic integration platform.
+                You've been invited to join <strong style="color: #1a1a1a;">${orgName}</strong> on garzaglue — the agentic integration platform.
               </p>
               
               <!-- Button -->
@@ -206,7 +206,7 @@ export async function sendOrgInvitationEmail(params: {
           <tr>
             <td style="padding: 24px 32px; border-top: 1px solid #e8e6e3; text-align: center;">
               <p style="margin: 0; font-size: 12px; color: #8a8a8a;">
-                superglue · The Agentic Integration Platform
+                garzaglue · The Agentic Integration Platform
               </p>
             </td>
           </tr>

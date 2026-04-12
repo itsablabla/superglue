@@ -7,7 +7,7 @@ import type {
   PortalToken,
   Role,
   RoleInput,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 
 /**
  * Extended DataStore interface with EE multi-tenancy methods.

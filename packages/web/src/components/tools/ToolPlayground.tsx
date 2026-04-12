@@ -11,7 +11,7 @@ import {
   ToolResult,
   ToolStepResult,
   isRequestConfig,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { useFileUpload } from "./hooks/use-file-upload";
 import { usePayloadValidation } from "./hooks/use-payload-validation";
 import { useToolExecution } from "./hooks/use-tool-execution";

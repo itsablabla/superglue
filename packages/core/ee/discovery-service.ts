@@ -4,8 +4,8 @@ import {
   DiscoveryResult,
   System,
   ExtendedSystem,
-} from "@superglue/shared";
-import { estimateTokenCount } from "@superglue/shared/utils";
+} from "@garzaglue/shared";
+import { estimateTokenCount } from "@garzaglue/shared/utils";
 import { getFileService } from "../filestore/file-service.js";
 import { logMessage } from "../utils/logs.js";
 import type { DataStore } from "../datastore/types.js";

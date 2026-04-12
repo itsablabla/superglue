@@ -1,7 +1,7 @@
 "use client";
 
 import { resolveSystemIcon } from "@/src/lib/general-utils";
-import type { System } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
 import { Blocks, icons, LucideIcon } from "lucide-react";
 import { memo } from "react";
 

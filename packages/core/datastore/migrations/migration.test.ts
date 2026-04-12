@@ -1,4 +1,4 @@
-import { RunStatus } from "@superglue/shared";
+import { RunStatus } from "@garzaglue/shared";
 import { describe, expect, it } from "vitest";
 import { extractRun, LegacyRunRow } from "./migration.js";
 

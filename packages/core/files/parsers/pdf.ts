@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { PDFParse } from "pdf-parse";
 import { logMessage } from "../../utils/logs.js";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";

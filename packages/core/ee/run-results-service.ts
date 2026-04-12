@@ -1,7 +1,7 @@
 import { gzip, gunzip } from "zlib";
 import { promisify } from "util";
 import { getFileService, isFileStorageAvailable } from "../filestore/file-service.js";
-import { ServiceMetadata, StoredRunResults } from "@superglue/shared";
+import { ServiceMetadata, StoredRunResults } from "@garzaglue/shared";
 import { logMessage } from "../utils/logs.js";
 
 const gzipAsync = promisify(gzip);

@@ -1,10 +1,10 @@
-import type { SuperglueClient } from "@superglue/shared";
+import type { GarzaGlueClient } from "@garzaglue/shared";
 import { useCallback, useRef, useState } from "react";
 import type { DocFile } from "./use-doc-files";
 
 const MAX_CACHE_BYTES = 20 * 1024 * 1024;
 
-export function useFilePreview(client: SuperglueClient) {
+export function useFilePreview(client: GarzaGlueClient) {
   const [previewFile, setPreviewFile] = useState<DocFile | null>(null);
   const [previewContent, setPreviewContent] = useState<string | null>(null);
   const [previewLoading, setPreviewLoading] = useState(false);

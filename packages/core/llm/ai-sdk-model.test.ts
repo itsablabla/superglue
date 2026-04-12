@@ -1,8 +1,8 @@
 import { anthropic } from "@ai-sdk/anthropic";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
-import { getDateMessage, getModelContextLength } from "@superglue/shared/utils";
-import { initializeAIModel } from "@superglue/shared/utils/ai-model-init";
+import { getDateMessage, getModelContextLength } from "@garzaglue/shared/utils";
+import { initializeAIModel } from "@garzaglue/shared/utils/ai-model-init";
 import { generateText, jsonSchema, tool } from "ai";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AiSdkModel } from "./ai-sdk-model.js";
@@ -12,8 +12,8 @@ vi.mock("ai");
 vi.mock("@ai-sdk/openai");
 vi.mock("@ai-sdk/anthropic");
 vi.mock("@ai-sdk/google");
-vi.mock("@superglue/shared/utils");
-vi.mock("@superglue/shared/utils/ai-model-init");
+vi.mock("@garzaglue/shared/utils");
+vi.mock("@garzaglue/shared/utils/ai-model-init");
 
 describe("AiSdkModel", () => {
   const mockGenerateText = vi.mocked(generateText);

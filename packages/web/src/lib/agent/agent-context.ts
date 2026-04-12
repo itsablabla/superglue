@@ -7,7 +7,7 @@ import {
   getDateMessage,
   safeStringify,
   System,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import {
   DraftLookup,
   SystemPlaygroundContext,
@@ -19,7 +19,7 @@ import {
   TOOL_PLAYGROUND_AGENT_SYSTEM_PROMPT,
   SYSTEM_PLAYGROUND_AGENT_SYSTEM_PROMPT,
   ACCESS_RULES_AGENT_SYSTEM_PROMPT,
-  getSuperglueInformationPrompt,
+  getGarzaGlueInformationPrompt,
   GENERAL_RULES,
   SKILL_LOADING_INSTRUCTIONS,
   DeploymentEndpoints,
@@ -179,7 +179,7 @@ ${safeStringify(systemConfig, 2)}
 
 async function getToolsForContext(ctx: ToolExecutionContext) {
   try {
-    const { items } = await ctx.superglueClient.listWorkflows(1000);
+    const { items } = await ctx.garzaGlueClient.listWorkflows(1000);
 
     if (items.length === 0) {
       return {
@@ -212,7 +212,7 @@ async function getToolsForContext(ctx: ToolExecutionContext) {
 async function getSystemsForContext(ctx: ToolExecutionContext) {
   try {
     // Use prod mode by default - shows prod systems + standalone dev systems
-    const result = await ctx.superglueClient.listSystems(1000, 1, { mode: "prod" });
+    const result = await ctx.garzaGlueClient.listSystems(1000, 1, { mode: "prod" });
 
     const systemsSummary = result.items.map((system: any) => ({
       id: system?.id,
@@ -233,8 +233,8 @@ async function getSystemsForContext(ctx: ToolExecutionContext) {
 }
 
 function getDeploymentEndpoints(): DeploymentEndpoints {
-  const apiEndpoint = process.env.API_ENDPOINT || "https://api.superglue.cloud";
-  const appEndpoint = process.env.SUPERGLUE_APP_URL || "https://app.superglue.cloud";
+  const apiEndpoint = process.env.API_ENDPOINT || "https://api.garzaglue.com";
+  const appEndpoint = process.env.SUPERGLUE_APP_URL || "https://app.garzaglue.com";
   return { apiEndpoint, appEndpoint };
 }
 
@@ -252,7 +252,7 @@ export async function generateMainAgentSystemPrompt(
   const content = `${MAIN_AGENT_SYSTEM_PROMPT}
 
 [GENERAL INFORMATION]
-${getSuperglueInformationPrompt(endpoints)}
+${getGarzaGlueInformationPrompt(endpoints)}
 
 AVAILABLE SYSTEMS: ${JSON.stringify(systemsResult.systems || [])}
 
@@ -345,7 +345,7 @@ Focus on: "Let's make sure ${systemList} is fully configured and working."
 ADDITIONAL CAPABILITIES TO MENTION:
 - You can test API endpoints to verify the system is working
 - You can search external documentation if the system docs are incomplete
-- If the user has existing scripts or workflows, they can upload them to recreate as superglue tools
+- If the user has existing scripts or workflows, they can upload them to recreate as garzaglue tools
 
 Be conversational and helpful. The goal is a working, tested integration.`;
   }
@@ -578,7 +578,7 @@ This run was triggered as part of a tool chain. The INPUT PAYLOAD shows what was
   let approachSection: string;
 
   if (isFailed) {
-    statusIntro = `You are helping debug a failed superglue tool run. Analyze the error and help the user fix it.
+    statusIntro = `You are helping debug a failed garzaglue tool run. Analyze the error and help the user fix it.
 
 FAILED RUN DETAILS:
 - Run ID: ${run.runId}
@@ -603,7 +603,7 @@ IMPORTANT GUIDELINES:
 - If this is a transient issue (timeout, rate limit), suggest retrying before making changes
 - Be specific about what needs to change and where`;
   } else if (isSuccess) {
-    statusIntro = `You are helping the user understand a successful superglue tool run. Analyze the execution and results.
+    statusIntro = `You are helping the user understand a successful garzaglue tool run. Analyze the execution and results.
 
 SUCCESSFUL RUN DETAILS:
 - Run ID: ${run.runId}
@@ -626,7 +626,7 @@ IMPORTANT GUIDELINES:
 - Be ready to help with follow-up questions about the data
 - If the user wants to modify the tool, use edit_tool`;
   } else if (isRunning) {
-    statusIntro = `You are helping the user understand a currently running superglue tool. Note that this run is still in progress.
+    statusIntro = `You are helping the user understand a currently running garzaglue tool. Note that this run is still in progress.
 
 RUNNING RUN DETAILS:
 - Run ID: ${run.runId}
@@ -641,7 +641,7 @@ RUNNING RUN DETAILS:
 3. Suggest the user refresh or check back later for complete results
 4. Answer any questions about the tool configuration or expected behavior`;
   } else if (isAborted) {
-    statusIntro = `You are helping the user understand an aborted superglue tool run.
+    statusIntro = `You are helping the user understand an aborted garzaglue tool run.
 
 ABORTED RUN DETAILS:
 - Run ID: ${run.runId}
@@ -658,7 +658,7 @@ ABORTED RUN DETAILS:
 3. Help the user understand if they should retry or if there's an issue to fix
 4. Answer any questions about why the run might have been aborted`;
   } else {
-    statusIntro = `You are helping the user understand a superglue tool run.
+    statusIntro = `You are helping the user understand a garzaglue tool run.
 
 RUN DETAILS:
 - Run ID: ${run.runId}

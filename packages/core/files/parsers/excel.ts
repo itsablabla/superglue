@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import * as XLSX from "xlsx";
 import * as unzipper from "unzipper";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";

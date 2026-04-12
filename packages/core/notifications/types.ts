@@ -5,7 +5,7 @@ import type {
   RequestSource,
   Run,
   SlackChannelConfig,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 
 export interface NotificationContext {
   run: Run;

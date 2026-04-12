@@ -1,13 +1,13 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
-import type { NotificationSettingsResponse } from "@/src/lib/ee-superglue-client";
-import type { SlackAuthType, NotificationRule } from "@superglue/shared";
+import type { NotificationSettingsResponse } from "@/src/lib/ee-garza-glue-client";
+import type { SlackAuthType, NotificationRule } from "@garzaglue/shared";
 
 export function useNotificationSettings() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery<NotificationSettingsResponse>({
     queryKey: queryKeys.notifications.settings(orgId),
@@ -21,7 +21,7 @@ export function useNotificationSettings() {
 
 export function useUpdateNotificationSettings() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (settings: {
@@ -46,7 +46,7 @@ export function useUpdateNotificationSettings() {
 }
 
 export function useTestNotification() {
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   return useMutation({
     mutationFn: async ({ channel, baseUrl }: { channel: "slack"; baseUrl?: string }) => {
       const client = createClient();
@@ -57,7 +57,7 @@ export function useTestNotification() {
 
 export function useDeleteNotificationChannel() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (channelId: "slack") => {

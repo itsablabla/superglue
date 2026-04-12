@@ -1,4 +1,4 @@
-import { BaseConfig, JSONata, JSONSchema } from "@superglue/shared";
+import { BaseConfig, JSONata, JSONSchema } from "@garzaglue/shared";
 
 export function oldReplaceVariables(template: string, variables: Record<string, any>): string {
   if (!template) return "";

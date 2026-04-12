@@ -1,7 +1,7 @@
 "use client";
 
 import { useRuns } from "@/src/queries/runs";
-import type { Run } from "@superglue/shared";
+import type { Run } from "@garzaglue/shared";
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import {

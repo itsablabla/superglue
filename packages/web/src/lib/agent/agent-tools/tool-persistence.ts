@@ -1,4 +1,4 @@
-import type { Tool } from "@superglue/shared";
+import type { Tool } from "@garzaglue/shared";
 import type { ToolExecutionContext } from "../agent-types";
 
 const MAIN_AGENT_ID = "main";
@@ -14,7 +14,7 @@ export function canKeepDraftOnlyOnAccept(ctx: ToolExecutionContext): boolean {
 
 export async function createNewTool(ctx: ToolExecutionContext, tool: Tool): Promise<Tool> {
   try {
-    return await ctx.superglueClient.createWorkflow(tool.id, tool);
+    return await ctx.garzaGlueClient.createWorkflow(tool.id, tool);
   } catch (error: any) {
     if (error?.message?.includes("already exists") || error?.message?.includes("409")) {
       throw new Error(

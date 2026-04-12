@@ -1,7 +1,7 @@
 "use client";
 
 import { useToast } from "@/src/hooks/use-toast";
-import type { Message, ToolCall } from "@superglue/shared";
+import type { Message, ToolCall } from "@garzaglue/shared";
 import { ToolExecutionPolicies } from "@/src/lib/agent/agent-types";
 import { AgentType } from "@/src/lib/agent/registries/agent-registry";
 import { useInvalidateTools } from "@/src/queries/tools";

@@ -1,10 +1,21 @@
-const CACHE_NAME = "garza-glue-v1";
-const PRECACHE_URLS = ["/", "/manifest.json"];
+const CACHE_VERSION = "v2-" + Date.now();
+const STATIC_CACHE = "garza-glue-static-" + CACHE_VERSION;
+const RUNTIME_CACHE = "garza-glue-runtime-" + CACHE_VERSION;
+
+const PRECACHE_URLS = [
+  "/",
+  "/offline.html",
+  "/manifest.json",
+  "/logo.svg",
+  "/icon-192x192.png",
+  "/icon-512x512.png",
+  "/apple-touch-icon.png",
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
-      .open(CACHE_NAME)
+      .open(STATIC_CACHE)
       .then((cache) => cache.addAll(PRECACHE_URLS))
       .then(() => self.skipWaiting()),
   );
@@ -15,7 +26,11 @@ self.addEventListener("activate", (event) => {
     caches
       .keys()
       .then((names) =>
-        Promise.all(names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))),
+        Promise.all(
+          names
+            .filter((name) => name !== STATIC_CACHE && name !== RUNTIME_CACHE)
+            .map((name) => caches.delete(name)),
+        ),
       )
       .then(() => self.clients.claim()),
   );
@@ -26,15 +41,19 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
-  // Network-first for API calls and navigation
-  if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/v1/")) {
+  // Pass through API calls — never cache
+  if (
+    url.pathname.startsWith("/api/") ||
+    url.pathname.startsWith("/v1/") ||
+    url.pathname.startsWith("/graphql")
+  ) {
     return;
   }
 
-  // Cache-first for static assets
+  // Cache-first for static assets (Next.js chunks, images, fonts)
   if (
     url.pathname.startsWith("/_next/static/") ||
-    url.pathname.match(/\.(png|jpg|jpeg|svg|ico|woff2?)$/)
+    url.pathname.match(/\.(png|jpg|jpeg|svg|ico|woff2?|css|js)$/)
   ) {
     event.respondWith(
       caches.match(event.request).then((cached) => {
@@ -42,7 +61,7 @@ self.addEventListener("fetch", (event) => {
         return fetch(event.request).then((response) => {
           if (response.ok) {
             const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            caches.open(STATIC_CACHE).then((cache) => cache.put(event.request, clone));
           }
           return response;
         });
@@ -51,16 +70,77 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Network-first for everything else (pages)
+  // Network-first for pages, with offline fallback
   event.respondWith(
     fetch(event.request)
       .then((response) => {
         if (response.ok) {
           const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          caches.open(RUNTIME_CACHE).then((cache) => cache.put(event.request, clone));
         }
         return response;
       })
-      .catch(() => caches.match(event.request)),
+      .catch(() =>
+        caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          // If it's a navigation request and nothing cached, show offline page
+          if (event.request.mode === "navigate") {
+            return caches.match("/offline.html");
+          }
+          return new Response("Offline", { status: 503, statusText: "Offline" });
+        }),
+      ),
   );
 });
+
+// Push notification support (iOS 16.4+, non-EU)
+self.addEventListener("push", (event) => {
+  if (!event.data) return;
+
+  let data;
+  try {
+    data = event.data.json();
+  } catch {
+    data = { title: "Garza Glue", body: event.data.text() };
+  }
+
+  const options = {
+    body: data.body || "You have a new notification",
+    icon: "/icon-192x192.png",
+    badge: "/favicon.png",
+    tag: data.tag || "garza-glue-notification",
+    data: { url: data.url || "/" },
+    vibrate: [100, 50, 100],
+  };
+
+  event.waitUntil(self.registration.showNotification(data.title || "Garza Glue", options));
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const targetUrl = event.notification.data?.url || "/";
+
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clients) => {
+      for (const client of clients) {
+        if (client.url.includes(targetUrl) && "focus" in client) {
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(targetUrl);
+    }),
+  );
+});
+
+// Background sync for offline chat messages (when available)
+self.addEventListener("sync", (event) => {
+  if (event.tag === "sync-chat-messages") {
+    event.waitUntil(syncPendingMessages());
+  }
+});
+
+async function syncPendingMessages() {
+  // Future: read from IndexedDB queue and POST to /v1/conversations
+  // For now, just log — actual implementation requires the chat to queue messages
+  console.log("[SW] Background sync triggered for chat messages");
+}

@@ -1,4 +1,4 @@
-import { Log } from "@superglue/shared";
+import { Log } from "@garzaglue/shared";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { logEmitter, logger, logMessage } from "./logs.js";
 

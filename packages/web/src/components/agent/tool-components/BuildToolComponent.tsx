@@ -1,7 +1,7 @@
 "use client";
 
 import { ErrorMessage } from "@/src/components/ui/error-message";
-import { safeStringify, Tool, ToolCall } from "@superglue/shared";
+import { safeStringify, Tool, ToolCall } from "@garzaglue/shared";
 import { Hammer } from "lucide-react";
 import { useMemo } from "react";
 import { ToolCallToolDisplay } from "./ToolComponentDisplay";

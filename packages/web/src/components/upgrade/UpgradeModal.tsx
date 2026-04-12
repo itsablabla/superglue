@@ -59,7 +59,7 @@ export function UpgradeModal({ isOpen, onClose, onUpgrade, isUpgrading }: Upgrad
   if (!isOpen) return null;
 
   const handleBookDemo = () => {
-    window.open("https://cal.com/superglue/superglue-demo", "_blank");
+    window.open("https://cal.com/garzaglue/garzaglue-demo", "_blank");
     onClose();
   };
 
@@ -140,7 +140,7 @@ export function UpgradeModal({ isOpen, onClose, onUpgrade, isUpgrading }: Upgrad
           <p className="text-[11px] text-muted-foreground/50 text-center mt-3">
             Learn more in our{" "}
             <a
-              href="https://docs.superglue.cloud"
+              href="https://docs.garzaglue.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground/60 hover:text-muted-foreground/80 hover:underline transition-colors"

@@ -2,5 +2,5 @@
 
 ## Run
 
-`cd /Users/nicolasneudeck/repos/superglue && npx tsx eval/llm-benchmark-evals/index.ts`
+`cd /Users/repos/garzaglue && npx tsx eval/llm-benchmark-evals/index.ts`
 

@@ -3,7 +3,7 @@
 import { useSystems, useDeleteSystem } from "@/src/queries/systems";
 import { cn } from "@/src/lib/general-utils";
 import { getToolBuilderPrompts } from "@/src/lib/agent/agent-context";
-import type { System } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
 import { Hammer, MoreVertical, Trash2, AlertTriangle } from "lucide-react";
 import { useState, useMemo } from "react";
 import {

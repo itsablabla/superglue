@@ -16,7 +16,7 @@ import {
   PlaygroundMode,
   SystemConfigForAgent,
 } from "../tools/agent/PlaygroundAgentSidebar";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { type ToolDraft } from "@/src/lib/storage";
 import { AccessRulesContext } from "@/src/lib/agent/agent-types";
 

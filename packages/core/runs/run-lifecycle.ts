@@ -10,8 +10,8 @@ import type {
   StoredRunResults,
   Tool,
   ToolStepResult,
-} from "@superglue/shared";
-import { RunStatus, RequestSource as RSrc, sampleResultObject } from "@superglue/shared";
+} from "@garzaglue/shared";
+import { RunStatus, RequestSource as RSrc, sampleResultObject } from "@garzaglue/shared";
 import type { DataStore } from "../datastore/types.js";
 import { generateRunResultsUri, getRunResultsService } from "../ee/run-results-service.js";
 import { isFileStorageAvailable } from "../filestore/file-service.js";

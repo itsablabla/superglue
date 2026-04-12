@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { useCallback } from "react";
 import type { UseAgentToolsReturn } from "./types";
 import {

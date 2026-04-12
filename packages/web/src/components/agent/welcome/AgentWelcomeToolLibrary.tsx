@@ -252,7 +252,7 @@ export function AgentWelcomeToolLibrary({
 
         <div className="mt-3 text-center">
           <a
-            href="https://superglue.ai/tools/"
+            href="https://garzaglue.ai/tools/"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(

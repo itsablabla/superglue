@@ -25,7 +25,7 @@ interface EnvironmentContextValue {
 
 const EnvironmentContext = createContext<EnvironmentContextValue | null>(null);
 
-const BASE_STORAGE_KEY = "superglue-environment-mode";
+const BASE_STORAGE_KEY = "garzaglue-environment-mode";
 const MULTI_ENV_KEY = "multi-env-systems";
 
 export function EnvironmentProvider({ children }: { children: ReactNode }) {

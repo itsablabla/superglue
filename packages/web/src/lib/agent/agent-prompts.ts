@@ -106,26 +106,26 @@ PAYLOAD VALIDATION:
 - If the payload is missing required fields or empty, remind the user to provide valid test data before running the tool.
 `;
 
-export function getSuperglueGeneralInfo(endpoints: DeploymentEndpoints): string {
+export function getGarzaGlueGeneralInfo(endpoints: DeploymentEndpoints): string {
   return `ABOUT GARZA GLUE:
 Garza Glue is an AI-native integration platform that builds and runs deterministic multi-step workflows ("tools") connecting APIs, databases, and file servers. AI generates tool configurations during building — execution is 100% deterministic.
-Powered by superglue (Y Combinator W25).
-- Documentation: https://docs.superglue.cloud
+Powered by garzaglue (Y Combinator W25).
+- Documentation: https://docs.garzaglue.com
 - GitHub: https://github.com/superglue-ai/superglue
 
 GARZA GLUE INTERFACES:
 - Web: ${endpoints.appEndpoint}
-- TypeScript/Python SDK: https://docs.superglue.cloud/sdk/overview
-- REST API: https://docs.superglue.cloud/api-reference/
-- MCP Server: https://docs.superglue.cloud/mcp/using-the-mcp
+- TypeScript/Python SDK: https://docs.garzaglue.com/sdk/overview
+- REST API: https://docs.garzaglue.com/api-reference/
+- MCP Server: https://docs.garzaglue.com/mcp/using-the-mcp
 
 DEPLOYING TOOLS:
 - Tools must be saved before deployment. Execute via REST API or SDK.
 - [Important] OAuth callback URL: ${endpoints.appEndpoint}/api/auth/callback
 
 - If the user is just asking questions (not building):
-  Company/team/pricing → https://superglue.ai/
-  Product/features → https://docs.superglue.cloud/getting-started/introduction
+  Company/team/pricing → https://garzaglue.ai/
+  Product/features → https://docs.garzaglue.com/getting-started/introduction
   Open-source/code → https://github.com/superglue-ai/superglue
 
 GARZA GLUE UI LAYOUT:
@@ -134,7 +134,7 @@ Left sidebar navigation:
 - Tools: List of saved tools. Click a tool to open its playground for editing, testing, and running.
 - Systems: List of connected external systems with credentials and documentation
 - API Keys: View and manage Garza Glue API keys
-- Docs: Link to docs.superglue.cloud
+- Docs: Link to docs.garzaglue.com
 `;
 }
 
@@ -169,8 +169,8 @@ Loading rules:
 - When in doubt, load more skills rather than fewer — incorrect syntax is the #1 source of tool failures
 `;
 
-export function getSuperglueInformationPrompt(endpoints: DeploymentEndpoints): string {
-  return `${getSuperglueGeneralInfo(endpoints)}${GENERAL_RULES}${SKILL_LOADING_INSTRUCTIONS}`;
+export function getGarzaGlueInformationPrompt(endpoints: DeploymentEndpoints): string {
+  return `${getGarzaGlueGeneralInfo(endpoints)}${GENERAL_RULES}${SKILL_LOADING_INSTRUCTIONS}`;
 }
 
 export const SYSTEM_PLAYGROUND_AGENT_SYSTEM_PROMPT = `You are a system editing and debugging assistant embedded in the Garza Glue system editor sidebar. Your role is to help users edit, test, and debug their system configurations.
@@ -337,7 +337,7 @@ export function buildOnboardingRouting(params: {
         `Role: ${roleLabel}`,
         `Systems: ${systemsList}`,
         "Goal: empower agent via sg CLI.",
-        "Load the superglue-concepts skill and describe the sg CLI capabilities and how to create systems and tools the user's agents can use via the CLI.",
+        "Load the garza-glue-concepts skill and describe the sg CLI capabilities and how to create systems and tools the user's agents can use via the CLI.",
       ].join("\n"),
     };
   }

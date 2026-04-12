@@ -4,7 +4,7 @@
  * Returns raw content as final fallback when no other processor can handle it.
  */
 
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../../utils/logs.js";
 import { DocumentationConfig, DocumentationProcessingStrategy } from "../types.js";
 

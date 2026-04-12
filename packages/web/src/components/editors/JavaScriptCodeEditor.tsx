@@ -1,9 +1,9 @@
 import { HelpTooltip } from "@/src/components/utils/HelpTooltip";
-import { useMonacoTheme } from "@superglue/web/src/hooks/use-monaco-theme";
+import { useMonacoTheme } from "@garzaglue/web/src/hooks/use-monaco-theme";
 import { useResizable } from "@/src/hooks/use-resizable";
 import { formatJavaScriptCode } from "@/src/lib/general-utils";
 import Editor from "@monaco-editor/react";
-import { isArrowFunction } from "@superglue/shared";
+import { isArrowFunction } from "@garzaglue/shared";
 import React, { useEffect, useState } from "react";
 import { CopyButton } from "../tools/shared/CopyButton";
 

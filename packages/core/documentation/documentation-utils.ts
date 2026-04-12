@@ -2,7 +2,7 @@
  * Utility functions for documentation processing
  */
 
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import axios from "axios";
 import * as yaml from "js-yaml";
 import { server_defaults } from "../default.js";

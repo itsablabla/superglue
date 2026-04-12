@@ -1,4 +1,4 @@
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { OpenApiFetchingStrategy } from "../types.js";
 import { logMessage } from "../../utils/logs.js";
 import { extractOpenApiUrlFromHtml, fetchMultipleOpenApiSpecs } from "../documentation-utils.js";

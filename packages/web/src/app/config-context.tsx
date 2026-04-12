@@ -11,7 +11,7 @@ export interface ServerSession {
 }
 
 export interface Config {
-  superglueApiKey: string;
+  garzaglueApiKey: string;
   apiEndpoint: string;
   postHogKey: string;
   postHogHost: string;
@@ -29,18 +29,18 @@ const ConfigContext = createContext<ConfigContextValue | null>(null);
 
 export function ConfigProvider({ children, config }: { children: ReactNode; config: Config }) {
   const isInitialTokenSetRef = useRef<boolean>(false);
-  if (!isInitialTokenSetRef.current && config.superglueApiKey) {
-    tokenRegistry.setToken(config.superglueApiKey);
+  if (!isInitialTokenSetRef.current && config.garzaglueApiKey) {
+    tokenRegistry.setToken(config.garzaglueApiKey);
     isInitialTokenSetRef.current = true;
   }
 
   useEffect(() => {
-    if (config.superglueApiKey) {
-      tokenRegistry.setToken(config.superglueApiKey);
+    if (config.garzaglueApiKey) {
+      tokenRegistry.setToken(config.garzaglueApiKey);
     }
-  }, [config.superglueApiKey]);
+  }, [config.garzaglueApiKey]);
 
-  const { superglueApiKey, ...lightConfig } = config;
+  const { garzaglueApiKey, ...lightConfig } = config;
 
   return <ConfigContext.Provider value={lightConfig}>{children}</ConfigContext.Provider>;
 }

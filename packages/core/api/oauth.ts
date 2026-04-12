@@ -99,7 +99,7 @@ const getCliOAuthSecret: RouteHandler = async (request, reply) => {
   const orgId = authReq.authInfo.orgId;
 
   const derivedSecret = await new Promise<string>((resolve, reject) => {
-    crypto.hkdf("sha256", masterKey, orgId, "superglue-cli-oauth", 32, (err, key) => {
+    crypto.hkdf("sha256", masterKey, orgId, "garzaglue-cli-oauth", 32, (err, key) => {
       if (err) return reject(err);
       resolve(Buffer.from(key).toString("hex"));
     });

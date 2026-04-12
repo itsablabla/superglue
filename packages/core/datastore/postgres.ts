@@ -12,7 +12,7 @@ import {
   RunStatus,
   System,
   Tool,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import jsonpatch from "fast-json-patch";
 import { Pool, PoolConfig } from "pg";
 import { credentialEncryption } from "../utils/encryption.js";
@@ -361,7 +361,7 @@ export class PostgresService implements DataStore {
       // Add execution_mode column to runs table
       await client.query(`ALTER TABLE runs ADD COLUMN IF NOT EXISTS execution_mode VARCHAR(20)`);
 
-      // Integration templates table for Superglue OAuth credentials (and potentially further fields in the future)
+      // Integration templates table for GarzaGlue OAuth credentials (and potentially further fields in the future)
       await client.query(`
     CREATE TABLE IF NOT EXISTS integration_templates (
         id VARCHAR(255) PRIMARY KEY,

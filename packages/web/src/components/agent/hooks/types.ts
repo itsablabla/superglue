@@ -1,4 +1,4 @@
-import { Message, ToolCall } from "@superglue/shared";
+import { Message, ToolCall } from "@garzaglue/shared";
 import { Conversation } from "../ConversationHistory";
 import { AgentType } from "@/src/lib/agent/registries/agent-registry";
 import {

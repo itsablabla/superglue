@@ -1,5 +1,5 @@
-import { ServiceMetadata } from "@superglue/shared";
-import { System } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
+import { System } from "@garzaglue/shared";
 import { DataStore } from "../../../packages/core/datastore/types.js";
 import { DocumentationFetcher } from "../../../packages/core/documentation/index.js";
 import { logMessage } from "../../../packages/core/utils/logs.js";

@@ -9,13 +9,13 @@ import {
   shouldDebounceAbort,
   type StepExecutionResult,
 } from "@/src/lib/client-utils";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import {
   computeStepOutput,
   isAbortError,
   wrapDataSelectorWithLimit,
 } from "@/src/lib/general-utils";
-import { isRequestConfig, isTransformConfig, Tool, ToolResult } from "@superglue/shared";
+import { isRequestConfig, isTransformConfig, Tool, ToolResult } from "@garzaglue/shared";
 import { useMemo, useRef } from "react";
 import { useExecution, useToolConfig } from "../context";
 import type { StepStatus, TransformStatus } from "../context/types";
@@ -44,7 +44,7 @@ export function useToolExecution(
   const { onExecute, onStopExecution, embedded } = options;
   const { setFocusStepId, setShowStepOutputSignal, setNavigateToFinalSignal } = navigationCallbacks;
 
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const { mode: environmentMode } = useEnvironment();
   const { toast } = useToast();
   const { tool, steps, payload, setSteps, setOutputTransform, responseFilters, systems } =

@@ -1,4 +1,4 @@
-import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@superglue/shared";
+import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@garzaglue/shared";
 
 export interface FilterMatch {
   filterId: string;

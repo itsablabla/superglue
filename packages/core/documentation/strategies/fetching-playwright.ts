@@ -8,7 +8,7 @@
  */
 
 import playwright from "@playwright/test";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import axios from "axios";
 import { server_defaults } from "../../default.js";
 import { logMessage } from "../../utils/logs.js";

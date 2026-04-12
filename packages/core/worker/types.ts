@@ -5,7 +5,7 @@ import {
   System,
   Role,
   RequestSource,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import type { TunnelPortMappings } from "../tunnel/index.js";
 import type { DenoProcessPool } from "../deno/index.js";
 

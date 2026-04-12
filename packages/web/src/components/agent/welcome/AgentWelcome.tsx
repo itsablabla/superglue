@@ -4,7 +4,7 @@ import { cn } from "@/src/lib/general-utils";
 import { Lightbulb, Play } from "lucide-react";
 import React, { useImperativeHandle, useCallback } from "react";
 import { SystemCarousel } from "@/src/components/ui/rotating-icon-gallery";
-import { SystemConfig } from "@superglue/shared";
+import { SystemConfig } from "@garzaglue/shared";
 
 const EXAMPLES = {
   CAPABILITIES: {

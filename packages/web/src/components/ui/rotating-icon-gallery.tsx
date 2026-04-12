@@ -2,7 +2,7 @@
 
 import { cn, getSimpleIcon, formatLabel } from "@/src/lib/general-utils";
 import { useTheme } from "@/src/hooks/use-theme";
-import { systems, SystemConfig } from "@superglue/shared";
+import { systems, SystemConfig } from "@garzaglue/shared";
 import { useRef, useMemo, useState, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 

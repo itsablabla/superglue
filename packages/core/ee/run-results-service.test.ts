@@ -6,7 +6,7 @@ import {
   generateRunResultsUri,
   getRunResultsService,
 } from "./run-results-service.js";
-import type { StoredRunResults } from "@superglue/shared";
+import type { StoredRunResults } from "@garzaglue/shared";
 
 const gzipAsync = promisify(gzip);
 

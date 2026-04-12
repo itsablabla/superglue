@@ -1,6 +1,6 @@
 # Database Steps
 
-Superglue supports both PostgreSQL and Microsoft SQL Server (including Azure SQL).
+GarzaGlue supports both PostgreSQL and Microsoft SQL Server (including Azure SQL).
 
 ---
 

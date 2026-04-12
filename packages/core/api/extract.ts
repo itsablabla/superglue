@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { parseFile } from "../files/index.js";
 import { telemetryClient } from "../utils/telemetry.js";
 import { registerApiModule } from "./registry.js";

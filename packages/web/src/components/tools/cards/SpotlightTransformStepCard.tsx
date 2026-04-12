@@ -1,6 +1,6 @@
 import { Button } from "@/src/components/ui/button";
 import { Label } from "@/src/components/ui/label";
-import { type ToolStep } from "@superglue/shared";
+import { type ToolStep } from "@garzaglue/shared";
 import { Maximize2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { JavaScriptCodeEditor } from "../../editors/JavaScriptCodeEditor";

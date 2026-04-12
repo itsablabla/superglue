@@ -1,6 +1,6 @@
 # Access Rules (RBAC)
 
-On superglue, roles define tool-level and system-level allowlists. Users can have multiple roles. Roles and access rules are only available on enterprise organizations. Non-enterprise orgs do not have RBAC — all users have admin access on personal organizations.
+On Garza Glue, roles define tool-level and system-level allowlists. Users can have multiple roles. Roles and access rules are only available on enterprise organizations. Non-enterprise orgs do not have RBAC — all users have admin access on personal organizations.
 
 ## Data Model
 

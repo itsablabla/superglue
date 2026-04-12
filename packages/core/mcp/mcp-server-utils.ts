@@ -1,11 +1,11 @@
-import { truncateForLLM } from "@superglue/shared";
+import { truncateForLLM } from "@garzaglue/shared";
 import { server_defaults } from "../default.js";
 
 export function validateWorkflowExecutionArgs(args: any) {
   const errors: string[] = [];
 
   if (!args.id) {
-    errors.push("Tool ID is required. Use superglue_find_relevant_tools to find valid IDs.");
+    errors.push("Tool ID is required. Use garzaglue_find_relevant_tools to find valid IDs.");
   }
 
   if (args.payload && typeof args.payload !== "object") {

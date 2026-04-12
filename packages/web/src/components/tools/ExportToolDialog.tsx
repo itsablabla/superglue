@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/src/components/ui/dialog";
-import { Tool, System } from "@superglue/shared";
+import { Tool, System } from "@garzaglue/shared";
 import { Download } from "lucide-react";
 import { useMemo, useState } from "react";
 import {

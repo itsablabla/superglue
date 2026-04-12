@@ -35,7 +35,7 @@ export interface AuthState {
   oauthFields: OAuthFields;
   apiKeyCredentials: string;
   isOAuthConfigured: boolean;
-  useSuperglueOAuth: boolean;
+  useGarzaGlueOAuth: boolean;
   multiTenancyMode: "disabled" | "enabled";
 }
 
@@ -88,7 +88,7 @@ export interface SystemConfigContextValue {
   setCredentials: (credentials: Record<string, any>) => void;
   setOAuthFields: (fields: Partial<OAuthFields>) => void;
   setApiKeyCredentials: (credentials: string) => void;
-  setUseSuperglueOAuth: (use: boolean) => void;
+  setUseGarzaGlueOAuth: (use: boolean) => void;
   setMultiTenancyMode: (mode: "disabled" | "enabled") => void;
 
   setSpecificInstructions: (instructions: string) => void;

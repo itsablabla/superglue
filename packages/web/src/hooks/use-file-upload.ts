@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useConfig } from "@/src/app/config-context";
-import { EESuperglueClient } from "@/src/lib/ee-superglue-client";
+import { EEGarzaGlueClient } from "@/src/lib/ee-garza-glue-client";
 import { tokenRegistry } from "@/src/lib/token-registry";
 import { uploadFileToPresignedUrl } from "@/src/lib/file-upload";
 

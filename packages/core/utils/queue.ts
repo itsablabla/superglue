@@ -1,4 +1,4 @@
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "./logs.js";
 
 interface Process {

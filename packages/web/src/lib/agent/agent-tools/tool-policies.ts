@@ -1,4 +1,4 @@
-import { getConnectionProtocol } from "@superglue/shared";
+import { getConnectionProtocol } from "@garzaglue/shared";
 import { ToolExecutionPolicies, ToolPolicy } from "../agent-types";
 import { ExecutionMode } from "../agent-types";
 import { resolveSensitiveCredentials } from "../agent-helpers";

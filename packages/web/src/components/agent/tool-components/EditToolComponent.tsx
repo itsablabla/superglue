@@ -5,14 +5,14 @@ import { Button } from "@/src/components/ui/button";
 import { ErrorMessage } from "@/src/components/ui/error-message";
 import { enrichDiffsWithTargets, applyDiffsToConfig } from "@/src/lib/config-diff-utils";
 import { findDraftInMessages } from "@/src/lib/agent/agent-context";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import {
   createToolInteractionEntry,
   ToolMutation,
 } from "@/src/lib/agent/agent-tools/tool-call-state";
 import type { EditToolSaveResult } from "@/src/lib/agent/agent-types";
 import { deleteAllDrafts } from "@/src/lib/storage";
-import { Tool, ToolCall, ToolDiff } from "@superglue/shared";
+import { Tool, ToolCall, ToolDiff } from "@garzaglue/shared";
 import { CheckCircle, Pencil, Wrench } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { DiffApprovalComponent } from "./DiffApprovalComponent";
@@ -53,7 +53,7 @@ export function EditToolComponent({
 }: EditToolComponentProps) {
   const toolConfigCtx = useToolConfigOptional();
   const { messages } = useAgentContext();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const upsertTool = useUpsertTool();
 
   const playgroundDraftConfig = useMemo<Tool | undefined>(() => {

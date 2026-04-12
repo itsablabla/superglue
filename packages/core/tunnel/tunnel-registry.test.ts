@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { InMemoryTunnelRegistry } from "./tunnel-registry.js";
-import { TunnelConnection } from "@superglue/shared";
+import { TunnelConnection } from "@garzaglue/shared";
 import { WebSocket } from "ws";
 
 // Mock WebSocket for testing

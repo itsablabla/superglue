@@ -1,31 +1,31 @@
-# superglue-client
+# garza-glue-client
 
-A client library for accessing superglue AI API
+A client library for accessing garzaglue AI API
 
 ## Usage
 
 First, create a client:
 
 ```python
-from superglue_client import Client
+from garzaglue_client import Client
 
 client = Client(base_url="https://api.example.com")
 ```
 
-If the endpoints you're going to hit require authentication, use `SuperglueClient` instead:
+If the endpoints you're going to hit require authentication, use `GarzaGlueClient` instead:
 
 ```python
-from superglue_client import SuperglueClient
+from garzaglue_client import GarzaGlueClient
 
-client = SuperglueClient(base_url="https://api.example.com", token="SuperSecretToken")
+client = GarzaGlueClient(base_url="https://api.example.com", token="SuperSecretToken")
 ```
 
 Now call your endpoint and use your models:
 
 ```python
-from superglue_client.models import MyDataModel
-from superglue_client.api.my_tag import get_my_data_model
-from superglue_client.types import Response
+from garzaglue_client.models import MyDataModel
+from garzaglue_client.api.my_tag import get_my_data_model
+from garzaglue_client.types import Response
 
 with client as client:
     my_data: MyDataModel = get_my_data_model.sync(client=client)
@@ -36,9 +36,9 @@ with client as client:
 Or do the same thing with an async version:
 
 ```python
-from superglue_client.models import MyDataModel
-from superglue_client.api.my_tag import get_my_data_model
-from superglue_client.types import Response
+from garzaglue_client.models import MyDataModel
+from garzaglue_client.api.my_tag import get_my_data_model
+from garzaglue_client.types import Response
 
 async with client as client:
     my_data: MyDataModel = await get_my_data_model.asyncio(client=client)
@@ -48,7 +48,7 @@ async with client as client:
 By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
 
 ```python
-client = SuperglueClient(
+client = GarzaGlueClient(
     base_url="https://internal_api.example.com",
     token="SuperSecretToken",
     verify_ssl="/path/to/certificate_bundle.pem",
@@ -58,7 +58,7 @@ client = SuperglueClient(
 You can also disable certificate validation altogether, but beware that **this is a security risk**.
 
 ```python
-client = SuperglueClient(
+client = GarzaGlueClient(
     base_url="https://internal_api.example.com",
     token="SuperSecretToken",
     verify_ssl=False
@@ -75,14 +75,14 @@ Things to know:
 
 1. All path/query params, and bodies become method arguments.
 1. If your endpoint had any tags on it, the first tag will be used as a module name for the function (my_tag above)
-1. Any endpoint which did not have a tag will be in `superglue_client.api.default`
+1. Any endpoint which did not have a tag will be in `garzaglue_client.api.default`
 
 ## Advanced customizations
 
 There are more settings on the generated `Client` class which let you control more runtime behavior, check out the docstring on that class for more info. You can also customize the underlying `httpx.Client` or `httpx.AsyncClient` (depending on your use-case):
 
 ```python
-from superglue_client import Client
+from garzaglue_client import Client
 
 def log_request(request):
     print(f"Request event hook: {request.method} {request.url} - Waiting for response")
@@ -103,7 +103,7 @@ You can even set the httpx client directly, but beware that this will override a
 
 ```python
 import httpx
-from superglue_client import Client
+from garzaglue_client import Client
 
 client = Client(
     base_url="https://api.example.com",

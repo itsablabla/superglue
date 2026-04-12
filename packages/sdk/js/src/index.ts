@@ -1,5 +1,5 @@
 /**
- * Superglue SDK - generated from OpenAPI spec
+ * GarzaGlue SDK - generated from OpenAPI spec
  */
 
 export { configure } from "./fetcher";

@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";
 
 export class JSONStrategy implements FileParsingStrategy {

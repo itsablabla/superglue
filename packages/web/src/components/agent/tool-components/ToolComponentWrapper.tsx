@@ -4,7 +4,7 @@ import { Badge } from "@/src/components/ui/badge";
 import { ErrorMessage } from "@/src/components/ui/error-message";
 import { cn } from "@/src/lib/general-utils";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { AlertCircle, ChevronDown, ChevronRight, Loader2 } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 

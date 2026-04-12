@@ -1,12 +1,12 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
-import type { ApiKey } from "@/src/lib/ee-superglue-client";
+import type { ApiKey } from "@/src/lib/ee-garza-glue-client";
 
 export function useApiKeys() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
 
   return useQuery<ApiKey[]>({
     queryKey: queryKeys.apiKeys.list(orgId),
@@ -20,7 +20,7 @@ export function useApiKeys() {
 
 export function useCreateApiKey() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (options?: {
@@ -39,7 +39,7 @@ export function useCreateApiKey() {
 
 export function useDeleteApiKey() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {

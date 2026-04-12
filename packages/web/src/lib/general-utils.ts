@@ -4,7 +4,7 @@ import {
   sampleResultObject,
   safeStringify,
   System,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { clsx, type ClassValue } from "clsx";
 import prettierPluginBabel from "prettier/plugins/babel";
 import prettierPluginEstree from "prettier/plugins/estree";

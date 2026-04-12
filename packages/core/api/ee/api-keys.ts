@@ -3,7 +3,7 @@ import { addTraceHeader, sendError } from "../response-helpers.js";
 import type { AuthenticatedFastifyRequest, RouteHandler } from "../types.js";
 import { logMessage } from "../../utils/logs.js";
 import type { ApiKeyRecord } from "../../datastore/types.js";
-import { hasRole } from "@superglue/shared";
+import { hasRole } from "@garzaglue/shared";
 
 // Mask API key to show only last 4 characters (security best practice)
 function maskApiKey(key: string): string {

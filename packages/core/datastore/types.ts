@@ -11,7 +11,7 @@ import type {
   Tool,
   ToolSchedule,
   DocumentationFiles,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 
 export type PrometheusRunStatusLabel = "success" | "failed" | "aborted";
 export type PrometheusRunSourceLabel =

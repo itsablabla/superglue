@@ -28,7 +28,7 @@ import {
 import { Switch } from "@/src/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
 import { buildCategorizedSources } from "@/src/lib/templating-utils";
-import { ToolStep, RequestStepConfig, isTransformConfig } from "@superglue/shared";
+import { ToolStep, RequestStepConfig, isTransformConfig } from "@garzaglue/shared";
 import {
   Bug,
   Check,

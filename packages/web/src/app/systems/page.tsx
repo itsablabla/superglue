@@ -24,8 +24,8 @@ import { createOAuthErrorHandler } from "@/src/lib/oauth-utils";
 import { SystemActionsMenu } from "@/src/components/systems/SystemActionsMenu";
 import { SystemTemplatePicker } from "@/src/components/systems/SystemTemplatePicker";
 import { useSystemPickerModal } from "@/src/components/systems/SystemPickerModalContext";
-import type { System } from "@superglue/shared";
-import { getSystemAuthStatus } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
+import { getSystemAuthStatus } from "@garzaglue/shared";
 import {
   ArrowDown,
   ArrowUp,

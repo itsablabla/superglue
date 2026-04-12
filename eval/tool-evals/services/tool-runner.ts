@@ -1,9 +1,9 @@
-import { System } from "@superglue/shared";
-import { ServiceMetadata } from "@superglue/shared";
+import { System } from "@garzaglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { DataStore } from "../../../packages/core/datastore/types.js";
 import { TestSuiteSettings, ToolAttempt, ToolConfig, ValidationLLMConfig } from "../types.js";
 import { PromiseQueue } from "../utils/promise-queue.js";
-import { SuperglueToolAttemptService } from "./tool-attempt.js";
+import { GarzaGlueToolAttemptService } from "./tool-attempt.js";
 
 export class ToolRunnerService {
     constructor(
@@ -14,7 +14,7 @@ export class ToolRunnerService {
     }
 
     public async runTools(tools: ToolConfig[], systems: System[], settings: TestSuiteSettings): Promise<ToolAttempt[]> {
-        const toolAttemptService = new SuperglueToolAttemptService(this.metadata, this.datastore, this.validationLlmConfig, settings.selfHealingRetries);
+        const toolAttemptService = new GarzaGlueToolAttemptService(this.metadata, this.datastore, this.validationLlmConfig, settings.selfHealingRetries);
         const queue = settings.maxConcurrentWorkers ? new PromiseQueue(settings.maxConcurrentWorkers) : null;
         const timeoutMs = settings.toolAttemptTimeoutMs ?? 300000;
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolDiff } from "@superglue/shared";
+import { ToolDiff } from "@garzaglue/shared";
 import {
   ChevronDown,
   ChevronUp,

@@ -1,4 +1,4 @@
-import { RequestSource, Run, RunStatus } from "@superglue/shared";
+import { RequestSource, Run, RunStatus } from "@garzaglue/shared";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { buildListRunsRequest, listAuthorizedRunsPage, mapRunToOpenAPI } from "./runs.js";
 import type { AuthenticatedFastifyRequest } from "./types.js";

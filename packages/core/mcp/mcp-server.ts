@@ -2,7 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
-import { RequestSource, SuperglueClient, Tool } from "@superglue/shared";
+import { RequestSource, GarzaGlueClient, Tool } from "@garzaglue/shared";
 import { randomUUID } from "crypto";
 import { Request, Response } from "express";
 import type { IncomingMessage, ServerResponse } from "http";
@@ -130,7 +130,7 @@ function sanitizeToolName(toolId: string, registeredNames: Set<string>): string 
 export const createMcpServer = async (apiKey: string) => {
   const mcpServer = new McpServer(
     {
-      name: "superglue",
+      name: "garzaglue",
       version: "0.1.0",
     },
     {
@@ -144,7 +144,7 @@ export const createMcpServer = async (apiKey: string) => {
   const apiPort = process.env.API_PORT || "3002";
   const apiEndpoint = process.env.API_ENDPOINT || `http://localhost:${apiPort}`;
 
-  const client = new SuperglueClient({
+  const client = new GarzaGlueClient({
     apiKey,
     apiEndpoint,
   });
@@ -176,7 +176,7 @@ export const createMcpServer = async (apiKey: string) => {
   // Track registered tool names to handle collisions
   const registeredNames = new Set<string>(["authenticate"]);
 
-  // Register each superglue tool as a native MCP tool
+  // Register each Garza Glue tool as a native MCP tool
   for (const tool of allTools) {
     const toolName = sanitizeToolName(tool.id, registeredNames);
     const description = tool.instruction || `Execute the ${tool.id} tool`;

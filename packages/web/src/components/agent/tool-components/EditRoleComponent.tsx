@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolCall } from "@superglue/shared";
+import { ToolCall } from "@garzaglue/shared";
 import { ToolCallWrapper } from "./ToolComponentWrapper";
 import { Badge } from "@/src/components/ui/badge";
 import { Check, X } from "lucide-react";

@@ -1,5 +1,5 @@
-import { System } from '@superglue/shared';
-import { waitForSystemProcessing } from '@superglue/shared/utils';
+import { System } from '@garzaglue/shared';
+import { waitForSystemProcessing } from '@garzaglue/shared/utils';
 import fs from 'fs';
 import { FileStore } from '@core/datastore/filestore.js';
 import { DataStore } from '@core/datastore/types.js';

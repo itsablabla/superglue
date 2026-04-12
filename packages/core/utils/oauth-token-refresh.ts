@@ -1,9 +1,9 @@
-import type { ServiceMetadata, System } from "@superglue/shared";
+import type { ServiceMetadata, System } from "@garzaglue/shared";
 import {
   getOAuthTokenUrl,
   getOAuthTokenExchangeConfig,
   resolveOAuthCertAndKey,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import axios from "axios";
 import https from "https";
 import { logMessage } from "./logs.js";

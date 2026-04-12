@@ -1,4 +1,4 @@
-import type { ServiceMetadata } from "@superglue/shared";
+import type { ServiceMetadata } from "@garzaglue/shared";
 import { generateText } from 'ai';
 import { logMessage } from "../../../packages/core/utils/logs.js";
 import type { SystemConfig, ToolConfig } from "../../tool-evals/types.js";

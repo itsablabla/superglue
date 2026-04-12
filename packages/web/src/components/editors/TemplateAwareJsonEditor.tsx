@@ -13,7 +13,7 @@ import { TemplateEditPopover } from "../tools/templates/TemplateEditPopover";
 import { templateStringToTiptap, tiptapToTemplateString } from "@/src/lib/templating-utils";
 import { CopyButton } from "../tools/shared/CopyButton";
 import { evaluateTemplate, parseTemplateString } from "@/src/lib/templating-utils";
-import { maskCredentials } from "@superglue/shared";
+import { maskCredentials } from "@garzaglue/shared";
 import { useTemplateAwareEditor } from "../tools/hooks/use-template-aware-editor";
 import { useResizable } from "@/src/hooks/use-resizable";
 

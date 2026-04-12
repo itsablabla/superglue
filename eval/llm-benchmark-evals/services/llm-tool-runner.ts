@@ -1,4 +1,4 @@
-import type { ServiceMetadata } from "@superglue/shared";
+import type { ServiceMetadata } from "@garzaglue/shared";
 import { logMessage } from "../../../packages/core/utils/logs.js";
 import { ToolValidationService } from "../../tool-evals/services/tool-validation.js";
 import { AttemptStatus, type SystemConfig, type ToolAttempt, type ToolConfig, ToolFailureReason } from "../../tool-evals/types.js";

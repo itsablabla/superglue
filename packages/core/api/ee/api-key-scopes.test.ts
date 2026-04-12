@@ -3,8 +3,8 @@
  */
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { SystemAccessLevel } from "@superglue/shared";
-import type { Role } from "@superglue/shared";
+import { SystemAccessLevel } from "@garzaglue/shared";
+import type { Role } from "@garzaglue/shared";
 import { checkToolExecutionPermissionAsync, filterToolsByPermissionAsync } from "./scope-hooks.js";
 
 import "./api-key-scopes.js";

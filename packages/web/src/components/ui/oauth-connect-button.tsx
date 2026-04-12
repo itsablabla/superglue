@@ -3,7 +3,7 @@
 import { cn, resolveSystemIcon } from "@/src/lib/general-utils";
 import { SystemIcon } from "./system-icon";
 import { Check, Loader2 } from "lucide-react";
-import { findTemplateForSystem, systemOptions } from "@superglue/shared";
+import { findTemplateForSystem, systemOptions } from "@garzaglue/shared";
 
 interface OAuthConnectButtonProps {
   system: {

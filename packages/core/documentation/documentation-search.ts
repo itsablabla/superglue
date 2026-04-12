@@ -5,7 +5,7 @@
  * It uses keyword matching and scoring algorithms to identify the most relevant content.
  */
 
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 import { server_defaults } from "../default.js";
 import { LanguageModel } from "../llm/llm-base-model.js";
 import { sanitizeUnpairedSurrogates } from "../utils/string.js";

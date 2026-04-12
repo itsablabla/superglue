@@ -1,4 +1,4 @@
-import type { Role } from "@superglue/shared";
+import type { Role } from "@garzaglue/shared";
 import type { DataStore } from "../datastore/types.js";
 import { isEEDataStore } from "../datastore/ee/types.js";
 

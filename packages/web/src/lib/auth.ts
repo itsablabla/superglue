@@ -3,10 +3,10 @@ import { verifyPassword as verifyScryptPassword } from "better-auth/crypto";
 import { organization, jwt } from "better-auth/plugins";
 import bcrypt from "bcryptjs";
 import pg from "pg";
-import { sendEmail } from "@superglue/core/utils/email";
-import { EESuperglueClient } from "./ee-superglue-client";
+import { sendEmail } from "@garzaglue/core/utils/email";
+import { EEGarzaGlueClient } from "./ee-garza-glue-client";
 
-export interface SuperglueJWTClaims {
+export interface GarzaGlueJWTClaims {
   sub: string;
   email: string;
   orgId: string;
@@ -60,7 +60,7 @@ export const auth = betterAuth({
     sendResetPassword: async ({ user, url }) => {
       await sendEmail({
         to: user.email,
-        subject: "Reset your superglue password",
+        subject: "Reset your garzaglue password",
         html: `<p>Click the link below to reset your password:</p><p><a href="${url}">${url}</a></p><p>If you didn't request this, you can safely ignore this email.</p>`,
       });
     },
@@ -103,7 +103,7 @@ export const auth = betterAuth({
           if (!apiEndpoint) return;
 
           try {
-            const client = new EESuperglueClient({
+            const client = new EEGarzaGlueClient({
               apiKey: process.env.USER_ADMIN_SECRET,
               apiEndpoint,
             });
@@ -146,7 +146,7 @@ export const auth = betterAuth({
           if (!apiEndpoint) return;
 
           try {
-            const client = new EESuperglueClient({
+            const client = new EEGarzaGlueClient({
               apiKey: process.env.USER_ADMIN_SECRET,
               apiEndpoint,
             });

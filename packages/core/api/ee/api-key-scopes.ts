@@ -10,8 +10,8 @@
  * If this module is not loaded, the default hooks allow everything.
  */
 
-import { hasRole } from "@superglue/shared";
-import type { Role } from "@superglue/shared";
+import { hasRole } from "@garzaglue/shared";
+import type { Role } from "@garzaglue/shared";
 import type { EEDataStore } from "../../datastore/ee/types.js";
 import { isEEDataStore } from "../../datastore/ee/types.js";
 import { isToolAllowed, isSystemVisible } from "../../auth/access-rule-evaluator.js";

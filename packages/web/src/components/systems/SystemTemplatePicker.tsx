@@ -1,6 +1,6 @@
 "use client";
 
-import { systems, SystemConfig } from "@superglue/shared";
+import { systems, SystemConfig } from "@garzaglue/shared";
 import {
   cn,
   getSimpleIcon,

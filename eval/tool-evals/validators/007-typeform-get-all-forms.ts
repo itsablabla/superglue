@@ -37,7 +37,7 @@ const EXPECTED_DATA = {
             },
             {
               "question": "What is your email address?",
-              "answer": "evals@superglue.ai"
+              "answer": "evals@garzaglue.com"
             },
             {
               "question": "Which position are you applying for?",

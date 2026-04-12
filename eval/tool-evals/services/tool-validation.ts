@@ -1,5 +1,5 @@
 import { ToolConfig, ValidationResult, ValidationLLMConfig, AttemptStatus } from "../types.js";
-import { ToolResult } from "@superglue/shared";
+import { ToolResult } from "@garzaglue/shared";
 import { pathToFileURL } from "node:url";
 import { join } from "node:path";
 import { z } from "zod";

@@ -1,6 +1,6 @@
 type Listener = () => void;
 
-// Token registry holding the token for the superglue backend (core).
+// Token registry holding the token for the garzaglue backend (core).
 // This avoids visible UI re-renders when updating and propagating the token to the child components.
 class TokenRegistry {
   private _token: string | null = null;

@@ -1,5 +1,5 @@
-import { Message } from "@superglue/shared";
-import { initializeAIModel } from "@superglue/shared/utils/ai-model-init";
+import { Message } from "@garzaglue/shared";
+import { initializeAIModel } from "@garzaglue/shared/utils/ai-model-init";
 import { LanguageModel, stepCountIs, streamText } from "ai";
 import { SSESubscriptionClient } from "../sse-subscriptions";
 import {
@@ -23,7 +23,7 @@ import {
 } from "./agent-request";
 import { TOOL_REGISTRY } from "./registries/tool-registry";
 import { getEffectiveMode, getPendingOutput } from "./agent-tools/tool-policies";
-import { EESuperglueClient } from "../ee-superglue-client";
+import { EEGarzaGlueClient } from "../ee-garza-glue-client";
 import { getErrorMessage } from "./agent-helpers";
 import { SKILL_NAMES, type SkillName } from "./skills/index";
 import { getLangfuseFunctionId } from "./observability/langfuse";
@@ -77,14 +77,14 @@ export class AgentClient {
   private config: AgentClientConfig;
   private model: LanguageModel;
   private subscriptionClient: SSESubscriptionClient;
-  private superglueClient: EESuperglueClient;
+  private garzaGlueClient: EEGarzaGlueClient;
 
   constructor(config: AgentClientConfig) {
     this.config = config;
 
     this.model = initializeAIModel();
 
-    this.superglueClient = new EESuperglueClient({
+    this.garzaGlueClient = new EEGarzaGlueClient({
       apiKey: config.token,
       apiEndpoint: config.apiEndpoint,
     });
@@ -281,7 +281,7 @@ export class AgentClient {
 
     const executionContext: ToolExecutionContext = {
       agentId: validated.agentId,
-      superglueClient: this.superglueClient,
+      garzaGlueClient: this.garzaGlueClient,
       filePayloads: unwrappedFilePayloads,
       messages: [],
       subscriptionClient: this.subscriptionClient,

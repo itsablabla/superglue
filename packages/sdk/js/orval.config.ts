@@ -1,7 +1,7 @@
 import { defineConfig } from "orval";
 
 export default defineConfig({
-  superglue: {
+  garzaglue: {
     input: "../../../docs/openapi.yaml",
     output: {
       mode: "single",

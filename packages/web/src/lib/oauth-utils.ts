@@ -1,5 +1,5 @@
-import type { System } from "@superglue/shared";
-import { resolveOAuthCertAndKey, SuperglueClient, systems } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
+import { resolveOAuthCertAndKey, GarzaGlueClient, systems } from "@garzaglue/shared";
 
 type OAuthFields = {
   client_id: string;
@@ -436,7 +436,7 @@ export const triggerOAuthFlow = (
 
   if (!usingTemplate && oauthFields.client_secret && oauthFields.client_id && apiKey && endpoint) {
     clientCredentialsUid = crypto.randomUUID();
-    const client = new SuperglueClient({ apiKey, apiEndpoint: apiEndpoint || endpoint });
+    const client = new GarzaGlueClient({ apiKey, apiEndpoint: apiEndpoint || endpoint });
     cachePromise = client.cacheOauthClientCredentials({
       clientCredentialsUid,
       clientId: oauthFields.client_id,

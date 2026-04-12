@@ -188,7 +188,7 @@ export function UpgradeModalContent() {
         return;
       }
 
-      const response = await fetch("https://billing.superglue.cloud/v1/billing/checkout", {
+      const response = await fetch("https://billing.garzaglue.com/v1/billing/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -202,7 +202,7 @@ export function UpgradeModalContent() {
 
       if (!response.ok) {
         console.warn("Billing API unavailable, redirecting to demo booking");
-        window.location.href = "https://cal.com/superglue/superglue-demo";
+        window.location.href = "https://cal.com/garzaglue/garzaglue-demo";
         return;
       }
 
@@ -210,14 +210,14 @@ export function UpgradeModalContent() {
       window.location.href = url;
     } catch (error) {
       console.error("Upgrade failed:", error);
-      window.open("https://cal.com/superglue/superglue-demo", "_blank");
+      window.open("https://cal.com/garzaglue/garzaglue-demo", "_blank");
     } finally {
       setIsUpgrading(false);
     }
   };
 
   const handleBookDemo = () => {
-    window.open("https://cal.com/superglue/superglue-demo", "_blank");
+    window.open("https://cal.com/garzaglue/garzaglue-demo", "_blank");
     handleClose();
   };
 
@@ -244,13 +244,13 @@ export function UpgradeModalContent() {
             </div>
             <h2 className="text-lg font-semibold text-foreground tracking-tight">
               {modalReason === "trial_expired"
-                ? "Upgrade to continue using superglue"
+                ? "Upgrade to continue using garzaglue"
                 : "Upgrade to Pro"}
             </h2>
           </div>
           <p className="text-sm text-muted-foreground ml-12">
             {modalReason === "trial_expired"
-              ? "You've been using superglue for over 30 days. Upgrade to unlock all features and continue building."
+              ? "You've been using garzaglue for over 30 days. Upgrade to unlock all features and continue building."
               : "Unlock enterprise features for your team"}
           </p>
         </div>
@@ -308,7 +308,7 @@ export function UpgradeModalContent() {
           <p className="text-[11px] text-muted-foreground/50 text-center mt-3">
             Learn more in our{" "}
             <a
-              href="https://docs.superglue.cloud"
+              href="https://docs.garzaglue.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground/60 hover:text-muted-foreground/80 hover:underline transition-colors"

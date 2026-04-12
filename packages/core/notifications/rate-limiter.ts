@@ -1,4 +1,4 @@
-import type { NotificationSettings } from "@superglue/shared";
+import type { NotificationSettings } from "@garzaglue/shared";
 import type { DataStore } from "../datastore/types.js";
 import { logMessage } from "../utils/logs.js";
 

@@ -1,4 +1,4 @@
-import type { RoleInput } from "@superglue/shared";
+import type { RoleInput } from "@garzaglue/shared";
 import type { EEDataStore } from "../datastore/ee/types.js";
 import { logMessage } from "../utils/logs.js";
 

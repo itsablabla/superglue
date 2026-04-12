@@ -1,8 +1,8 @@
 import { useUpsertTool } from "@/src/queries/tools";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useToast } from "@/src/hooks/use-toast";
 import { deleteAllDrafts } from "@/src/lib/storage";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { useEffect, useRef, useState } from "react";
 import { useExecution, useToolConfig } from "../context";
 
@@ -18,7 +18,7 @@ export function useToolData(options: UseToolDataOptions) {
   const { id, initialTool, initialInstruction, embedded, onSave } = options;
 
   const upsertTool = useUpsertTool();
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const { toast } = useToast();
   const {
     tool,

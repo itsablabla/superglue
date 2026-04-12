@@ -1,6 +1,6 @@
 "use client";
 
-import { TunnelConnection, TunnelTarget } from "@superglue/shared";
+import { TunnelConnection, TunnelTarget } from "@garzaglue/shared";
 import { cn } from "@/src/lib/general-utils";
 import { Wifi, WifiOff, FileText } from "lucide-react";
 import { getProtocolIcon, getProtocolLabel } from "@/src/lib/protocol-utils";

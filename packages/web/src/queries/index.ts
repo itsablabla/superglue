@@ -1,6 +1,6 @@
 export { queryClient } from "./query-client";
 export { queryKeys } from "./query-keys";
-export { useSuperglueClient, useEESuperglueClient } from "./use-client";
+export { useGarzaGlueClient, useEEGarzaGlueClient } from "./use-client";
 export {
   useSchedules,
   useInvalidateSchedules,

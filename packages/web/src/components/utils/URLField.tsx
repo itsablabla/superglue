@@ -3,7 +3,7 @@
 import { Badge } from "@/src/components/ui/badge";
 import { Input } from "@/src/components/ui/input";
 import { cn, getSimpleIcon } from "@/src/lib/general-utils";
-import { systems as systemTemplates } from "@superglue/shared";
+import { systems as systemTemplates } from "@garzaglue/shared";
 import { Link } from "lucide-react";
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 

@@ -2,7 +2,7 @@
 
 import { useUpsertTool } from "@/src/queries/tools";
 import { FolderPicker } from "@/src/components/tools/folders/FolderPicker";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { useToast } from "@/src/hooks/use-toast";
 import { useState } from "react";
 

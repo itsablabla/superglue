@@ -6,7 +6,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/pop
 import { Textarea } from "@/src/components/ui/textarea";
 import { cn } from "@/src/lib/general-utils";
 import { formatBytes } from "@/src/lib/file-utils";
-import { ALLOWED_FILE_EXTENSIONS } from "@superglue/shared";
+import { ALLOWED_FILE_EXTENSIONS } from "@garzaglue/shared";
 import { AlertTriangle, ChevronUp, Paperclip, Send, Square } from "lucide-react";
 import React, { useCallback, useEffect, useRef } from "react";
 import { useAgentContext } from "./AgentContextProvider";

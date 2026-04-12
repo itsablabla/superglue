@@ -63,7 +63,7 @@ const bottomNavItems: NavItem[] = [{ icon: Bell, label: "Notifications", href: "
 const docsNavItem: NavItem = {
   icon: Book,
   label: "Docs",
-  href: "https://docs.superglue.cloud",
+  href: "https://docs.garzaglue.com",
   target: "_blank",
 };
 

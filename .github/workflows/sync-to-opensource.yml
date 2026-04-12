@@ -130,7 +130,7 @@ jobs:
           rm -f packages/web/src/hooks/use-discovery-cache.ts 2>/dev/null || true
           
           # Hosted-only lib files
-          rm -f packages/web/src/lib/ee-superglue-client.ts 2>/dev/null || true
+          rm -f packages/web/src/lib/ee-garza-glue-client.ts 2>/dev/null || true
           rm -f packages/web/src/lib/agent/discovery-prompts.ts 2>/dev/null || true
           
           # Auth components (hosted-only)

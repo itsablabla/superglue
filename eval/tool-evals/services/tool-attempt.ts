@@ -1,6 +1,6 @@
-import { ServiceMetadata } from "@superglue/shared";
-import { System, SelfHealingMode, Tool, ToolResult } from "@superglue/shared";
-import { generateUniqueId } from "@superglue/shared/utils";
+import { ServiceMetadata } from "@garzaglue/shared";
+import { System, SelfHealingMode, Tool, ToolResult } from "@garzaglue/shared";
+import { generateUniqueId } from "@garzaglue/shared/utils";
 import { ToolBuilder } from "../../../packages/core/tools/tool-builder.js";
 import { DataStore } from "../../../packages/core/datastore/types.js";
 import { ToolExecutor } from "../../../packages/core/tools/tool-executor.js";
@@ -8,7 +8,7 @@ import { SystemManager } from "../../../packages/core/systems/system-manager.js"
 import { AttemptStatus, ToolAttempt, ToolConfig, ToolFailureReason, ValidationLLMConfig } from "../types.js";
 import { ToolValidationService } from "./tool-validation.js";
 
-export class SuperglueToolAttemptService {
+export class GarzaGlueToolAttemptService {
     private validationService: ToolValidationService;
     private selfHealingRetries: number;
 

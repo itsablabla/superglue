@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 
 export enum DetectionPriority {
   /** GZIP - Must be tested first to decompress before other formats */

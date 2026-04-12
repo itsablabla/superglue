@@ -13,7 +13,7 @@ export async function authenticateNextJSApiRequest(
   if (!token) return null;
 
   // Check for cookie-based auth first (user entered their own credentials)
-  const cookieApiUrl = request.cookies.get("superglue_api_url")?.value;
+  const cookieApiUrl = request.cookies.get("garzaglue_api_url")?.value;
   if (cookieApiUrl) {
     // Cookie-based auth: use URL and token from user's cookies
     try {

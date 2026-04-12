@@ -1,4 +1,4 @@
-let baseUrl = "https://api.superglue.ai/v1";
+let baseUrl = "https://api.garzaglue.ai/v1";
 let apiKey = "";
 
 export const configure = (config: { baseUrl?: string; apiKey: string }) => {

@@ -1,8 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMemo, useCallback } from "react";
-import type { OrgMember, OrgInvitation, EndUserCredentialStatus, Role } from "@superglue/shared";
+import type { OrgMember, OrgInvitation, EndUserCredentialStatus, Role } from "@garzaglue/shared";
 import { queryKeys } from "./query-keys";
-import { useEESuperglueClient } from "./use-client";
+import { useEEGarzaGlueClient } from "./use-client";
 import { useOrg } from "@/src/app/org-context";
 
 export interface OrgUser {
@@ -33,7 +33,7 @@ function toOrgUser(m: OrgMember): OrgUser {
 
 export function useOrgUsers() {
   const { orgId } = useOrg();
-  const createClient = useEESuperglueClient();
+  const createClient = useEEGarzaGlueClient();
   const queryClient = useQueryClient();
 
   // Members query

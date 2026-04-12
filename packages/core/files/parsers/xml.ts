@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import sax from "sax";
 import { Readable } from "stream";
 import { DetectionPriority, FileParsingStrategy } from "../strategy.js";

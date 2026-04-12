@@ -1,6 +1,6 @@
 "use client";
 
-import { Tool, ToolCall, ToolDiff } from "@superglue/shared";
+import { Tool, ToolCall, ToolDiff } from "@garzaglue/shared";
 import {
   AuthenticateOAuthComponent,
   BackgroundToolIndicator,

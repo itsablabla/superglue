@@ -16,12 +16,12 @@ export class EmailNotifier extends BaseNotifier {
 
   async send(payload: NotificationPayload): Promise<NotifierResult> {
     try {
-      const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@superglue.cloud";
+      const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@garzaglue.com";
 
       await this.resend.emails.send({
         from: fromEmail,
         to: this.config.recipientEmail,
-        subject: `Superglue Notification: ${payload.status}`,
+        subject: `GarzaGlue Notification: ${payload.status}`,
         html: this.formatEmailHtml(payload),
       });
 
@@ -36,7 +36,7 @@ export class EmailNotifier extends BaseNotifier {
 
   async sendCustom(subject: string, body: string): Promise<NotifierResult> {
     try {
-      const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@superglue.cloud";
+      const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@garzaglue.com";
 
       await this.resend.emails.send({
         from: fromEmail,
@@ -62,8 +62,8 @@ export class EmailNotifier extends BaseNotifier {
       status: "success",
       requestSource: "API" as NotificationPayload["requestSource"],
       timestamp: new Date().toISOString(),
-      adminUrl: "https://app.superglue.cloud",
-      agentUrl: "https://app.superglue.cloud/agent",
+      adminUrl: "https://app.garzaglue.com",
+      agentUrl: "https://app.garzaglue.com/agent",
     });
   }
 

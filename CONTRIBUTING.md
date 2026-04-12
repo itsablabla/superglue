@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/be0e65d4-dcd8-4133-9841-b08799e087e7" width="350" alt="superglue_logo_white">
+  <img src="https://github.com/user-attachments/assets/be0e65d4-dcd8-4133-9841-b08799e087e7" width="350" alt="garzaglue_logo_white">
 </p>
 
-# Contributing to superglue
+# Contributing to garzaglue
 
-Thank you for your interest in superglue.
+Thank you for your interest in garzaglue.
 
-The best ways to contribute to superglue:
+The best ways to contribute to garzaglue:
 
 - Create and comment on [Issues](https://github.com/superglue-ai/superglue/issues)
 - Open a PR referencing an open issue
@@ -23,7 +23,7 @@ In case you have any questions, feel free to join our [discord](<(https://discor
 > - Tweet about it;
 > - Refer to this project in your project's readme;
 > - Create and comment on [Issues](https://github.com/superglue-ai/superglue/issues)
-> - Mention the project at local meetups and tell your friends/colleagues about superglue.
+> - Mention the project at local meetups and tell your friends/colleagues about garzaglue.
 
 ## Making contributions
 
@@ -45,7 +45,7 @@ Once we've discussed your changes and you've got your code ready, make sure that
 
 ### Architecture Overview
 
-For an overview of Superglue’s architecture and foundational concepts, see the [Core Concepts](https://docs.superglue.cloud/getting-started/core-concepts) page.
+For an overview of GarzaGlue’s architecture and foundational concepts, see the [Core Concepts](https://docs.garzaglue.com/getting-started/core-concepts) page.
 
 ## Repository Structure
 

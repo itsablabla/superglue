@@ -34,7 +34,7 @@ import {
 } from "@/src/components/ui/tooltip";
 import { useAgentModal } from "@/src/components/agent/AgentModalContext";
 import { getToolBuilderPrompts } from "@/src/lib/agent/agent-context";
-import { getToolSystemIds, Tool } from "@superglue/shared";
+import { getToolSystemIds, Tool } from "@garzaglue/shared";
 import {
   ArrowDown,
   ArrowUp,

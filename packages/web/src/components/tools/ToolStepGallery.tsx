@@ -5,7 +5,7 @@ import { SystemIcon } from "@/src/components/ui/system-icon";
 import { EnvironmentBadge } from "@/src/components/ui/environment-label";
 import { buildPreviousStepResults, cn } from "@/src/lib/general-utils";
 import { buildCategorizedSources } from "@/src/lib/templating-utils";
-import { isRequestConfig, isTransformConfig, RequestStepConfig, Tool } from "@superglue/shared";
+import { isRequestConfig, isTransformConfig, RequestStepConfig, Tool } from "@garzaglue/shared";
 import {
   Blocks,
   Code2,

@@ -12,7 +12,7 @@ import {
 import { Input } from "@/src/components/ui/input";
 import { Label } from "@/src/components/ui/label";
 import { isValidToolName, validateToolName } from "@/src/lib/client-utils";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { ChevronDown, Folder, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 

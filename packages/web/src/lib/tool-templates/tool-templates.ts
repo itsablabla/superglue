@@ -1,4 +1,4 @@
-import { Tool, normalizeTool } from "@superglue/shared";
+import { Tool, normalizeTool } from "@garzaglue/shared";
 import toolTemplates from "./tool-templates.json";
 
 export interface ToolTemplate extends Tool {

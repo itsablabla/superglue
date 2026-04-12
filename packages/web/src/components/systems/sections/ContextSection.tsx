@@ -14,8 +14,8 @@ import { FileContentViewer } from "@/src/components/ui/FileContentViewer";
 import { HelpTooltip } from "@/src/components/utils/HelpTooltip";
 import { cn } from "@/src/lib/general-utils";
 import { formatBytes } from "@/src/lib/file-utils";
-import { useSuperglueClient } from "@/src/queries/use-client";
-import { ALLOWED_FILE_EXTENSIONS } from "@superglue/shared";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
+import { ALLOWED_FILE_EXTENSIONS } from "@garzaglue/shared";
 import {
   Globe,
   Loader2,
@@ -199,7 +199,7 @@ function UsageInstructions({ value, onChange }: { value: string; onChange: (v: s
     <div className="space-y-2">
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium">Usage Instructions</span>
-        <HelpTooltip text="These instructions are emphasized when superglue builds or fixes tools for this system. Use them for rate limits, pagination rules, auth quirks, special endpoints, etc." />
+        <HelpTooltip text="These instructions are emphasized when garzaglue builds or fixes tools for this system. Use them for rate limits, pagination rules, auth quirks, special endpoints, etc." />
         {!isEditing && (
           <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
@@ -272,7 +272,7 @@ function UsageInstructions({ value, onChange }: { value: string; onChange: (v: s
 export function ContextSection({ showRefreshButton = true }: { showRefreshButton?: boolean }) {
   const { context, system, setSpecificInstructions, setDocFileCount } = useSystemConfig();
 
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const client = useMemo(() => createClient(), [createClient]);
 
   const {
@@ -371,7 +371,7 @@ export function ContextSection({ showRefreshButton = true }: { showRefreshButton
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">Knowledge Base</span>
-            <HelpTooltip text="Documentation files that superglue uses to understand this system. Files can be uploaded, or fetched from URLs (OpenAPI specs are auto-detected)." />
+            <HelpTooltip text="Documentation files that garzaglue uses to understand this system. Files can be uploaded, or fetched from URLs (OpenAPI specs are auto-detected)." />
           </div>
           {system.id && (
             <div className="flex items-center gap-2">

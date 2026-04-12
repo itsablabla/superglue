@@ -2,7 +2,7 @@
 
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
-import { safeStringify } from "@superglue/shared";
+import { safeStringify } from "@garzaglue/shared";
 import { cn, copyToClipboard } from "@/src/lib/general-utils";
 
 export { copyToClipboard };

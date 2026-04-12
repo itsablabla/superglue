@@ -5,8 +5,8 @@ import type {
   RequestSource,
   Run,
   SlackChannelConfig,
-} from "@superglue/shared";
-import { RequestSource as RS } from "@superglue/shared";
+} from "@garzaglue/shared";
+import { RequestSource as RS } from "@garzaglue/shared";
 import type { DataStore } from "../datastore/types.js";
 import { logMessage } from "../utils/logs.js";
 import { SlackNotifier } from "./notifiers/slack-notifier.js";

@@ -1,5 +1,5 @@
-import type { System } from "@superglue/shared";
-import { getOAuthTokenUrl } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
+import { getOAuthTokenUrl } from "@garzaglue/shared";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as logs from "./logs.js";
 import { isTokenExpired, refreshOAuthToken } from "./oauth-token-refresh.js";

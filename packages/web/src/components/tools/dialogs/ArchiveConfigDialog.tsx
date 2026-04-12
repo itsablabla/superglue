@@ -10,7 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/src/components/ui/alert-dialog";
-import { Tool } from "@superglue/shared";
+import { Tool } from "@garzaglue/shared";
 import { useMemo } from "react";
 
 interface ArchiveConfigDialogProps {

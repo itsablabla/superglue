@@ -1,16 +1,16 @@
 "use client";
 
 import { useSystems, useCreateSystem, useUpdateSystem } from "@/src/queries/systems";
-import { useSuperglueClient } from "@/src/queries/use-client";
+import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useToast } from "@/src/hooks/use-toast";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "@/src/queries/query-keys";
-import type { System } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
 import {
   systems as systemTemplates,
   findTemplateForSystem,
   getSystemAuthStatus,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import {
   createContext,
   ReactNode,
@@ -167,7 +167,7 @@ export function SystemConfigProvider({
         : JSON.stringify(initialSystem.credentials, null, 2)
       : "{}",
   );
-  const [useSuperglueOAuth, setUseSuperglueOAuth] = useState(false);
+  const [useGarzaGlueOAuth, setUseGarzaGlueOAuth] = useState(false);
   const [multiTenancyMode, setMultiTenancyMode] = useState<"disabled" | "enabled">(
     (initialSystem?.multiTenancyMode as "disabled" | "enabled") || "disabled",
   );
@@ -182,7 +182,7 @@ export function SystemConfigProvider({
 
   const [isOnboardingActive, setIsOnboardingActive] = useState(isOnboarding);
 
-  const createClient = useSuperglueClient();
+  const createClient = useGarzaGlueClient();
   const queryClient = useQueryClient();
   const docFileQueryKey = useMemo(
     () => ["system-doc-file-count", initialSystem?.id],
@@ -236,7 +236,7 @@ export function SystemConfigProvider({
           : JSON.stringify(updatedSystem.credentials || {}, null, 2),
       );
 
-      setUseSuperglueOAuth(false);
+      setUseGarzaGlueOAuth(false);
 
       initialRef.current = updatedSystem;
       setHasUnsavedChanges(false);
@@ -309,7 +309,7 @@ export function SystemConfigProvider({
       oauthFields,
       apiKeyCredentials,
       isOAuthConfigured,
-      useSuperglueOAuth,
+      useGarzaGlueOAuth,
       multiTenancyMode,
     }),
     [
@@ -318,7 +318,7 @@ export function SystemConfigProvider({
       oauthFields,
       apiKeyCredentials,
       isOAuthConfigured,
-      useSuperglueOAuth,
+      useGarzaGlueOAuth,
       multiTenancyMode,
     ],
   );
@@ -706,8 +706,8 @@ export function SystemConfigProvider({
         setApiKeyCredentials(creds);
         setHasUnsavedChanges(true);
       },
-      setUseSuperglueOAuth: (use) => {
-        setUseSuperglueOAuth(use);
+      setUseGarzaGlueOAuth: (use) => {
+        setUseGarzaGlueOAuth(use);
         setHasUnsavedChanges(true);
       },
       setMultiTenancyMode: (mode) => {

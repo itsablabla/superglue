@@ -10,11 +10,11 @@ import {
 import { Switch } from "@/src/components/ui/switch";
 import { Tabs, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
 import { HelpTooltip } from "@/src/components/utils/HelpTooltip";
-import { useMonacoTheme } from "@superglue/web/src/hooks/use-monaco-theme";
+import { useMonacoTheme } from "@garzaglue/web/src/hooks/use-monaco-theme";
 import { DEFAULT_CODE_TEMPLATE, formatValueForDisplay } from "@/src/lib/templating-utils";
 import Editor from "@monaco-editor/react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { isArrowFunction, maskCredentials } from "@superglue/shared";
+import { isArrowFunction, maskCredentials } from "@garzaglue/shared";
 import { AlertCircle, Loader2, Maximize2, Minimize2, Play } from "lucide-react";
 import { DownloadButton } from "../shared/download-button";
 import type * as Monaco from "monaco-editor";

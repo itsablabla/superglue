@@ -1,6 +1,6 @@
 import { useToast } from "@/src/hooks/use-toast";
 import { createOAuthErrorHandler, triggerOAuthFlow } from "@/src/lib/oauth-utils";
-import type { System } from "@superglue/shared";
+import type { System } from "@garzaglue/shared";
 import { useUpdateSystem } from "@/src/queries/systems";
 import { tokenRegistry } from "../lib/token-registry";
 import { useConfig } from "@/src/app/config-context";

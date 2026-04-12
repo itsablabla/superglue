@@ -15,11 +15,11 @@ import { buildOnboardingRouting, type OnboardingIntentId } from "@/src/lib/agent
 import { useOrgOptional } from "@/src/app/org-context";
 import { useAgentModal } from "@/src/components/agent/AgentModalContext";
 import { SystemIcon } from "@/src/components/ui/system-icon";
-import { systems } from "@superglue/shared";
+import { systems } from "@garzaglue/shared";
 import { ChevronLeft, ChevronRight, Plus, Search } from "lucide-react";
 
-const ONBOARDING_STORAGE_KEY_PREFIX = "superglue-onboarding-seen";
-const ONBOARDING_V1_SEEN_PREFIX = "superglue-onboarding-v1-seen";
+const ONBOARDING_STORAGE_KEY_PREFIX = "garzaglue-onboarding-seen";
+const ONBOARDING_V1_SEEN_PREFIX = "garzaglue-onboarding-v1-seen";
 
 type OnboardingSystemOption = {
   id: string;
@@ -58,12 +58,12 @@ const INTENT_OPTIONS = [
   },
   {
     id: "empower-agent-via-cli",
-    label: "Empower my agent with the superglue CLI",
+    label: "Empower my agent with the garzaglue CLI",
     subtitle: "Install, initialize, and run the right first commands",
   },
   {
     id: "check-out-the-tool",
-    label: "Check out superglue",
+    label: "Check out garzaglue",
     subtitle: "Run a concise live demo flow from system to tool execution",
   },
 ] as const;
@@ -188,7 +188,7 @@ function RoleStep({
         <p className="text-xs uppercase tracking-[0.2em] text-primary/80">Step 1</p>
         <h3 className="mt-2 text-2xl font-medium text-foreground/95">What is your job title?</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          Help us tailor superglue onboarding to your needs.
+          Help us tailor garzaglue onboarding to your needs.
         </p>
       </div>
       <div className="space-y-2">
@@ -297,7 +297,7 @@ function SystemsStep({
         <p className="text-xs uppercase tracking-[0.2em] text-primary/80">Step 2</p>
         <h3 className="mt-2 text-2xl font-medium text-foreground/95">What do you work with?</h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          Select one or more systems you want superglue to work with.
+          Select one or more systems you want garzaglue to work with.
         </p>
       </div>
       <div className="relative">
@@ -386,7 +386,7 @@ function IntentStep({
           What do you want to do first?
         </h3>
         <p className="mt-1 text-sm text-muted-foreground">
-          We'll let the superglue agent know what you want to see.
+          We'll let the garzaglue agent know what you want to see.
         </p>
       </div>
       <div className="space-y-2">
@@ -557,7 +557,7 @@ export function OnboardingModal() {
         onPointerDownOutside={(event) => event.preventDefault()}
       >
         <DialogHeader className="sr-only">
-          <DialogTitle>Welcome to superglue</DialogTitle>
+          <DialogTitle>Welcome to garzaglue</DialogTitle>
           <DialogDescription>Three quick steps to personalize your setup</DialogDescription>
         </DialogHeader>
         <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-5 sm:p-8">
@@ -569,12 +569,12 @@ export function OnboardingModal() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/30 bg-background/60">
                   <img
                     src="/favicon.png"
-                    alt="superglue"
+                    alt="garzaglue"
                     className="h-5 w-5 object-contain dark:invert"
                   />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-foreground/90">Welcome to superglue</p>
+                  <p className="text-sm font-medium text-foreground/90">Welcome to garzaglue</p>
                   <p className="text-xs text-muted-foreground">Personalize your experience</p>
                 </div>
               </div>

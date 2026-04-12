@@ -11,7 +11,7 @@ import {
   Tool,
   isRequestConfig,
   isTransformConfig,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import {
   createContext,
   ReactNode,
@@ -303,7 +303,7 @@ export function ToolConfigProvider({
         console.error("Failed to load payload from IndexedDB:", error);
         // Fallback to localStorage during migration
         try {
-          const STORAGE_KEY = `superglue-payload:${toolId}`;
+          const STORAGE_KEY = `garzaglue-payload:${toolId}`;
           const localPayload = localStorage.getItem(STORAGE_KEY);
           if (!cancelled && localPayload && localPayload !== initialPayload) {
             setManualPayloadText(localPayload);

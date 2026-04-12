@@ -1,5 +1,5 @@
-import { getDateMessage, getModelContextLength } from "@superglue/shared/utils";
-import { initializeAIModel } from "@superglue/shared/utils/ai-model-init";
+import { getDateMessage, getModelContextLength } from "@garzaglue/shared/utils";
+import { initializeAIModel } from "@garzaglue/shared/utils/ai-model-init";
 import { Tool, generateText, jsonSchema, tool } from "ai";
 import { server_defaults } from "../default.js";
 import { logMessage } from "../utils/logs.js";

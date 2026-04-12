@@ -13,7 +13,7 @@ import {
   Tool,
   isRequestConfig,
   isTransformConfig,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import {
   AlertCircle,
   CheckCircle,

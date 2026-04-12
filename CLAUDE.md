@@ -13,7 +13,7 @@ Ports: 3000 (GraphQL), 3001 (Web), 3002 (REST API)
 
 ## OSS vs EE
 
-This is the **Enterprise Edition**. OSS at `../superglue`.
+This is the **Enterprise Edition**. OSS at `../garzaglue` (upstream).
 
 EE-only code lives in `ee/` subdirs:
 - `packages/core/scheduler/` - cron scheduling

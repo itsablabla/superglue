@@ -11,7 +11,7 @@ import {
 } from "@/src/components/ui/select";
 import { Switch } from "@/src/components/ui/switch";
 import { generateUUID } from "@/src/lib/client-utils";
-import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@superglue/shared";
+import { FilterAction, FilterTarget, RemoveScope, ResponseFilter } from "@garzaglue/shared";
 import {
   AlertTriangle,
   CreditCard,

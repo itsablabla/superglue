@@ -7,7 +7,7 @@ import { useSystems } from "@/src/queries/systems";
 import { useApiKeys } from "@/src/queries/api-keys";
 import { useSchedules } from "@/src/queries/schedules";
 import { useRuns } from "@/src/queries/runs";
-import { RunStatus } from "@superglue/shared";
+import { RunStatus } from "@garzaglue/shared";
 import { AlertCircle, ArrowRight, Bell, Blocks, Clock, Hammer, Key, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";

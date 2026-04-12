@@ -1,4 +1,4 @@
-import { Tool, System, getToolSystemIds, isSensitiveCredentialKey } from "@superglue/shared";
+import { Tool, System, getToolSystemIds, isSensitiveCredentialKey } from "@garzaglue/shared";
 
 export const CURRENT_EXPORT_VERSION = "2";
 export const SUPPORTED_VERSIONS = ["1", "2"] as const;

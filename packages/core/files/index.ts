@@ -1,4 +1,4 @@
-import { SupportedFileType } from "@superglue/shared";
+import { SupportedFileType } from "@garzaglue/shared";
 import { CSVStrategy, parseCSV } from "./parsers/csv.js";
 import { DOCXStrategy, parseDOCX } from "./parsers/docx.js";
 import { ExcelStrategy, parseExcel } from "./parsers/excel.js";

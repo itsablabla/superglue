@@ -5,8 +5,8 @@ import {
   RequestSource,
   ServiceMetadata,
   isTransformConfig,
-} from "@superglue/shared";
-import { flattenAndNamespaceCredentials } from "@superglue/shared/utils";
+} from "@garzaglue/shared";
+import { flattenAndNamespaceCredentials } from "@garzaglue/shared/utils";
 import { executeTool, ToolExecutionContext } from "../tools/tool-execution-service.js";
 import { SystemManager } from "../systems/system-manager.js";
 import { logMessage } from "../utils/logs.js";

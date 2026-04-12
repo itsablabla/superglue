@@ -1,7 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { callAxios } from "./http.js";
 import { logMessage } from "./logs.js";
-import { ServiceMetadata } from "@superglue/shared";
+import { ServiceMetadata } from "@garzaglue/shared";
 
 interface WebhookPayload {
   runId: string;

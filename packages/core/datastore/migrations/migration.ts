@@ -6,7 +6,7 @@ import {
   RunStatus,
   System,
   Tool,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 
 export interface LegacyRunRow {
   id: string;
@@ -20,7 +20,7 @@ export interface LegacyRunRow {
 }
 
 // Re-export for backwards compatibility
-export { normalizeApiConfig } from "@superglue/shared";
+export { normalizeApiConfig } from "@garzaglue/shared";
 
 /**
  * Normalizes System from old urlHost/urlPath to new url field.
@@ -125,4 +125,4 @@ export function extractRun(data: any, row: LegacyRunRow): Run {
 }
 
 // Re-export for backwards compatibility
-export { normalizeTool } from "@superglue/shared";
+export { normalizeTool } from "@garzaglue/shared";

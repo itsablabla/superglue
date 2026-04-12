@@ -5,7 +5,7 @@ import { Textarea } from "@/src/components/ui/textarea";
 import { ThinkingIndicator } from "@/src/components/ui/thinking-indicator";
 import { SystemIcon } from "@/src/components/ui/system-icon";
 import { cn, handleCopyCode } from "@/src/lib/general-utils";
-import { Message, ToolCall } from "@superglue/shared";
+import { Message, ToolCall } from "@garzaglue/shared";
 import { AlertTriangle, ChevronDown, ChevronUp, Pencil, Plus, X } from "lucide-react";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Streamdown } from "streamdown";

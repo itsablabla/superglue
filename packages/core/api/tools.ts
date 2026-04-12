@@ -9,7 +9,7 @@ import {
   getToolSystemIds,
   getBaseRoleId,
   validateToolStructure,
-} from "@superglue/shared";
+} from "@garzaglue/shared";
 import { JsonStreamStringify } from "json-stream-stringify";
 import { parseJSON } from "../files/index.js";
 import {
