@@ -144,17 +144,11 @@ export function LeftSidebar() {
             <div className="p-4">
               <div className="flex items-center justify-between mb-3">
                 <Link href="/" onClick={() => setIsOpen(false)}>
-                  <img
-                    src="/logo.svg"
-                    alt="superglue Logo"
-                    className="h-8 w-auto cursor-pointer"
-                  />
+                  <img src="/logo.svg" alt="superglue Logo" className="h-8 w-auto cursor-pointer" />
                 </Link>
                 {themeToggle}
               </div>
-              <nav className="space-y-0.5">
-                {navContent}
-              </nav>
+              <nav className="space-y-0.5">{navContent}</nav>
             </div>
           </div>
         </div>
@@ -173,9 +167,7 @@ export function LeftSidebar() {
             </Link>
           </div>
         </div>
-        <nav className="flex-1 px-2 pt-2 overflow-y-auto min-h-0">
-          {navContent}
-        </nav>
+        <nav className="flex-1 px-2 pt-2 overflow-y-auto min-h-0">{navContent}</nav>
         <div className="pt-0 px-6 pb-6 mt-auto flex flex-col items-center w-full">
           {themeToggle}
         </div>
