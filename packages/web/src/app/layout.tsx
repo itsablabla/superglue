@@ -57,7 +57,7 @@ export default function RootLayout({
     serverSession: {
       userId: "oss-admin",
       email: "",
-      orgId: "",
+      orgId: "default",
       orgName: "Personal",
       orgStatus: "free",
     },
