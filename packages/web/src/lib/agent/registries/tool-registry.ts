@@ -503,14 +503,44 @@ const runEditTool = async (input: any, ctx: ToolExecutionContext) => {
       return diff;
     });
 
+    if (isPlayground) {
+      const systemIds = getToolSystemIds(fixedTool);
+      ctx.playgroundDraft = {
+        config: fixedTool,
+        systemIds,
+        instruction: fixedTool.instruction || "",
+      };
+    }
+
+    let persistence = "draft_only";
+    if (!isPlayground && fixedTool.id) {
+      try {
+        const toolToSave = {
+          ...fixedTool,
+          systemIds: draft.systemIds,
+        };
+        await ctx.garzaGlueClient.upsertWorkflow(fixedTool.id, toolToSave);
+        persistence = "saved";
+      } catch (saveError: any) {
+        return {
+          success: true,
+          draftId: workingDraftId,
+          toolId: fixedTool.id,
+          diffs,
+          persistence: "draft_only",
+          warning: `Patches applied but save failed: ${saveError.message}`,
+        };
+      }
+    }
+
     return {
       success: true,
       draftId: workingDraftId,
       toolId: fixedTool.id,
-      defaultSaveOnAccept: shouldDefaultSaveOnAccept(ctx),
-      allowDraftOnlyAccept: canKeepDraftOnlyOnAccept(ctx),
-      ...(isPlayground ? {} : { originalConfig: stripLegacyToolFields(draft.config as Tool) }),
+      userApproved: true,
+      persistence,
       diffs,
+      message: persistence === "saved" ? "Changes applied and saved automatically" : "Changes applied to draft",
     };
   } catch (error: any) {
     return {
@@ -2825,14 +2855,6 @@ export const TOOL_REGISTRY: Record<string, ToolRegistryEntry> = {
     name: "edit_tool",
     definition: editToolDefinition,
     execute: runEditTool,
-    confirmation: {
-      validActions: [
-        ConfirmationAction.CONFIRMED,
-        ConfirmationAction.DECLINED,
-        ConfirmationAction.PARTIAL,
-      ],
-      processConfirmation: processEditToolConfirmation,
-    },
   },
   save_tool: {
     name: "save_tool",
@@ -2843,28 +2865,16 @@ export const TOOL_REGISTRY: Record<string, ToolRegistryEntry> = {
     name: "create_system",
     definition: createSystemDefinition,
     execute: runCreateSystem,
-    confirmation: {
-      validActions: [ConfirmationAction.CONFIRMED, ConfirmationAction.DECLINED],
-      processConfirmation: processCreateSystemConfirmation,
-    },
   },
   edit_system: {
     name: "edit_system",
     definition: editSystemDefinition,
     execute: runEditSystem,
-    confirmation: {
-      validActions: [ConfirmationAction.CONFIRMED, ConfirmationAction.DECLINED],
-      processConfirmation: processEditSystemConfirmation,
-    },
   },
   call_system: {
     name: "call_system",
     definition: callSystemDefinition,
     execute: runCallSystem,
-    confirmation: {
-      validActions: [ConfirmationAction.CONFIRMED, ConfirmationAction.DECLINED],
-      processConfirmation: processCallSystemConfirmation,
-    },
   },
   search_documentation: {
     name: "search_documentation",
@@ -2875,14 +2885,6 @@ export const TOOL_REGISTRY: Record<string, ToolRegistryEntry> = {
     name: "authenticate_oauth",
     definition: authenticateOAuthDefinition,
     execute: runAuthenticateOAuth,
-    confirmation: {
-      validActions: [
-        ConfirmationAction.OAUTH_SUCCESS,
-        ConfirmationAction.OAUTH_FAILURE,
-        ConfirmationAction.DECLINED,
-      ],
-      processConfirmation: processAuthenticateOAuthConfirmation,
-    },
   },
   find_tool: {
     name: "find_tool",

@@ -363,9 +363,6 @@ async function* executeToolWithLogs(
     yield {
       type: "tool_call_complete",
       toolCall: { id: toolCallId, name: entry.name, input, output: toolResultAsString },
-      confirmation: entry.confirmation
-        ? { validActions: entry.confirmation.validActions }
-        : undefined,
     };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
