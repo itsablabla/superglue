@@ -49,6 +49,17 @@ export interface Message {
   }>;
 }
 
+export interface ConversationRecord {
+  id: string;
+  title: string;
+  summary?: string;
+  messages: Message[];
+  sessionId?: string | null;
+  lastSummarizedMessageCount?: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface ToolCall {
   id: string;
   name: string;

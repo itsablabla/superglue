@@ -1,4 +1,5 @@
 import type {
+  ConversationRecord,
   DiscoveryRun,
   FileReference,
   FileStatus,
@@ -230,6 +231,21 @@ export interface DataStore {
   updateApiKey(params: UpdateApiKeyParams): Promise<ApiKeyRecord | null>;
   deleteApiKey(params: { id: string; orgId: string }): Promise<boolean>;
   deleteApiKeysByUserId(params: { userId: string; orgId: string }): Promise<void>;
+
+  // Conversation Methods
+  listConversations(params: {
+    orgId: string;
+    userId?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{ items: ConversationRecord[]; total: number }>;
+  getConversation(params: { id: string; orgId: string }): Promise<ConversationRecord | null>;
+  upsertConversation(params: {
+    conversation: ConversationRecord;
+    orgId: string;
+    userId?: string;
+  }): Promise<ConversationRecord>;
+  deleteConversation(params: { id: string; orgId: string }): Promise<boolean>;
 }
 
 export type ToolScheduleInternal = ToolSchedule & {

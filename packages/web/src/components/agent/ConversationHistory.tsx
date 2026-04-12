@@ -3,14 +3,13 @@
 import { Button } from "@/src/components/ui/button";
 import { Card } from "@/src/components/ui/card";
 import { cn } from "@/src/lib/general-utils";
-import { loadFromCacheAsync, saveToCache } from "@/src/lib/cache-utils";
+
 import { Message, MessagePart } from "@superglue/shared";
 import { MessagesSquare, Trash2, X, Loader2 } from "lucide-react";
 import { startTransition, useCallback, useEffect, useRef, useState } from "react";
 import { useEESuperglueClient } from "@/src/queries/use-client";
 
-const MAX_CONVERSATIONS = 20;
-const DEFAULT_CACHE_PREFIX = "superglue-conversations";
+const MAX_CONVERSATIONS = 50;
 const SUMMARY_REGEN_USER_MESSAGE_INTERVAL = 5;
 
 export type { Message, MessagePart };
@@ -248,13 +247,43 @@ const upsertConversation = ({
   return updated;
 };
 
+const mapServerConversation = (conv: any): Conversation => ({
+  id: conv.id,
+  title: conv.title || "",
+  summary: conv.summary || undefined,
+  messages: (conv.messages || []).map((msg: any) => ({
+    ...msg,
+    timestamp: new Date(msg.timestamp),
+    startTime: msg.startTime ? new Date(msg.startTime) : undefined,
+    endTime: msg.endTime ? new Date(msg.endTime) : undefined,
+    parts:
+      msg.parts?.map((part: any) => ({
+        ...part,
+        tool: part.tool
+          ? {
+              ...part.tool,
+              startTime: part.tool.startTime ? new Date(part.tool.startTime) : undefined,
+              endTime: part.tool.endTime ? new Date(part.tool.endTime) : undefined,
+            }
+          : undefined,
+      })) || undefined,
+    tools: msg.tools?.map((tool: any) => ({
+      ...tool,
+      startTime: tool.startTime ? new Date(tool.startTime) : undefined,
+      endTime: tool.endTime ? new Date(tool.endTime) : undefined,
+    })),
+  })),
+  timestamp: new Date(conv.updatedAt || conv.createdAt),
+  sessionId: conv.sessionId || null,
+  lastSummarizedMessageCount: conv.lastSummarizedMessageCount || 0,
+});
+
 interface ConversationHistoryProps {
   messages: Message[];
   currentConversationId: string | null;
   sessionId?: string | null;
   onConversationLoad: (conversation: Conversation) => void;
   onCurrentConversationIdChange: (id: string | null) => void;
-  cacheKeyPrefix?: string;
 }
 
 export function ConversationHistory({
@@ -263,7 +292,6 @@ export function ConversationHistory({
   sessionId,
   onConversationLoad,
   onCurrentConversationIdChange,
-  cacheKeyPrefix = DEFAULT_CACHE_PREFIX,
 }: ConversationHistoryProps) {
   const [showHistory, setShowHistory] = useState(false);
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -279,8 +307,34 @@ export function ConversationHistory({
   const generatingSummaryForRef = useRef<string | null>(null);
   const suppressNextAutoSaveForIdRef = useRef<string | null>(null);
   const summaryDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const PANEL_WIDTH = 360;
+  const serverSaveDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const createClient = useEESuperglueClient();
+
+  const saveConversationToServer = useCallback(
+    (conversation: Conversation) => {
+      if (serverSaveDebounceRef.current) {
+        clearTimeout(serverSaveDebounceRef.current);
+      }
+      serverSaveDebounceRef.current = setTimeout(() => {
+        serverSaveDebounceRef.current = null;
+        try {
+          const client = createClient();
+          client
+            .upsertConversation(conversation.id, {
+              title: conversation.title,
+              summary: conversation.summary,
+              messages: conversation.messages,
+              sessionId: conversation.sessionId,
+              lastSummarizedMessageCount: conversation.lastSummarizedMessageCount,
+            })
+            .catch((err) => console.error("Failed to save conversation to server:", err));
+        } catch (error) {
+          console.error("Failed to save conversation:", error);
+        }
+      }, 2000);
+    },
+    [createClient],
+  );
 
   // Generate summary for a conversation and save it
   const generateAndSaveSummary = useCallback(
@@ -312,11 +366,18 @@ export function ConversationHistory({
         if (summary && summary.length > 0) {
           startTransition(() =>
             setConversations((prev) =>
-              prev.map((conv) =>
-                conv.id === conversationId
-                  ? { ...conv, summary, lastSummarizedMessageCount: userMessageCount }
-                  : conv,
-              ),
+              prev.map((conv) => {
+                if (conv.id === conversationId) {
+                  const updated = {
+                    ...conv,
+                    summary,
+                    lastSummarizedMessageCount: userMessageCount,
+                  };
+                  saveConversationToServer(updated);
+                  return updated;
+                }
+                return conv;
+              }),
             ),
           );
         }
@@ -329,7 +390,7 @@ export function ConversationHistory({
         );
       }
     },
-    [createClient],
+    [createClient, saveConversationToServer],
   );
 
   const formatShortRelativeTime = (date: Date) => {
@@ -354,19 +415,23 @@ export function ConversationHistory({
     return new Date(Math.max(...timestamps));
   };
 
-  const getConversationSignature = (messageList: Message[]) =>
-    messageList.map((message) => serializeMessageForSignature(message)).join("|");
-
-  // Load conversations on mount
+  // Load conversations from server on mount
   const [hasLoaded, setHasLoaded] = useState(false);
   useEffect(() => {
     const loadConversations = async () => {
-      const savedConversations = await loadConversationsFromStorage(cacheKeyPrefix);
-      setConversations(savedConversations);
-      setHasLoaded(true);
+      try {
+        const client = createClient();
+        const response = await client.listConversations(MAX_CONVERSATIONS);
+        const loaded = (response.data || []).map((conv: any) => mapServerConversation(conv));
+        setConversations(loaded);
+      } catch (error) {
+        console.error("Failed to load conversations from server:", error);
+      } finally {
+        setHasLoaded(true);
+      }
     };
     loadConversations();
-  }, [cacheKeyPrefix]);
+  }, [createClient]);
 
   useEffect(() => {
     conversationsRef.current = conversations;
@@ -382,14 +447,12 @@ export function ConversationHistory({
         clearTimeout(summaryDebounceRef.current);
         summaryDebounceRef.current = null;
       }
+      if (serverSaveDebounceRef.current) {
+        clearTimeout(serverSaveDebounceRef.current);
+        serverSaveDebounceRef.current = null;
+      }
     };
   }, []);
-
-  // Save conversations when they change (only after initial load)
-  useEffect(() => {
-    if (!hasLoaded) return;
-    saveConversationsToStorage(conversations, cacheKeyPrefix);
-  }, [conversations, cacheKeyPrefix, hasLoaded]);
 
   // Auto-save current conversation when messages change
   useEffect(() => {
@@ -423,16 +486,21 @@ export function ConversationHistory({
 
     if (shouldPersistMessages) {
       startTransition(() =>
-        setConversations((prev) =>
-          upsertConversation({
+        setConversations((prev) => {
+          const updated = upsertConversation({
             previousConversations: prev,
             conversationId,
             title,
             messages: meaningfulMessages,
             latestMessageTimestamp,
             sessionId,
-          }),
-        ),
+          });
+          const savedConv = updated.find((c) => c.id === conversationId);
+          if (savedConv) {
+            saveConversationToServer(savedConv);
+          }
+          return updated;
+        }),
       );
     }
 
@@ -466,6 +534,7 @@ export function ConversationHistory({
     onCurrentConversationIdChange,
     sessionId,
     generateAndSaveSummary,
+    saveConversationToServer,
   ]);
 
   useEffect(() => {
@@ -474,26 +543,31 @@ export function ConversationHistory({
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
       const padding = 16;
-      const maxPanelHeight = 400;
-
-      const rightEdgeIfRightAligned = viewportWidth - rect.right;
-      const leftEdgeIfRightAligned = viewportWidth - rightEdgeIfRightAligned - PANEL_WIDTH;
-      const wouldOverflowLeft = leftEdgeIfRightAligned < padding;
+      const maxPanelHeight = Math.min(400, viewportHeight - 120);
+      const panelWidth = viewportWidth < 480 ? viewportWidth - 32 : 360;
 
       let top = rect.bottom + 4;
       if (top + maxPanelHeight > viewportHeight - padding) {
         top = Math.max(padding, viewportHeight - maxPanelHeight - padding);
       }
 
-      if (wouldOverflowLeft) {
-        const left = Math.max(padding, rect.left);
-        const adjustedLeft =
-          left + PANEL_WIDTH > viewportWidth - padding
-            ? viewportWidth - PANEL_WIDTH - padding
-            : left;
-        setPanelPosition({ top, left: adjustedLeft });
+      if (viewportWidth < 480) {
+        setPanelPosition({ top, left: padding });
       } else {
-        setPanelPosition({ top, right: Math.max(padding, rightEdgeIfRightAligned) });
+        const rightEdgeIfRightAligned = viewportWidth - rect.right;
+        const leftEdgeIfRightAligned = viewportWidth - rightEdgeIfRightAligned - panelWidth;
+        const wouldOverflowLeft = leftEdgeIfRightAligned < padding;
+
+        if (wouldOverflowLeft) {
+          const left = Math.max(padding, rect.left);
+          const adjustedLeft =
+            left + panelWidth > viewportWidth - padding
+              ? viewportWidth - panelWidth - padding
+              : left;
+          setPanelPosition({ top, left: adjustedLeft });
+        } else {
+          setPanelPosition({ top, right: Math.max(padding, rightEdgeIfRightAligned) });
+        }
       }
     }
   }, [showHistory]);
@@ -516,7 +590,11 @@ export function ConversationHistory({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, [showHistory]);
 
   const loadConversation = (conversation: Conversation) => {
@@ -525,10 +603,18 @@ export function ConversationHistory({
     setShowHistory(false);
   };
 
-  const deleteConversation = (conversationId: string) => {
+  const handleDeleteConversation = (conversationId: string) => {
     setConversations((prev) => prev.filter((c) => c.id !== conversationId));
     if (currentConversationId === conversationId) {
       onCurrentConversationIdChange(null);
+    }
+    try {
+      const client = createClient();
+      client
+        .deleteConversation(conversationId)
+        .catch((err) => console.error("Failed to delete conversation from server:", err));
+    } catch (error) {
+      console.error("Failed to delete conversation:", error);
     }
   };
 
@@ -537,9 +623,9 @@ export function ConversationHistory({
 
     return (
       <div
-        className="fixed z-[100] w-[360px] rounded-xl border border-border/50 bg-muted/30 backdrop-blur shadow-xl ring-1 ring-white/10 dark:ring-black/20 flex flex-col overflow-hidden"
+        className="fixed z-[100] w-[calc(100vw-2rem)] sm:w-[360px] rounded-xl border border-border/50 bg-muted/30 backdrop-blur shadow-xl ring-1 ring-white/10 dark:ring-black/20 flex flex-col overflow-hidden"
         style={{
-          maxHeight: "400px",
+          maxHeight: "min(400px, calc(100dvh - 120px))",
           top: panelPosition.top,
           ...(panelPosition.left !== undefined
             ? { left: panelPosition.left }
@@ -614,7 +700,7 @@ export function ConversationHistory({
                             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 p-0 flex items-center justify-center"
                             onClick={(e) => {
                               e.stopPropagation();
-                              deleteConversation(conversation.id);
+                              handleDeleteConversation(conversation.id);
                             }}
                           >
                             <Trash2 className="w-2 h-2" />
@@ -656,52 +742,3 @@ export function ConversationHistory({
     </div>
   );
 }
-
-const saveConversationsToStorage = (conversations: Conversation[], cacheKeyPrefix: string) => {
-  try {
-    const recentConversations = [...conversations]
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-      .slice(0, MAX_CONVERSATIONS);
-
-    saveToCache(cacheKeyPrefix, recentConversations);
-  } catch (error) {
-    console.error("Failed to save conversations:", error);
-  }
-};
-
-const loadConversationsFromStorage = async (cacheKeyPrefix: string): Promise<Conversation[]> => {
-  try {
-    const cached = await loadFromCacheAsync<Conversation[]>(cacheKeyPrefix);
-    if (!cached) return [];
-
-    return cached.map((conv: any) => ({
-      ...conv,
-      timestamp: new Date(conv.timestamp),
-      messages: conv.messages.map((msg: any) => ({
-        ...msg,
-        timestamp: new Date(msg.timestamp),
-        startTime: msg.startTime ? new Date(msg.startTime) : undefined,
-        endTime: msg.endTime ? new Date(msg.endTime) : undefined,
-        parts:
-          msg.parts?.map((part: any) => ({
-            ...part,
-            tool: part.tool
-              ? {
-                  ...part.tool,
-                  startTime: part.tool.startTime ? new Date(part.tool.startTime) : undefined,
-                  endTime: part.tool.endTime ? new Date(part.tool.endTime) : undefined,
-                }
-              : undefined,
-          })) || undefined,
-        tools: msg.tools?.map((tool: any) => ({
-          ...tool,
-          startTime: tool.startTime ? new Date(tool.startTime) : undefined,
-          endTime: tool.endTime ? new Date(tool.endTime) : undefined,
-        })),
-      })),
-    }));
-  } catch (error) {
-    console.error("Failed to load conversations:", error);
-    return [];
-  }
-};

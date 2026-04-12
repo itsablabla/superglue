@@ -126,7 +126,6 @@ export interface PlaygroundAgentContentProps {
   hideHeader?: boolean;
   mode: PlaygroundMode;
   agentType: AgentType;
-  cacheKeyPrefix: string;
   initializationMessage?: string;
   initializationMarker?: string;
   onApplyChanges?: (newConfig: Tool, diffs?: ToolDiff[]) => void;
@@ -139,7 +138,6 @@ export function PlaygroundAgentContent({
   hideHeader = false,
   mode,
   agentType,
-  cacheKeyPrefix,
   initializationMessage,
   initializationMarker,
   onApplyChanges,
@@ -296,7 +294,6 @@ export function PlaygroundAgentContent({
             sessionId={sessionId}
             onConversationLoad={loadConversation}
             onCurrentConversationIdChange={setCurrentConversationId}
-            cacheKeyPrefix={cacheKeyPrefix}
           />
           {(hasVisibleMessages || hideHeader) && (
             <Button variant="glass" size="sm" onClick={startNewConversation} className="h-8 px-2">
@@ -736,7 +733,6 @@ function ToolPlaygroundAgentSidebar({
           hideHeader={hideHeader}
           mode="tool"
           agentType={AgentType.PLAYGROUND}
-          cacheKeyPrefix={`superglue-playground-${toolId}`}
           initializationMessage={initializationMessage}
           initializationMarker={TOOL_PLAYGROUND_INIT_MARKER}
           onApplyChanges={handleApplyChanges}
@@ -785,7 +781,6 @@ function SystemPlaygroundAgentSidebar({
           hideHeader={hideHeader}
           mode="system"
           agentType={AgentType.SYSTEM_PLAYGROUND}
-          cacheKeyPrefix={`superglue-system-${systemConfig.systemId || "new"}`}
           initializationMessage={initializationMessage}
           initializationMarker={SYSTEM_PLAYGROUND_INIT_MARKER}
           currentPlaygroundState={initialError ? { initialError } : undefined}
@@ -829,7 +824,6 @@ function AccessPlaygroundAgentSidebar({
           hideHeader={hideHeader}
           mode="access"
           agentType={AgentType.ACCESS_RULES}
-          cacheKeyPrefix="superglue-access"
           onApplyRoleConfig={onRoleDraftUpdate}
         />
       </AgentContextProvider>

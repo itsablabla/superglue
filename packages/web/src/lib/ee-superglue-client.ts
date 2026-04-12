@@ -1,6 +1,7 @@
 import {
   BatchFileUploadRequest,
   BatchFileUploadResponse,
+  ConversationRecord,
   DiscoveryRun,
   DiscoverySource,
   FileReference,
@@ -454,6 +455,51 @@ export class EESuperglueClient extends SuperglueClient {
     roleId: string;
   }): Promise<{ success: boolean }> {
     return this.restRequest("POST", "/v1/internal/assignOrgRole", { userId, orgId, roleId });
+  }
+
+  // Conversation Management
+  async listConversations(
+    limit: number = 50,
+    page: number = 1,
+  ): Promise<{ data: ConversationRecord[]; total: number; hasMore: boolean }> {
+    return this.restRequest<{ data: ConversationRecord[]; total: number; hasMore: boolean }>(
+      "GET",
+      `/v1/conversations?limit=${limit}&page=${page}`,
+    );
+  }
+
+  async getConversation(id: string): Promise<ConversationRecord> {
+    const response = await this.restRequest<{ data: ConversationRecord }>(
+      "GET",
+      `/v1/conversations/${encodeURIComponent(id)}`,
+    );
+    return response.data;
+  }
+
+  async upsertConversation(
+    id: string,
+    conversation: {
+      title: string;
+      summary?: string;
+      messages: any[];
+      sessionId?: string | null;
+      lastSummarizedMessageCount?: number;
+    },
+  ): Promise<ConversationRecord> {
+    const response = await this.restRequest<{ data: ConversationRecord }>(
+      "PUT",
+      `/v1/conversations/${encodeURIComponent(id)}`,
+      conversation,
+    );
+    return response.data;
+  }
+
+  async deleteConversation(id: string): Promise<boolean> {
+    const response = await this.restRequest<{ success: boolean }>(
+      "DELETE",
+      `/v1/conversations/${encodeURIComponent(id)}`,
+    );
+    return response.success;
   }
 }
 

@@ -1,5 +1,6 @@
 import {
   composeUrl,
+  ConversationRecord,
   DiscoveryRun,
   DocumentationFiles,
   FileReference,
@@ -571,6 +572,26 @@ export class PostgresService implements DataStore {
       `);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_api_keys_org_id ON api_keys(org_id)`);
       await client.query(`CREATE INDEX IF NOT EXISTS idx_api_keys_user_id ON api_keys(user_id)`);
+
+      // Conversations table (server-side chat persistence)
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS sg_conversations (
+          id TEXT NOT NULL,
+          org_id TEXT NOT NULL,
+          user_id TEXT,
+          title TEXT NOT NULL DEFAULT '',
+          summary TEXT,
+          messages JSONB NOT NULL DEFAULT '[]',
+          session_id TEXT,
+          last_summarized_message_count INTEGER DEFAULT 0,
+          created_at TIMESTAMPTZ DEFAULT NOW(),
+          updated_at TIMESTAMPTZ DEFAULT NOW(),
+          PRIMARY KEY (id, org_id)
+        )
+      `);
+      await client.query(
+        `CREATE INDEX IF NOT EXISTS idx_sg_conversations_org_user ON sg_conversations(org_id, user_id, updated_at DESC)`,
+      );
     } finally {
       client.release();
     }
@@ -2803,6 +2824,132 @@ export class PostgresService implements DataStore {
         userId,
         orgId,
       ]);
+    } finally {
+      client.release();
+    }
+  }
+
+  // ============================================
+  // Conversation Methods
+  // ============================================
+
+  private mapRowToConversation(row: any): ConversationRecord {
+    return {
+      id: row.id,
+      title: row.title || "",
+      summary: row.summary || undefined,
+      messages: row.messages || [],
+      sessionId: row.session_id || null,
+      lastSummarizedMessageCount: row.last_summarized_message_count || 0,
+      createdAt: new Date(row.created_at),
+      updatedAt: new Date(row.updated_at),
+    };
+  }
+
+  async listConversations(params: {
+    orgId: string;
+    userId?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{ items: ConversationRecord[]; total: number }> {
+    const { orgId, userId, limit = 50, offset = 0 } = params;
+    const client = await this.pool.connect();
+    try {
+      const conditions = ["org_id = $1"];
+      const values: any[] = [orgId];
+      let paramIndex = 2;
+
+      if (userId) {
+        conditions.push(`user_id = $${paramIndex++}`);
+        values.push(userId);
+      }
+
+      const where = conditions.join(" AND ");
+
+      const [dataResult, countResult] = await Promise.all([
+        client.query(
+          `SELECT id, title, summary, messages, session_id, last_summarized_message_count, created_at, updated_at
+           FROM sg_conversations
+           WHERE ${where}
+           ORDER BY updated_at DESC
+           LIMIT $${paramIndex++} OFFSET $${paramIndex}`,
+          [...values, limit, offset],
+        ),
+        client.query(`SELECT COUNT(*) as total FROM sg_conversations WHERE ${where}`, values),
+      ]);
+
+      return {
+        items: dataResult.rows.map((row: any) => this.mapRowToConversation(row)),
+        total: parseInt(countResult.rows[0].total, 10),
+      };
+    } finally {
+      client.release();
+    }
+  }
+
+  async getConversation(params: { id: string; orgId: string }): Promise<ConversationRecord | null> {
+    const { id, orgId } = params;
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query(
+        `SELECT id, title, summary, messages, session_id, last_summarized_message_count, created_at, updated_at
+         FROM sg_conversations
+         WHERE id = $1 AND org_id = $2`,
+        [id, orgId],
+      );
+      if (result.rows.length === 0) return null;
+      return this.mapRowToConversation(result.rows[0]);
+    } finally {
+      client.release();
+    }
+  }
+
+  async upsertConversation(params: {
+    conversation: ConversationRecord;
+    orgId: string;
+    userId?: string;
+  }): Promise<ConversationRecord> {
+    const { conversation, orgId, userId } = params;
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query(
+        `INSERT INTO sg_conversations (id, org_id, user_id, title, summary, messages, session_id, last_summarized_message_count, created_at, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW())
+         ON CONFLICT (id, org_id) DO UPDATE SET
+           title = EXCLUDED.title,
+           summary = EXCLUDED.summary,
+           messages = EXCLUDED.messages,
+           session_id = EXCLUDED.session_id,
+           last_summarized_message_count = EXCLUDED.last_summarized_message_count,
+           updated_at = NOW()
+         RETURNING id, title, summary, messages, session_id, last_summarized_message_count, created_at, updated_at`,
+        [
+          conversation.id,
+          orgId,
+          userId || null,
+          conversation.title,
+          conversation.summary || null,
+          JSON.stringify(conversation.messages),
+          conversation.sessionId || null,
+          conversation.lastSummarizedMessageCount || 0,
+          conversation.createdAt || new Date(),
+        ],
+      );
+      return this.mapRowToConversation(result.rows[0]);
+    } finally {
+      client.release();
+    }
+  }
+
+  async deleteConversation(params: { id: string; orgId: string }): Promise<boolean> {
+    const { id, orgId } = params;
+    const client = await this.pool.connect();
+    try {
+      const result = await client.query(
+        `DELETE FROM sg_conversations WHERE id = $1 AND org_id = $2`,
+        [id, orgId],
+      );
+      return (result.rowCount || 0) > 0;
     } finally {
       client.release();
     }

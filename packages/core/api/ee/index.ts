@@ -10,6 +10,7 @@
 
 import "./api-key-scopes.js";
 import "./api-keys.js";
+import "./conversations.js";
 import "./me.js";
 import "./summarize.js";
 
