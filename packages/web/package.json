@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently -p none \"serwist build --watch\" \"next dev --turbopack --port ${WEB_PORT:-3001}\"",
-    "build": "next build && serwist build",
+    "dev": "next dev --turbopack --port ${WEB_PORT:-3001}",
+    "build": "next build",
     "start": "next start -p ${WEB_PORT:-3001}",
     "start-local": "dotenv -e .env.local -- next start -p ${WEB_PORT:-3001}",
     "lint": "next lint",
@@ -114,20 +114,15 @@
     "truncate-json": "3.0.1"
   },
   "devDependencies": {
-    "@serwist/cli": "^9.5.7",
-    "@serwist/next": "^9.5.7",
     "@types/bcryptjs": "2.4.6",
     "@types/node": "25.5.0",
     "@types/pako": "2.0.4",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "baseline-browser-mapping": "2.10.10",
-    "concurrently": "^9.2.1",
     "cross-env": "10.1.0",
     "dotenv-cli": "11.0.0",
-    "esbuild": "^0.28.0",
     "postcss": "8.5.8",
-    "serwist": "^9.5.7",
     "supabase": "2.83.0",
     "tailwindcss": "3.4.19",
     "typescript": "5.8.3"
