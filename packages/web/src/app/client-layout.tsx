@@ -153,13 +153,25 @@ export function ClientWrapper({ children, config }: Props) {
                     >
                       <WelcomeGate apiEndpoint={config.apiEndpoint} token={token}>
                         {isWelcomePage ? (
-                          <div className="min-h-screen">
+                          <div
+                            className="min-h-screen"
+                            style={{
+                              paddingTop: "env(safe-area-inset-top, 0px)",
+                              paddingBottom: "env(safe-area-inset-bottom, 0px)",
+                            }}
+                          >
                             {children}
                             <SystemPickerModalContent />
                             <AgentModalContent />
                           </div>
                         ) : (
-                          <div className="flex h-dvh overflow-hidden overscroll-none">
+                          <div
+                            className="flex h-dvh overflow-hidden overscroll-none"
+                            style={{
+                              paddingTop: "env(safe-area-inset-top, 0px)",
+                              paddingBottom: "env(safe-area-inset-bottom, 0px)",
+                            }}
+                          >
                             {token && <LeftSidebar />}
                             <div className="relative flex-1 min-w-0 h-full">
                               <AnimatePresence mode="wait">
