@@ -62,6 +62,7 @@ RUN npm ci --omit=dev && \
 
 # Copy built files from builder stage
 COPY --from=builder /usr/src/app/packages/core/dist ./packages/core/dist
+COPY --from=builder /usr/src/app/packages/core/deno-runtime ./packages/core/deno-runtime
 COPY --from=builder /usr/src/app/packages/web/.next ./packages/web/.next
 COPY --from=builder /usr/src/app/packages/web/public ./packages/web/public
 COPY --from=builder /usr/src/app/packages/shared/dist ./packages/shared/dist
