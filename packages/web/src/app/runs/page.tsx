@@ -19,14 +19,7 @@ import {
   SelectValue,
 } from "@/src/components/ui/select";
 import { cn } from "@/src/lib/general-utils";
-import {
-  Activity,
-  ChevronLeft,
-  ChevronRight,
-  Loader2,
-  RefreshCw,
-  Search,
-} from "lucide-react";
+import { Activity, ChevronLeft, ChevronRight, Loader2, RefreshCw, Search } from "lucide-react";
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useOrg } from "@/src/app/org-context";
@@ -47,7 +40,12 @@ const STATUS_COLORS: Record<string, string> = {
 function StatusBadge({ status }: { status: string }) {
   const colorClass = STATUS_COLORS[status.toLowerCase()] ?? "bg-muted text-muted-foreground";
   return (
-    <span className={cn("inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium", colorClass)}>
+    <span
+      className={cn(
+        "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium",
+        colorClass,
+      )}
+    >
       {status}
     </span>
   );
@@ -151,7 +149,12 @@ export default function RunsPage() {
                   className="inline-flex items-center justify-center h-7 w-7 rounded-md hover:bg-muted/50 transition-colors disabled:opacity-50 ml-auto"
                   title="Refresh Runs"
                 >
-                  <RefreshCw className={cn("h-3.5 w-3.5 text-muted-foreground", isFetching && "animate-spin")} />
+                  <RefreshCw
+                    className={cn(
+                      "h-3.5 w-3.5 text-muted-foreground",
+                      isFetching && "animate-spin",
+                    )}
+                  />
                 </button>
               </TableHead>
             </TableRow>
@@ -208,9 +211,7 @@ export default function RunsPage() {
 
       {/* Pagination */}
       <div className="flex items-center justify-between pt-3 flex-shrink-0">
-        <span className="text-sm text-muted-foreground">
-          Page {page + 1}
-        </span>
+        <span className="text-sm text-muted-foreground">Page {page + 1}</span>
         <div className="flex gap-2">
           <Button
             variant="outline"
