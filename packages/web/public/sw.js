@@ -44,20 +44,19 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
-  // Pass through API calls — never cache
+  // Pass through API calls, SW itself, and _next/data — never cache
   if (
     url.pathname.startsWith("/api/") ||
     url.pathname.startsWith("/v1/") ||
-    url.pathname.startsWith("/graphql")
+    url.pathname.startsWith("/graphql") ||
+    url.pathname === "/sw.js" ||
+    url.pathname.startsWith("/_next/data/")
   ) {
     return;
   }
 
-  // Cache-first for immutable static assets (Next.js chunks, images, fonts)
-  if (
-    url.pathname.startsWith("/_next/static/") ||
-    url.pathname.match(/\.(png|jpg|jpeg|svg|ico|woff2?|css|js)$/)
-  ) {
+  // Cache-first for immutable Next.js build assets (hashed filenames, safe to cache forever)
+  if (url.pathname.startsWith("/_next/static/")) {
     event.respondWith(
       caches.match(event.request).then((cached) => {
         if (cached) return cached;
@@ -73,10 +72,10 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Stale-while-revalidate for pages — serve cached immediately, update in background
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetchPromise = fetch(event.request)
+  // Network-first for navigation (pages) — always try fresh HTML, fall back to cache
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request)
         .then((response) => {
           if (response.ok) {
             const clone = response.clone();
@@ -85,15 +84,32 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => {
-          if (event.request.mode === "navigate") {
-            return caches.match("/offline.html");
-          }
-          return new Response("Offline", { status: 503, statusText: "Offline" });
-        });
+          return caches.match(event.request).then((cached) => {
+            return cached || caches.match("/offline.html");
+          });
+        }),
+    );
+    return;
+  }
 
-      return cached || fetchPromise;
-    }),
-  );
+  // Stale-while-revalidate for other static assets (icons, fonts, images)
+  if (url.pathname.match(/\.(png|jpg|jpeg|svg|ico|woff2?|css)$/)) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        const fetchPromise = fetch(event.request)
+          .then((response) => {
+            if (response.ok) {
+              const clone = response.clone();
+              caches.open(STATIC_CACHE).then((cache) => cache.put(event.request, clone));
+            }
+            return response;
+          })
+          .catch(() => cached || new Response("Offline", { status: 503 }));
+        return cached || fetchPromise;
+      }),
+    );
+    return;
+  }
 });
 
 // Push notification support (iOS 16.4+, non-EU)
