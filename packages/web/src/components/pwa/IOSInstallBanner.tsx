@@ -7,7 +7,7 @@ interface IOSInstallBannerProps {
 }
 
 const DISMISS_KEY = "garza-glue-ios-install-dismissed";
-const DISMISS_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const DISMISS_DURATION_MS = 24 * 60 * 60 * 1000; // 1 day
 
 function isIOSSafari(): boolean {
   if (typeof navigator === "undefined") return false;
