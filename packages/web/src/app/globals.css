@@ -35,6 +35,32 @@ tt {
   font-family: var(--font-jetbrains-mono);
 }
 
+/* Mobile code block fixes — reduce padding, fix overflow, compact actions */
+@media (max-width: 640px) {
+  [data-streamdown="code-block-body"] {
+    padding: 0.5rem !important;
+    font-size: 0.75rem !important;
+  }
+  [data-streamdown="code-block-actions"] {
+    margin-top: -0.25rem !important;
+  }
+  .prose pre {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    border-radius: 0.375rem;
+  }
+}
+
+/* Ensure code blocks scroll horizontally on all sizes */
+.prose pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.message-content-wrapper pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

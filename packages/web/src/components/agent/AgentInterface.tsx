@@ -105,23 +105,26 @@ const MemoMessage = React.memo(
     filePayloads?: Record<string, any>;
   }) => {
     return (
-      <div key={message.id} className={cn("flex gap-4 p-2 pt-4 rounded-xl group min-h-16")}>
+      <div key={message.id} className={cn(
+        "flex gap-3 sm:gap-4 p-2 pt-4 rounded-xl group min-h-16",
+        message.role === "user" && "bg-muted/30 dark:bg-muted/10",
+      )}>
         <div
           className={cn(
-            "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center hidden lg:flex",
+            "flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center",
             message.role === "user"
-              ? "bg-neutral-100 dark:bg-neutral-900"
-              : "bg-white dark:bg-black",
+              ? "bg-neutral-200 dark:bg-neutral-800"
+              : "bg-white dark:bg-black border border-border/50",
           )}
         >
           {message.role === "user" && (
-            <span className="text-sm font-semibold text-neutral-900 dark:text-neutral-100">Y</span>
+            <span className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100">Y</span>
           )}
           {message.role === "assistant" && (
             <img
               src="/favicon.png"
               alt="Garza Glue"
-              className="w-5 h-5 object-contain dark:invert"
+              className="w-4 h-4 sm:w-5 sm:h-5 object-contain dark:invert"
             />
           )}
         </div>
