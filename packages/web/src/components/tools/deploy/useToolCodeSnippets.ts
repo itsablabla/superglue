@@ -16,44 +16,39 @@ export function useToolCodeSnippets(
   const config = useConfig();
 
   return useMemo(() => {
-    const typescriptCode = `import { configure, runTool } from '@superglue/client';
-
-configure({
-  apiKey: "<YOUR_SUPERGLUE_API_KEY>",
-  baseUrl: "${config.apiEndpoint}/v1"
+    const typescriptCode = `const response = await fetch("${config.apiEndpoint}/v1/tools/${toolId}/run", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer <YOUR_API_KEY>"
+  },
+  body: JSON.stringify({
+    inputs: ${safeStringify(payload, 2)}
+  })
 });
 
-async function main() {
-  const result = await runTool("${toolId}", {
-    inputs: ${safeStringify(payload, 2)}
-  });
-  console.log(result.data);
-}
+const result = await response.json();
+console.log(result.data);`;
 
-main();`;
+    const pythonCode = `import requests
 
-    const pythonCode = `from garzaglue_client import GarzaGlueClient
-from garzaglue_client.api.tools import run_tool
-from garzaglue_client.models import RunRequest, RunRequestInputs
-
-client = GarzaGlueClient(
-    base_url="${config.apiEndpoint}/v1",
-    token="<YOUR_SUPERGLUE_API_KEY>"
+response = requests.post(
+    "${config.apiEndpoint}/v1/tools/${toolId}/run",
+    headers={
+        "Content-Type": "application/json",
+        "Authorization": "Bearer <YOUR_API_KEY>"
+    },
+    json={
+        "inputs": ${safeStringify(payload, 2)}
+    }
 )
 
-inputs = RunRequestInputs.from_dict(${safeStringify(payload, 2)})
-
-with client as client:
-    result = run_tool.sync(
-        "${toolId}",
-        client=client,
-        body=RunRequest(inputs=inputs)
-    )
-    print(result)`;
+result = response.json()
+print(result["data"])`;
 
     const curlCommand = `curl -X POST "${config.apiEndpoint}/v1/tools/${toolId}/run" \\
   -H "Content-Type: application/json" \\
-  -H "Authorization: Bearer <YOUR_SUPERGLUE_API_KEY>" \\
+  -H "Authorization: Bearer <YOUR_API_KEY>" \\
   -d '${safeStringify({ inputs: payload })}'`;
 
     const mcpConfig = `{
@@ -67,7 +62,7 @@ with client as client:
         "Authorization:\${AUTH_HEADER}"
       ],
       "env": {
-        "AUTH_HEADER": "Bearer <YOUR_SUPERGLUE_API_KEY>"
+        "AUTH_HEADER": "Bearer <YOUR_API_KEY>"
       }
     }
   }

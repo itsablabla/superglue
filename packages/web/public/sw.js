@@ -150,15 +150,3 @@ self.addEventListener("notificationclick", (event) => {
     }),
   );
 });
-
-// Background sync for offline chat messages (when available)
-self.addEventListener("sync", (event) => {
-  if (event.tag === "sync-chat-messages") {
-    event.waitUntil(syncPendingMessages());
-  }
-});
-
-async function syncPendingMessages() {
-  // Future: read from IndexedDB queue and POST to /v1/conversations
-  console.log("[SW] Background sync triggered for chat messages");
-}

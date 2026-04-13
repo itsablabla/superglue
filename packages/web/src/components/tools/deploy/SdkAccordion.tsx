@@ -57,25 +57,7 @@ export function SdkAccordion({
               transition={{ duration: 0.2, ease: "easeInOut" }}
               className={overflowClass}
             >
-              {isModal ? (
-                <>
-                  <div className="mt-3">
-                    <div className="text-xs text-muted-foreground mb-2">Install</div>
-                    <CodeSnippet code="npm install @superglue/client" language="bash" />
-                  </div>
-                  <div className="mt-4">
-                    <div className="text-xs text-muted-foreground mb-2">Code</div>
-                    <CodeSnippet code={typescriptCode} language="typescript" />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-xs text-muted-foreground mb-1">
-                    npm install @superglue/client
-                  </div>
-                  <CodeSnippet code={typescriptCode} language="typescript" />
-                </>
-              )}
+              <CodeSnippet code={typescriptCode} language="typescript" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -107,25 +89,7 @@ export function SdkAccordion({
               transition={{ duration: 0.2, ease: "easeInOut" }}
               className={overflowClass}
             >
-              {isModal ? (
-                <>
-                  <div className="mt-3">
-                    <div className="text-xs text-muted-foreground mb-2">Install</div>
-                    <CodeSnippet code="pip install garza-glue-client" language="bash" />
-                  </div>
-                  <div className="mt-4">
-                    <div className="text-xs text-muted-foreground mb-2">Code</div>
-                    <CodeSnippet code={pythonCode} language="python" />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-xs text-muted-foreground mb-1">
-                    pip install garza-glue-client
-                  </div>
-                  <CodeSnippet code={pythonCode} language="python" />
-                </>
-              )}
+              <CodeSnippet code={pythonCode} language="python" />
             </motion.div>
           )}
         </AnimatePresence>

@@ -286,7 +286,7 @@ The portal allows users to authenticate with all available systems that require 
 
         // For non-end-user API keys, provide a link to the agent chat instead
         if (!result.success) {
-          const baseUrl = process.env.SUPERGLUE_APP_URL || "https://app.superglue.cloud";
+          const baseUrl = process.env.SUPERGLUE_APP_URL || "https://s1.garzaglue.com";
           const systemPrompt = args.systemId
             ? `Please help me reauthenticate the system "${args.systemId}".`
             : "Please help me reauthenticate my systems.";

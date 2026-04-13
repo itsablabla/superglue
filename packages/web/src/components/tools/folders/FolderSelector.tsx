@@ -17,7 +17,7 @@ import { Tool } from "@garzaglue/shared";
 import { Archive, Check, ChevronRight, Filter, Folder, FolderOpen } from "lucide-react";
 import { useMemo, useState } from "react";
 
-const FOLDER_STORAGE_KEY_BASE = "superglue-selected-folder";
+const FOLDER_STORAGE_KEY_BASE = "garza-glue-selected-folder";
 const UNCATEGORIZED = "";
 
 interface FolderNode {

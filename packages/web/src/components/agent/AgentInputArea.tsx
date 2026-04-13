@@ -164,31 +164,8 @@ export function AgentInputArea({
       recognition.start();
       setIsRecording(true);
     } else {
-      // Fallback: record audio as file attachment
-      navigator.mediaDevices
-        .getUserMedia({ audio: true })
-        .then((stream) => {
-          const mediaRecorder = new MediaRecorder(stream);
-          const chunks: BlobPart[] = [];
-
-          mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-          mediaRecorder.onstop = () => {
-            stream.getTracks().forEach((t) => t.stop());
-            const blob = new Blob(chunks, { type: "audio/webm" });
-            const file = new File([blob], `voice-memo-${Date.now()}.webm`, {
-              type: "audio/webm",
-            });
-            handleFilesUpload([file]);
-            setIsRecording(false);
-          };
-
-          mediaRecorderRef.current = mediaRecorder;
-          mediaRecorder.start();
-          setIsRecording(true);
-        })
-        .catch(() => {
-          setIsRecording(false);
-        });
+      // SpeechRecognition not available — notify user
+      alert("Voice input is not supported in this browser. Try Chrome or Safari on desktop.");
     }
   }, [isRecording, value, onChange, handleFilesUpload]);
 

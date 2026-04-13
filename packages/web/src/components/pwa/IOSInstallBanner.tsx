@@ -8,6 +8,7 @@ interface IOSInstallBannerProps {
 
 const DISMISS_KEY = "garza-glue-ios-install-dismissed";
 const DISMISS_DURATION_MS = 24 * 60 * 60 * 1000; // 1 day
+const SHOW_DELAY_MS = 30000; // 30 seconds of usage before prompting
 
 function isIOSSafari(): boolean {
   if (typeof navigator === "undefined") return false;
@@ -40,7 +41,7 @@ export function IOSInstallBanner({ className }: IOSInstallBannerProps): React.Re
       if (Date.now() - dismissedAt < DISMISS_DURATION_MS) return;
     }
 
-    const timer = setTimeout(() => setShow(true), 3000);
+    const timer = setTimeout(() => setShow(true), SHOW_DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
 

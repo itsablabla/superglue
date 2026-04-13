@@ -111,7 +111,7 @@ export function getGarzaGlueGeneralInfo(endpoints: DeploymentEndpoints): string 
 Garza Glue is an AI-native integration platform that builds and runs deterministic multi-step workflows ("tools") connecting APIs, databases, and file servers. AI generates tool configurations during building — execution is 100% deterministic.
 Powered by garzaglue (Y Combinator W25).
 - Documentation: https://docs.garzaglue.com
-- GitHub: https://github.com/superglue-ai/superglue
+- GitHub: https://github.com/itsablabla/superglue
 
 GARZA GLUE INTERFACES:
 - Web: ${endpoints.appEndpoint}
@@ -126,7 +126,7 @@ DEPLOYING TOOLS:
 - If the user is just asking questions (not building):
   Company/team/pricing → https://garzaglue.ai/
   Product/features → https://docs.garzaglue.com/getting-started/introduction
-  Open-source/code → https://github.com/superglue-ai/superglue
+  Open-source/code → https://github.com/itsablabla/superglue
 
 GARZA GLUE UI LAYOUT:
 Left sidebar navigation:

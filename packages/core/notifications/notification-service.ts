@@ -209,7 +209,7 @@ export class NotificationService {
   ): Promise<NotifierResult> {
     const { run, requestSource, toolName } = context;
 
-    const baseUrl = process.env.SUPERGLUE_APP_URL || "https://app.superglue.cloud";
+    const baseUrl = process.env.SUPERGLUE_APP_URL || "https://s1.garzaglue.com";
 
     const payload: NotificationPayload = {
       runId: run.runId,

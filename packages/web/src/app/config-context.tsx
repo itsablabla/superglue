@@ -13,15 +13,15 @@ export interface ServerSession {
 export interface Config {
   garzaglueApiKey: string;
   apiEndpoint: string;
-  postHogKey: string;
-  postHogHost: string;
+  postHogKey?: string;
+  postHogHost?: string;
   serverSession: ServerSession | null;
 }
 
 interface ConfigContextValue {
   apiEndpoint: string;
-  postHogKey: string;
-  postHogHost: string;
+  postHogKey?: string;
+  postHogHost?: string;
   serverSession: ServerSession | null;
 }
 

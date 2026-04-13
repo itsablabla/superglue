@@ -540,7 +540,10 @@ const runEditTool = async (input: any, ctx: ToolExecutionContext) => {
       userApproved: true,
       persistence,
       diffs,
-      message: persistence === "saved" ? "Changes applied and saved automatically" : "Changes applied to draft",
+      message:
+        persistence === "saved"
+          ? "Changes applied and saved automatically"
+          : "Changes applied to draft",
     };
   } catch (error: any) {
     return {

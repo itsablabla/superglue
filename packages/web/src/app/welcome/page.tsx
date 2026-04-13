@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { usePostHog } from "posthog-js/react";
 import { useEffect, useState } from "react";
 import { useGarzaGlueClient } from "@/src/queries/use-client";
 import { useQuery } from "@tanstack/react-query";
@@ -23,7 +22,6 @@ export default function WelcomePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
-  const posthog = usePostHog();
   const createClient = useGarzaGlueClient();
 
   const tenantQuery = useQuery({
@@ -66,24 +64,12 @@ export default function WelcomePage() {
     setIsSubmitting(true);
 
     try {
-      posthog.capture("sh_email_acquired", {
-        email,
-        distinct_id: email,
-        userProperty: {
-          email: email,
-        },
-      });
-
       const client = createClient();
       await client.setTenantInfo({ email, emailEntrySkipped: false });
 
       document.cookie = `sg_tenant_email=${encodeURIComponent(email)}; path=/; max-age=31536000; SameSite=Strict`;
       document.cookie =
         "sg_tenant_emailEntrySkipped=false; path=/; max-age=31536000; SameSite=Strict";
-
-      posthog.identify(email, {
-        email: email,
-      });
 
       // Use window.location instead of router.push to force a full page reload
       // probably cloud still use router.push if i do a router.refresh() before
