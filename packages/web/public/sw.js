@@ -49,7 +49,8 @@ self.addEventListener("fetch", (event) => {
     url.pathname.startsWith("/api/") ||
     url.pathname.startsWith("/v1/") ||
     url.pathname.startsWith("/graphql") ||
-    url.pathname === "/sw.js"
+    url.pathname === "/sw.js" ||
+    url.pathname.startsWith("/_next/data/")
   ) {
     return;
   }
