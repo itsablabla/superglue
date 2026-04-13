@@ -486,7 +486,7 @@ const runEditTool = async (input: any, ctx: ToolExecutionContext) => {
 
     const fixedTool = {
       ...normalizedTool,
-      instruction: draft.instruction || normalizedTool.instruction,
+      instruction: normalizedTool.instruction || draft.instruction,
       createdAt: draft.config.createdAt,
       updatedAt: new Date(),
     };
